@@ -1,0 +1,19 @@
+<nav id="navbar">
+  <button id="home-button">
+    <a [routerLink]="['/home']">Meczyq</a>
+  </button>
+  <button>
+    <a [routerLink]="['/login']">Logowanie</a>
+  </button>
+  <button>
+    <a [routerLink]="['/register']">Rejestracja</a>
+  </button>
+</nav>
+
+<form>
+  <label for="email">Email</label><br>
+  <input id="email" type="email"><br>
+  <label for="pass">Hasło</label><br>
+  <input id="pass" type="password"><br>
+  <input type="submit" value="Rejestracja">
+</form>
