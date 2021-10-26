@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sport_types",
+  "info": {
+    "name": "SportType"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "maxLength": 45,
+      "required": true
+    },
+    "sports_facilities": {
+      "via": "sport_types",
+      "collection": "sports-facility"
+    }
+  }
+}
