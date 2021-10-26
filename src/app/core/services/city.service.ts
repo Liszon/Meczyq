@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
-import { City} from "../models/city";
+import { City } from "../models/city";
 
 @Injectable({
   providedIn: 'root'
@@ -11,23 +11,28 @@ export class CityService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(){
+  getEventCity(){
     return this.http.get<City[]>(environment.apiUrl+this.eventsPath);
   }
 
-  postsEvent(){
-    this.http.post<City>(environment.apiUrl+this.eventsPath)
+  postsEventCity(){
+    //this.http.post<City[]>(environment.apiUrl+this.eventsPath);
   }
 
-  getCountEvent(){
+  getCountEventCity(){
     return this.http.get<City[]>(environment.apiUrl+this.eventsPath+'/count');
   }
 
-  getIdEvent(){
-    //return this.http.get<City[]>(environment.apiUrl+this.eventsPath+'/'+{})
+  getIdEventCity(id: string){
+    return this.http.get<City[]>(environment.apiUrl+this.eventsPath+'/'+{id})
   }
 
-  putIdEvent(){
-    this.http.put<City[]>(environment.apiUrl+this.eventsPath+'/'+{})
+  putIdEventCity(id: string){
+    //this.http.put<City[]>(environment.apiUrl+this.eventsPath+'/'+{id});
+  }
+
+  deleteEventCity(id: string){
+    this.http.delete(environment.apiUrl+this.eventsPath+"/"+{id});
+    return console.log("Usunięto miasto o id: "+{id});
   }
 }
