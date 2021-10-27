@@ -28,4 +28,12 @@ export class SportsFacilityService {
     this.http.delete<SportsFacility[]>(environment.apiUrl+this.eventsPath+"/"+{id});
     return console.log("Usunięto Sport Facility o id: "+{id});
   }
+
+  postEventSportsFacility(sportfacility: SportsFacility){
+    return this.http.post<SportsFacility>(environment.apiUrl+this.eventsPath, sportfacility);
+  }
+
+  putIdEventSportsFacility(id: string, sportfacility: SportsFacility){
+    return this.http.put<SportsFacility>(environment.apiUrl+this.eventsPath+'/'+{id}, sportfacility);
+  }
 }

@@ -45,4 +45,28 @@ export class UserPermissionsUserService {
     this.http.delete<UsersPermissionUser>(environment.apiUrl+this.eventsPathusers+"/"+{id});
     return console.log("Usunięto permisje uzytkownika o id: "+{id});
   }
+
+  postLocalEventUserPermissionsUser(userpermissions: UsersPermissionUser){
+    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/local", userpermissions);
+  }
+
+  postLocalRegisterEventUserPermissionsUser(userpermissions: UsersPermissionUser){
+    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/local/register", userpermissions);
+  }
+
+  postForgotPassEventUserPermissionsUser(userpermissions: UsersPermissionUser){
+    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/forgot-password", userpermissions);
+  }
+
+  postResetPassEventUserPermissionsUser(userpermissions: UsersPermissionUser){
+    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/reset-password", userpermissions);
+  }
+
+  postSendEmailConfirmationEventUserPermissionsUser(userpermissions: UsersPermissionUser){
+    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/send-email-confirmation", userpermissions);
+  }
+
+  putIdEventUserPermissionsUser(id: string, userpermissions: UsersPermissionUser){
+    return this.http.put<UsersPermissionUser>(environment.apiUrl+this.eventsPathusers+'/'+{id}, userpermissions);
+  }
 }

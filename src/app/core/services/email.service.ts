@@ -15,5 +15,4 @@ export class EmailService {
     return this.http.get(environment.apiUrl+this.eventsPath+"/settings");
   }
 
-
 }

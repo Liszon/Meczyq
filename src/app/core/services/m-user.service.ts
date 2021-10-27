@@ -28,4 +28,12 @@ export class MUserService {
     this.http.delete<MUser[]>(environment.apiUrl+this.eventsPath+"/"+{id});
     return console.log("Usunięto M-usera o id: "+{id});
   }
+
+  postEventMUser(muser: MUser){
+    return this.http.post<MUser>(environment.apiUrl+this.eventsPath, muser);
+  }
+
+  putIdEventMUser(id: string, muser: MUser){
+    return this.http.put<MUser>(environment.apiUrl+this.eventsPath+'/'+{id}, muser);
+  }
 }

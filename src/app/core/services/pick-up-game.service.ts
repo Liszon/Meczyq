@@ -28,4 +28,12 @@ export class PickUpGameService {
     this.http.delete<PickUpGame[]>(environment.apiUrl+this.eventsPath+"/"+{id});
     return console.log("Usunięto Pick Up game o id: "+{id});
   }
+
+  postEventPickUpGame(pickupgame: PickUpGame){
+    return this.http.post<PickUpGame>(environment.apiUrl+this.eventsPath, pickupgame);
+  }
+
+  putIdEventPickUpGame(id: string, pickupgame: PickUpGame){
+    return this.http.put<PickUpGame>(environment.apiUrl+this.eventsPath+'/'+{id}, pickupgame);
+  }
 }

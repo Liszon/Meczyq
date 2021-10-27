@@ -27,4 +27,12 @@ export class ProvinceService {
     this.http.delete<Province[]>(environment.apiUrl+this.eventsPath+"/"+{id});
     return console.log("Usunięto prowincje o id: "+{id});
   }
+
+  postEventProvince(province: Province){
+    return this.http.post<Province>(environment.apiUrl+this.eventsPath, province);
+  }
+
+  putIdEventProvince(id: string, province: Province){
+    return this.http.put<Province>(environment.apiUrl+this.eventsPath+'/'+{id}, province);
+  }
 }

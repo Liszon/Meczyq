@@ -27,4 +27,12 @@ export class StreetService {
     this.http.delete<Street[]>(environment.apiUrl+this.eventsPath+"/"+{id});
     return console.log("Usunięto ulice o id: "+{id});
   }
+
+  postEventStreet(street: Street){
+    return this.http.post<Street>(environment.apiUrl+this.eventsPath, street);
+  }
+
+  putIdEventStreet(id: string, street: Street){
+    return this.http.put<Street>(environment.apiUrl+this.eventsPath+'/'+{id}, street);
+  }
 }

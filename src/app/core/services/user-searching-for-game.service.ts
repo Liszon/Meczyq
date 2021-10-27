@@ -28,4 +28,12 @@ export class UserSearchingForGameService {
     this.http.delete<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath+"/"+{id});
     return console.log("Usunięto user-searching-for-game o id: "+{id});
   }
+
+  postEventUserSearchingForGame(usersearchingforgame: UserSearchingForGame){
+    return this.http.post<UserSearchingForGame>(environment.apiUrl+this.eventsPath, usersearchingforgame);
+  }
+
+  putIdEventUserSearchingForGame(id: string, usersearchingforgame: UserSearchingForGame){
+    return this.http.put<UserSearchingForGame>(environment.apiUrl+this.eventsPath+'/'+{id}, usersearchingforgame);
+  }
 }

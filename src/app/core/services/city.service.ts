@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { City } from "../models/city";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CityService {
+
   private eventsPath = "cities";
 
   constructor(private http: HttpClient) { }
@@ -15,8 +17,8 @@ export class CityService {
     return this.http.get<City[]>(environment.apiUrl+this.eventsPath);
   }
 
-  postsEventCity(){
-    //this.http.post<City[]>(environment.apiUrl+this.eventsPath);
+  postEventCity(city: City){
+    return this.http.post<City>(environment.apiUrl+this.eventsPath, city);
   }
 
   getCountEventCity(){
@@ -27,8 +29,8 @@ export class CityService {
     return this.http.get<City[]>(environment.apiUrl+this.eventsPath+'/'+{id})
   }
 
-  putIdEventCity(id: string){
-    //this.http.put<City[]>(environment.apiUrl+this.eventsPath+'/'+{id});
+  putIdEventCity(id: string, city: City){
+    return this.http.put<City>(environment.apiUrl+this.eventsPath+'/'+{id}, city);
   }
 
   deleteEventCity(id: string){
@@ -36,3 +38,11 @@ export class CityService {
     return console.log("Usunięto miasto o id: "+{id});
   }
 }
+
+//Jezeli potrzebne headery to zostawic
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'my-auth-token'
+  })
+};

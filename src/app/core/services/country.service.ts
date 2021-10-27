@@ -27,4 +27,13 @@ export class CountryService {
     this.http.delete<Country[]>(environment.apiUrl+this.eventsPath+"/"+{id});
     return console.log("Usunięto kraj o id: "+{id});
   }
+
+  postEventCountry(country: Country){
+    return this.http.post<Country>(environment.apiUrl+this.eventsPath, country);
+  }
+
+  putIdEventCountry(id: string, country: Country){
+    return this.http.put<Country>(environment.apiUrl+this.eventsPath+'/'+{id}, country);
+  }
+
 }

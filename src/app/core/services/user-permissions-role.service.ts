@@ -24,4 +24,12 @@ export class UserPermissionsRoleService {
     this.http.delete(environment.apiUrl+this.eventsPath+"/"+{role});
     return console.log("Usunięto role: "+{role});
   }
+
+  postEventUserPermissionsRole(userpermissions: UsersPermissionRole){
+    return this.http.post<UsersPermissionRole>(environment.apiUrl+this.eventsPath, userpermissions);
+  }
+
+  putRoleEventUserPermissionsRole(role: string, userpermissions: UsersPermissionRole){
+    return this.http.put<UsersPermissionRole>(environment.apiUrl+this.eventsPath+'/'+{role}, userpermissions);
+  }
 }
