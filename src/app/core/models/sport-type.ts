@@ -1,4 +1,4 @@
-export interface SportFacility {
+export interface SportType {
   id: string;
   name: string;
   sports_facilities: [{
