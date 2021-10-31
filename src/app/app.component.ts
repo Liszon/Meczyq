@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Meczyq';
+ isMenuVisible: boolean=false;
+  onMenuToggle() {
+    this.isMenuVisible = !this.isMenuVisible;
+  }
 }
