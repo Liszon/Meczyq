@@ -1,0 +1,22 @@
+import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs";
+import {SportType} from "../../core/models/sport-type";
+import {SportTypeService} from "../../core/services/sport-type.service";
+
+@Component({
+  selector: 'app-sport-types-list-page',
+  templateUrl: './sport-types-list-page.component.html',
+  styleUrls: ['./sport-types-list-page.component.css']
+})
+export class SportTypesListPageComponent implements OnInit {
+
+  sportslist: Observable<SportType[]> | undefined;
+
+
+  constructor(private eventService: SportTypeService) { }
+
+  ngOnInit(): void {
+    this.sportslist = this.eventService.getEventSportType();
+  }
+
+}
