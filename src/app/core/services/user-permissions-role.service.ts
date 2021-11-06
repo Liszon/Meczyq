@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { UsersPermissionRole } from "../models/users-permission-role";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,18 @@ export class UserPermissionsRoleService {
 
   private eventsPath = "user-permissions/roles";
 
+  userpermissionrole: Observable<UsersPermissionRole[]> | undefined;
+  userpermissionroleId: Observable<UsersPermissionRole[]> | undefined;
+  public userpermissionroless: UsersPermissionRole[] | undefined;
+
   constructor(private http: HttpClient) { }
 
   getEventUserPermissionsRole(){
-    return this.http.get<UsersPermissionRole[]>(environment.apiUrl+this.eventsPath);
+    this.userpermissionrole = this.http.get<UsersPermissionRole[]>(environment.apiUrl+this.eventsPath);
   }
 
   getIdEventUserPermissionsRole(id: string){
-    return this.http.get<UsersPermissionRole[]>(environment.apiUrl+this.eventsPath+"/"+{id});
+    this.userpermissionroleId = this.http.get<UsersPermissionRole[]>(environment.apiUrl+this.eventsPath+"/"+{id});
   }
 
   deleteEventUserPermissionsRole(role: string){

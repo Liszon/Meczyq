@@ -16,7 +16,6 @@ export class SportTypesListPageComponent implements OnInit {
   constructor(private eventService: SportTypeService) { }
 
   ngOnInit(): void {
-    this.sportslist = this.eventService.getEventSportType();
   }
 
 }

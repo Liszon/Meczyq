@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { Province } from "../models/province";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +10,23 @@ import { Province } from "../models/province";
 export class ProvinceService {
   private eventsPath = "provinces";
 
+  province: Observable<Province[]> | undefined;
+  provinceCount: Observable<Province[]> | undefined;
+  provinceId: Observable<Province[]> | undefined;
+  public provincess: Province[] | undefined;
+
   constructor(private http: HttpClient) { }
 
   getEventProvince(){
-    return this.http.get<Province[]>(environment.apiUrl+this.eventsPath);
+    this.province = this.http.get<Province[]>(environment.apiUrl+this.eventsPath);
   }
 
   getCountEventProvince(){
-    return this.http.get<Province[]>(environment.apiUrl+this.eventsPath+"/count");
+    this.provinceCount = this.http.get<Province[]>(environment.apiUrl+this.eventsPath+"/count");
   }
 
   getIdEventProvince(id: string){
-    return this.http.get<Province[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    this.provinceId = this.http.get<Province[]>(environment.apiUrl+this.eventsPath+"/"+{id})
   }
 
   deleteEventProvince(id: string){

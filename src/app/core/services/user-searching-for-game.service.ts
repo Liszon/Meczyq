@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import  { UserSearchingForGame} from "../models/user-searching-for-game";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,23 @@ export class UserSearchingForGameService {
 
   private eventsPath = "user-searching-for-games";
 
+  usersearchingforgame: Observable<UserSearchingForGame[]> | undefined;
+  usersearchingforgameCount: Observable<UserSearchingForGame[]> | undefined;
+  usersearchingforgameId: Observable<UserSearchingForGame[]> | undefined;
+  public usersearchingforgamess: UserSearchingForGame[] | undefined;
+
   constructor(private http: HttpClient) { }
 
   getEventUserSearchingForGame(){
-    return this.http.get<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath);
+    this.usersearchingforgame = this.http.get<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath);
   }
 
   getCountEventUserSearchingForGame(){
-    return this.http.get<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath+"/count");
+    this.usersearchingforgameCount = this.http.get<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath+"/count");
   }
 
   getIdEventUserSearchingForGame(id: string){
-    return this.http.get<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    this.usersearchingforgameId = this.http.get<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath+"/"+{id})
   }
 
   deleteEventUserSearchingForGame(id: string){

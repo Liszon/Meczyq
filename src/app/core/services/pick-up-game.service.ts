@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import  {PickUpGame} from "../models/pick-up-game";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,23 @@ export class PickUpGameService {
 
   private eventsPath = "pick-up-games";
 
+  pickupgame: Observable<PickUpGame[]> | undefined;
+  pickupgameCount: Observable<PickUpGame[]> | undefined;
+  pickupgameId: Observable<PickUpGame[]> | undefined;
+  public pickupgamess: PickUpGame[] | undefined;
+
   constructor(private http: HttpClient) { }
 
   getEventPickUpGame(){
-    return this.http.get<PickUpGame[]>(environment.apiUrl+this.eventsPath);
+    this.pickupgame = this.http.get<PickUpGame[]>(environment.apiUrl+this.eventsPath);
   }
 
   getCountEventPickUpGame(){
-    return this.http.get<PickUpGame[]>(environment.apiUrl+this.eventsPath+"/count");
+    this.pickupgameCount = this.http.get<PickUpGame[]>(environment.apiUrl+this.eventsPath+"/count");
   }
 
   getIdEventPickUpGame(id: string){
-    return this.http.get<PickUpGame[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    this.pickupgameId = this.http.get<PickUpGame[]>(environment.apiUrl+this.eventsPath+"/"+{id})
   }
 
   deleteEventPickUpGame(id: string){

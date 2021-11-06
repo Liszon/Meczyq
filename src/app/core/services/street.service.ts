@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { Street } from "../models/street";
+import {Observable} from "rxjs";
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +11,23 @@ import { Street } from "../models/street";
 export class StreetService {
   private eventsPath = "streets";
 
+  street: Observable<Street[]> | undefined;
+  streetCount: Observable<Street[]> | undefined;
+  streetId: Observable<Street[]> | undefined;
+  public streetss: Street[] | undefined;
+
   constructor(private http: HttpClient) { }
 
   getEventStreet(){
-    return this.http.get<Street[]>(environment.apiUrl+this.eventsPath);
+    this.street = this.http.get<Street[]>(environment.apiUrl+this.eventsPath);
   }
 
   getCountEventStreet(){
-    return this.http.get<Street[]>(environment.apiUrl+this.eventsPath+"/count");
+    this.streetCount = this.http.get<Street[]>(environment.apiUrl+this.eventsPath+"/count");
   }
 
   getIdEventStreet(id: string){
-    return this.http.get<Street[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    this.streetId = this.http.get<Street[]>(environment.apiUrl+this.eventsPath+"/"+{id})
   }
 
   deleteEventStreet(id: string){

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import  {MUser} from "../models/m-user";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,23 @@ export class MUserService {
 
   private eventsPath = "m-users";
 
+  muser: Observable<MUser[]> | undefined;
+  muserCount: Observable<MUser[]> | undefined;
+  muserId: Observable<MUser[]> | undefined;
+  public muserss: MUser[] | undefined;
+
   constructor(private http: HttpClient) { }
 
   getEventMUser(){
-    return this.http.get<MUser[]>(environment.apiUrl+this.eventsPath);
+    this.muser = this.http.get<MUser[]>(environment.apiUrl+this.eventsPath);
   }
 
   getCountEventMUser(){
-    return this.http.get<MUser[]>(environment.apiUrl+this.eventsPath+"/count");
+    this.muserCount = this.http.get<MUser[]>(environment.apiUrl+this.eventsPath+"/count");
   }
 
   getIdEventMUsery(id: string){
-    return this.http.get<MUser[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    this.muserId = this.http.get<MUser[]>(environment.apiUrl+this.eventsPath+"/"+{id})
   }
 
   deleteEventMUser(id: string){

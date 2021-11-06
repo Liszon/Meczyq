@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import {SportsFacility} from "../models/sports-facility";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,23 @@ export class SportsFacilityService {
 
   private eventsPath = "sports-facilities";
 
+  sportfacility: Observable<SportsFacility[]> | undefined;
+  sportfacilityCount: Observable<SportsFacility[]> | undefined;
+  sportfacilityId: Observable<SportsFacility[]> | undefined;
+  public sportfacilitiess: SportsFacility[] | undefined;
+
   constructor(private http: HttpClient) { }
 
   getEventSportFacility(){
-    return this.http.get<SportsFacility[]>(environment.apiUrl+this.eventsPath);
+    this.sportfacility = this.http.get<SportsFacility[]>(environment.apiUrl+this.eventsPath);
   }
 
   getCountEventSportsFacility(){
-    return this.http.get<SportsFacility[]>(environment.apiUrl+this.eventsPath+"/count");
+    this.sportfacilityCount = this.http.get<SportsFacility[]>(environment.apiUrl+this.eventsPath+"/count");
   }
 
   getIdEventSportsFacility(id: string){
-    return this.http.get<SportsFacility[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    this.sportfacilityId = this.http.get<SportsFacility[]>(environment.apiUrl+this.eventsPath+"/"+{id})
   }
 
   deleteEventSportsFacility(id: string){

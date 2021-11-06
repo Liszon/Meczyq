@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { City } from "../models/city";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,38 +12,38 @@ export class CityService {
 
   private eventsPath = "cities";
 
+  city: any[] = [];
+  cityCount: Observable<City[]> | undefined;
+  cityId: Observable<City[]> | undefined;
+  public citiess: City[] | undefined;
+
   constructor(private http: HttpClient) { }
 
-  getEventCity(){
-    return this.http.get<City[]>(environment.apiUrl+this.eventsPath);
+  public getEventCity(){
+    this.http.get(environment.apiUrl+this.eventsPath).toPromise().then(res => this.city = res as City[])
+    return this.city;
   }
 
-  postEventCity(city: City){
+  public postEventCity(city: City){
     return this.http.post<City>(environment.apiUrl+this.eventsPath, city);
   }
 
-  getCountEventCity(){
-    return this.http.get<City[]>(environment.apiUrl+this.eventsPath+'/count');
+  public getCountEventCity(){
+    this.cityCount = this.http.get<City[]>(environment.apiUrl+this.eventsPath+'/count');
+    return this.cityCount;
   }
 
-  getIdEventCity(id: string){
-    return this.http.get<City[]>(environment.apiUrl+this.eventsPath+'/'+{id})
+  public getIdEventCity(id: string){
+    this.cityId = this.http.get<City[]>(environment.apiUrl+this.eventsPath+'/'+{id})
+    return this.cityId;
   }
 
-  putIdEventCity(id: string, city: City){
+  public putIdEventCity(id: string, city: City){
     return this.http.put<City>(environment.apiUrl+this.eventsPath+'/'+{id}, city);
   }
 
-  deleteEventCity(id: string){
+  public deleteEventCity(id: string){
     this.http.delete(environment.apiUrl+this.eventsPath+"/"+{id});
     return console.log("Usunięto miasto o id: "+{id});
   }
 }
-
-//Jezeli potrzebne headery to zostawic
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'my-auth-token'
-  })
-};

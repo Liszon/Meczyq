@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { Country } from "../models/country";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +10,23 @@ import { Country } from "../models/country";
 export class CountryService {
   private eventsPath = "countries";
 
+  country: Observable<Country[]> | undefined;
+  countryCount: Observable<Country[]> | undefined;
+  countryId: Observable<Country[]> | undefined;
+  public countriess: Country[] | undefined;
+
   constructor(private http: HttpClient) { }
 
   getEventCountry(){
-    return this.http.get<Country[]>(environment.apiUrl+this.eventsPath);
+    this.http.get<Country[]>(environment.apiUrl+this.eventsPath);
   }
 
   getCountEventCountry(){
-    return this.http.get<Country[]>(environment.apiUrl+this.eventsPath+"/count");
+    this.countryCount = this.http.get<Country[]>(environment.apiUrl+this.eventsPath+"/count");
   }
 
   getIdEventCountry(id: string){
-    return this.http.get<Country[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    this.countryId = this.http.get<Country[]>(environment.apiUrl+this.eventsPath+"/"+{id})
   }
 
   deleteEventCountry(id: string){
