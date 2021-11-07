@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { Province } from "../models/province";
-import {Observable} from "rxjs";
+import { NewProvince} from "../models/new-province";
 
 @Injectable({
   providedIn: 'root'
@@ -10,35 +10,30 @@ import {Observable} from "rxjs";
 export class ProvinceService {
   private eventsPath = "provinces";
 
-  province: Observable<Province[]> | undefined;
-  provinceCount: Observable<Province[]> | undefined;
-  provinceId: Observable<Province[]> | undefined;
-  public provincess: Province[] | undefined;
 
   constructor(private http: HttpClient) { }
 
   getEventProvince(){
-    this.province = this.http.get<Province[]>(environment.apiUrl+this.eventsPath);
+    return this.http.get(environment.apiUrl+this.eventsPath).toPromise()
   }
 
   getCountEventProvince(){
-    this.provinceCount = this.http.get<Province[]>(environment.apiUrl+this.eventsPath+"/count");
+    return this.http.get(environment.apiUrl+this.eventsPath+"/count").toPromise()
   }
 
   getIdEventProvince(id: string){
-    this.provinceId = this.http.get<Province[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    return this.http.get(environment.apiUrl+this.eventsPath+"/"+id).toPromise()
   }
 
   deleteEventProvince(id: string){
-    this.http.delete<Province[]>(environment.apiUrl+this.eventsPath+"/"+{id});
-    return console.log("Usunięto prowincje o id: "+{id});
+    return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventProvince(province: Province){
-    return this.http.post<Province>(environment.apiUrl+this.eventsPath, province);
+  postEventProvince(province: NewProvince){
+    return this.http.post(environment.apiUrl+this.eventsPath, province);
   }
 
-  putIdEventProvince(id: string, province: Province){
-    return this.http.put<Province>(environment.apiUrl+this.eventsPath+'/'+{id}, province);
+  putIdEventProvince(id: string, province: NewProvince){
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, province);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import  { UserSearchingForGame} from "../models/user-searching-for-game";
-import {Observable} from "rxjs";
+import { NewUserSearchingForGame} from "../models/new-user-searching-for-game";
 
 @Injectable({
   providedIn: 'root'
@@ -11,35 +11,29 @@ export class UserSearchingForGameService {
 
   private eventsPath = "user-searching-for-games";
 
-  usersearchingforgame: Observable<UserSearchingForGame[]> | undefined;
-  usersearchingforgameCount: Observable<UserSearchingForGame[]> | undefined;
-  usersearchingforgameId: Observable<UserSearchingForGame[]> | undefined;
-  public usersearchingforgamess: UserSearchingForGame[] | undefined;
-
   constructor(private http: HttpClient) { }
 
   getEventUserSearchingForGame(){
-    this.usersearchingforgame = this.http.get<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath);
+    return this.http.get(environment.apiUrl+this.eventsPath).toPromise()
   }
 
   getCountEventUserSearchingForGame(){
-    this.usersearchingforgameCount = this.http.get<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath+"/count");
+    return this.http.get(environment.apiUrl+this.eventsPath+"/count").toPromise()
   }
 
   getIdEventUserSearchingForGame(id: string){
-    this.usersearchingforgameId = this.http.get<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    return this.http.get(environment.apiUrl+this.eventsPath+"/"+id).toPromise()
   }
 
   deleteEventUserSearchingForGame(id: string){
-    this.http.delete<UserSearchingForGame[]>(environment.apiUrl+this.eventsPath+"/"+{id});
-    return console.log("Usunięto user-searching-for-game o id: "+{id});
+    return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventUserSearchingForGame(usersearchingforgame: UserSearchingForGame){
-    return this.http.post<UserSearchingForGame>(environment.apiUrl+this.eventsPath, usersearchingforgame);
+  postEventUserSearchingForGame(usersearchingforgame: NewUserSearchingForGame){
+    return this.http.post(environment.apiUrl+this.eventsPath, usersearchingforgame);
   }
 
-  putIdEventUserSearchingForGame(id: string, usersearchingforgame: UserSearchingForGame){
-    return this.http.put<UserSearchingForGame>(environment.apiUrl+this.eventsPath+'/'+{id}, usersearchingforgame);
+  putIdEventUserSearchingForGame(id: string, usersearchingforgame: NewUserSearchingForGame){
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, usersearchingforgame);
   }
 }

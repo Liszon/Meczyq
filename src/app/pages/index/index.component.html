@@ -8,8 +8,15 @@
   <button>
     <a [routerLink]="['/register']">Rejestracja</a>
   </button>
-
-  <div>
-    {{cityCount | json}}
-  </div>
 </nav>
+
+<div *ngFor="let citys of city; let i = index">
+  GetCity
+  {{city[i].id | json}}
+</div>
+<div>
+  <br>Get Count
+  {{cityCount | json}}
+  <br>Get ID
+  {{cityId.name | json}}
+</div>

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
-import  {UsersPermissionUser} from "../models/users-permission-user";
-import {Observable} from "rxjs";
+import { UsersPermissionUser} from "../models/users-permission-user";
+import { NewUsersPermissionUser} from "../models/new-users-permission-user";
 
 @Injectable({
   providedIn: 'root'
@@ -12,71 +12,61 @@ export class UserPermissionsUserService {
   private eventsPathauth = "auth";
   private eventsPathusers = "users";
 
-  userpermissionuserSearchId: Observable<UsersPermissionUser[]> | undefined;
-  userpermissionuserConnect: Observable<UsersPermissionUser[]> | undefined;
-  userpermissionuserProviderCallback: Observable<UsersPermissionUser[]> | undefined;
-  userpermissionuserEamilConf: Observable<UsersPermissionUser[]> | undefined;
-  userpermissionuser: Observable<UsersPermissionUser[]> | undefined;
-  userpermissionuserMe: Observable<UsersPermissionUser[]> | undefined;
-  userpermissionuserId: Observable<UsersPermissionUser[]> | undefined;
-  public userpermissionuserss: UsersPermissionUser[] | undefined;
-
   constructor(private http: HttpClient) { }
 
   getSearchEventUserPermissionsUser(id: string){
-    this.userpermissionuserSearchId = this.http.get<UsersPermissionUser[]>(environment.apiUrl+"users-permissions/search/"+{id});
+    return this.http.get(environment.apiUrl+"users-permissions/search/"+id).toPromise()
   }
 
   getConnectEventUserPermissionsUser(){
-    this.userpermissionuserConnect = this.http.get<UsersPermissionUser[]>(environment.apiUrl+"connect/*");
+    return this.http.get(environment.apiUrl+"connect/*").toPromise()
   }
 
   getCallbackEventUserPermissionsUser(provider: string){
-    this.userpermissionuserProviderCallback = this.http.get<UsersPermissionUser[]>(environment.apiUrl+this.eventsPathauth+"/"+{provider}+"/callback");
+    return this.http.get(environment.apiUrl+this.eventsPathauth+"/"+provider+"/callback").toPromise()
   }
 
   getEmailConfirmationEventUserPermissionsUser(){
-    this.userpermissionuserEamilConf = this.http.get<UsersPermissionUser[]>(environment.apiUrl+this.eventsPathauth+"/email-confiramtion");
+    return this.http.get(environment.apiUrl+this.eventsPathauth+"/email-confiramtion").toPromise()
   }
 
   getUsersEventUserPermissionsUser(){
-    this.userpermissionuser = this.http.get<UsersPermissionUser[]>(environment.apiUrl+this.eventsPathusers);
+    return this.http.get(environment.apiUrl+this.eventsPathusers).toPromise()
   }
 
   getUsersMeEventUserPermissionsUser(){
-    this.userpermissionuserMe = this.http.get<UsersPermissionUser[]>(environment.apiUrl+this.eventsPathusers+"/me");
+    return this.http.get(environment.apiUrl+this.eventsPathusers+"/me").toPromise()
   }
 
   getUsersIdEventUserPermissionsUser(id: string){
-    this.userpermissionuserId = this.http.get<UsersPermissionUser[]>(environment.apiUrl+this.eventsPathusers+"/"+{id});
+    return this.http.get(environment.apiUrl+this.eventsPathusers+"/"+id).toPromise()
   }
 
   deleteEventUserPermissionsUser(id: string){
-    this.http.delete<UsersPermissionUser>(environment.apiUrl+this.eventsPathusers+"/"+{id});
-    return console.log("Usunięto permisje uzytkownika o id: "+{id});
+    return this.http.delete(environment.apiUrl+this.eventsPathusers+"/"+id);
   }
 
-  postLocalEventUserPermissionsUser(userpermissions: UsersPermissionUser){
-    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/local", userpermissions);
+  postLocalEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/local", userpermissions);
   }
 
-  postLocalRegisterEventUserPermissionsUser(userpermissions: UsersPermissionUser){
-    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/local/register", userpermissions);
+  postLocalRegisterEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/local/register", userpermissions);
   }
 
-  postForgotPassEventUserPermissionsUser(userpermissions: UsersPermissionUser){
-    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/forgot-password", userpermissions);
+  postForgotPassEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/forgot-password", userpermissions);
   }
 
-  postResetPassEventUserPermissionsUser(userpermissions: UsersPermissionUser){
-    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/reset-password", userpermissions);
+  postResetPassEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/reset-password", userpermissions);
   }
 
-  postSendEmailConfirmationEventUserPermissionsUser(userpermissions: UsersPermissionUser){
-    return this.http.post<UsersPermissionUser>(environment.apiUrl+this.eventsPathauth+"/send-email-confirmation", userpermissions);
+  postSendEmailConfirmationEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/send-email-confirmation", userpermissions);
   }
 
-  putIdEventUserPermissionsUser(id: string, userpermissions: UsersPermissionUser){
-    return this.http.put<UsersPermissionUser>(environment.apiUrl+this.eventsPathusers+'/'+{id}, userpermissions);
+  putIdEventUserPermissionsUser(id: string, userpermissions: NewUsersPermissionUser){
+    return this.http.put(environment.apiUrl+this.eventsPathusers+'/'+id, userpermissions);
   }
 }

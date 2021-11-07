@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Input, Output} from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { Country } from "../models/country";
-import {Observable} from "rxjs";
+import { NewCountry} from "../models/new-country";
 
 @Injectable({
   providedIn: 'root'
@@ -10,36 +10,32 @@ import {Observable} from "rxjs";
 export class CountryService {
   private eventsPath = "countries";
 
-  country: Observable<Country[]> | undefined;
-  countryCount: Observable<Country[]> | undefined;
-  countryId: Observable<Country[]> | undefined;
-  public countriess: Country[] | undefined;
+
 
   constructor(private http: HttpClient) { }
 
   getEventCountry(){
-    this.http.get<Country[]>(environment.apiUrl+this.eventsPath);
+    return this.http.get(environment.apiUrl+this.eventsPath).toPromise()
   }
 
   getCountEventCountry(){
-    this.countryCount = this.http.get<Country[]>(environment.apiUrl+this.eventsPath+"/count");
+    return this.http.get(environment.apiUrl+this.eventsPath+"/count").toPromise()
   }
 
   getIdEventCountry(id: string){
-    this.countryId = this.http.get<Country[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    return this.http.get(environment.apiUrl+this.eventsPath+"/"+id).toPromise()
   }
 
   deleteEventCountry(id: string){
-    this.http.delete<Country[]>(environment.apiUrl+this.eventsPath+"/"+{id});
-    return console.log("Usunięto kraj o id: "+{id});
+    return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventCountry(country: Country){
-    return this.http.post<Country>(environment.apiUrl+this.eventsPath, country);
+  postEventCountry(country: NewCountry){
+    return this.http.post(environment.apiUrl+this.eventsPath, country);
   }
 
-  putIdEventCountry(id: string, country: Country){
-    return this.http.put<Country>(environment.apiUrl+this.eventsPath+'/'+{id}, country);
+  putIdEventCountry(id: string, country: NewCountry){
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, country);
   }
 
 }

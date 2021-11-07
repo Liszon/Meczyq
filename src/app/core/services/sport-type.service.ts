@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import  {SportType} from "../models/sport-type";
-import {Observable} from "rxjs";
+import { NewSportType} from "../models/new-sport-type";
 
 @Injectable({
   providedIn: 'root'
@@ -11,35 +11,29 @@ export class SportTypeService {
 
   private eventsPath = "sport-types";
 
-  sporttype: Observable<SportType[]> | undefined;
-  sporttypeCount: Observable<SportType[]> | undefined;
-  sporttypeId: Observable<SportType[]> | undefined;
-  public sporttypess: SportType[] | undefined;
-
   constructor(private http: HttpClient) { }
 
   getEventSportType(){
-    this.sporttype = this.http.get<SportType[]>(environment.apiUrl+this.eventsPath);
+    return this.http.get(environment.apiUrl+this.eventsPath).toPromise()
   }
 
   getCountEventSportType(){
-    this.sporttypeCount = this.http.get<SportType[]>(environment.apiUrl+this.eventsPath+"/count");
+    return this.http.get(environment.apiUrl+this.eventsPath+"/count").toPromise()
   }
 
   getIdEventSportType(id: string){
-    this.sporttypeId = this.http.get<SportType[]>(environment.apiUrl+this.eventsPath+"/"+{id})
+    return this.http.get(environment.apiUrl+this.eventsPath+"/"+id).toPromise()
   }
 
   deleteEventSportType(id: string){
-    this.http.delete<SportType[]>(environment.apiUrl+this.eventsPath+"/"+{id});
-    return console.log("Usunięto Sport type o id: "+{id});
+    return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventSportType(sporttype: SportType){
-    return this.http.post<SportType>(environment.apiUrl+this.eventsPath, sporttype);
+  postEventSportType(sporttype: NewSportType){
+    return this.http.post(environment.apiUrl+this.eventsPath, sporttype);
   }
 
-  putIdEventSportType(id: string, sporttype: SportType){
-    return this.http.put<SportType>(environment.apiUrl+this.eventsPath+'/'+{id}, sporttype);
+  putIdEventSportType(id: string, sporttype: NewSportType){
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, sporttype);
   }
 }

@@ -1,39 +1,38 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
-import { Street } from "../models/street";
-import { NewStreet} from "../models/new-street";
-
+import { NewTeam} from "../models/new-team";
 
 @Injectable({
   providedIn: 'root'
 })
-export class StreetService {
-  private eventsPath = "streets";
+export class TeamService {
+
+  private eventsPath = "teams";
 
   constructor(private http: HttpClient) { }
 
-  getEventStreet(){
+  getEventTeam(){
     return this.http.get(environment.apiUrl+this.eventsPath).toPromise()
   }
 
-  getCountEventStreet(){
+  getCountEventTeam(){
     return this.http.get(environment.apiUrl+this.eventsPath+"/count").toPromise()
   }
 
-  getIdEventStreet(id: string){
+  getIdEventTeam(id: string){
     return this.http.get(environment.apiUrl+this.eventsPath+"/"+id).toPromise()
   }
 
-  deleteEventStreet(id: string){
+  deleteEventTeam(id: string){
     return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventStreet(street: NewStreet){
-    return this.http.post(environment.apiUrl+this.eventsPath, street);
+  postEventTeam(team: NewTeam){
+    return this.http.post(environment.apiUrl+this.eventsPath, team);
   }
 
-  putIdEventStreet(id: string, street: NewStreet){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, street);
+  putIdEventTeam(id: string, team: NewTeam){
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, team);
   }
 }
