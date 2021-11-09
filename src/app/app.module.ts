@@ -33,6 +33,7 @@ import { TeamDataPageComponent } from './pages/team-data-page/team-data-page.com
 import { PickUpGameDataPageComponent } from './pages/pick-up-game-data-page/pick-up-game-data-page.component';
 import { SportFacilityDataPageComponent } from './pages/sport-facility-data-page/sport-facility-data-page.component';
 import { SportTypesListPageComponent } from './pages/sport-types-list-page/sport-types-list-page.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -67,42 +68,43 @@ import { SportTypesListPageComponent } from './pages/sport-types-list-page/sport
     SportFacilityDataPageComponent,
     SportTypesListPageComponent
   ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([
-      {path: "", redirectTo: "home", pathMatch: "full"},
-      {path: 'home', component: IndexComponent},
-      {path: 'login', component: LoginpageComponent},
-      {path: 'change-user-password', component: ChangeUserPasswordPageComponent},
-      {path: 'chat', component: ChatPageComponent},
-      {path: 'create-pick-up-game', component: CreatePickUpGamePageComponent},
-      {path: 'create-sport-facility', component: CreateSportFacilityPageComponent},
-      {path: 'create- sport-type', component: CreateSportTypePageComponent},
-      {path: 'create-team', component: CreateTeamPageComponent},
-      {path: 'create-text-chat', component: CreateTextChatPageComponent},
-      {path: 'create-tournament', component: CreateTournamentPageComponent},
-      {path: 'edit-pick-up-game-data', component: EditPickUpGameDataPageComponent},
-      {path: 'edit-sport-facility-data', component: EditSportFacilityDataPageComponent},
-      {path: 'edit-sport-type', component: EditSportTypePageComponent},
-      {path: 'edit-team-data', component: EditTeamDataComponent},
-      {path: 'edit-text-chat', component: EditTextChatPageComponent},
-      {path: 'edit-tournament', component: EditTournamentPageComponent},
-      {path: 'edit-user-data', component: EditUserDataPageComponent},
-      {path: 'invite-team-to-tournament', component: InviteTeamToTournamentPageComponent},
-      {path: 'invite-user-to-team', component: InviteUserToTeamPageComponent},
-      {path: 'invite-user-to-text-chat', component: InviteUserToTextChatPageComponent},
-      {path: 'pick-up-game-data', component: PickUpGameDataPageComponent},
-      {path: 'sport-facility-data', component: SportFacilityDataPageComponent},
-      {path: 'sport-type-list', component: SportTypesListPageComponent},
-      {path: 'team-data', component: TeamDataPageComponent},
-      {path: 'tournament-data', component: TournamentDataPageComponent},
-      {path: 'tournament-game', component: TournamentGamePageComponent},
-      {path: 'tournaments-available-in-area', component: TournamentsAvailableInAreaPageComponent},
-      {path: 'user-data', component: UserDataPageComponent},
-      {path: 'register', component: RegisterpageComponent}
-    ]),
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot([
+            {path: "", redirectTo: "home", pathMatch: "full"},
+            {path: 'home', component: IndexComponent},
+            {path: 'login', component: LoginpageComponent},
+            {path: 'change-user-password', component: ChangeUserPasswordPageComponent},
+            {path: 'chat', component: ChatPageComponent},
+            {path: 'create-pick-up-game', component: CreatePickUpGamePageComponent},
+            {path: 'create-sport-facility', component: CreateSportFacilityPageComponent},
+            {path: 'create- sport-type', component: CreateSportTypePageComponent},
+            {path: 'create-team', component: CreateTeamPageComponent},
+            {path: 'create-text-chat', component: CreateTextChatPageComponent},
+            {path: 'create-tournament', component: CreateTournamentPageComponent},
+            {path: 'edit-pick-up-game-data', component: EditPickUpGameDataPageComponent},
+            {path: 'edit-sport-facility-data', component: EditSportFacilityDataPageComponent},
+            {path: 'edit-sport-type', component: EditSportTypePageComponent},
+            {path: 'edit-team-data', component: EditTeamDataComponent},
+            {path: 'edit-text-chat', component: EditTextChatPageComponent},
+            {path: 'edit-tournament', component: EditTournamentPageComponent},
+            {path: 'edit-user-data', component: EditUserDataPageComponent},
+            {path: 'invite-team-to-tournament', component: InviteTeamToTournamentPageComponent},
+            {path: 'invite-user-to-team', component: InviteUserToTeamPageComponent},
+            {path: 'invite-user-to-text-chat', component: InviteUserToTextChatPageComponent},
+            {path: 'pick-up-game-data', component: PickUpGameDataPageComponent},
+            {path: 'sport-facility-data', component: SportFacilityDataPageComponent},
+            {path: 'sport-type-list', component: SportTypesListPageComponent},
+            {path: 'team-data', component: TeamDataPageComponent},
+            {path: 'tournament-data', component: TournamentDataPageComponent},
+            {path: 'tournament-game', component: TournamentGamePageComponent},
+            {path: 'tournaments-available-in-area', component: TournamentsAvailableInAreaPageComponent},
+            {path: 'user-data', component: UserDataPageComponent},
+            {path: 'register', component: RegisterpageComponent}
+        ]),
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

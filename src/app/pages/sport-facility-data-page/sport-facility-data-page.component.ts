@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SportsFacilityService} from "../../core/services/sports-facility.service";
+import {SportsFacility} from "../../core/models/sports-facility";
 
 @Component({
   selector: 'app-sport-facility-data-page',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SportFacilityDataPageComponent implements OnInit {
 
-  constructor() { }
+  facilitytId: any;
+
+  constructor(private eventService: SportsFacilityService) { }
 
   ngOnInit(): void {
+    this.eventService.getIdEventSportsFacility('1').then(data => {this.facilitytId = data as SportsFacility[];})
   }
 
 }

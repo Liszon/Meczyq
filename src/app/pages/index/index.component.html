@@ -8,15 +8,24 @@
   <button>
     <a [routerLink]="['/register']">Rejestracja</a>
   </button>
+  <button>
+    <a [routerLink]="['/team-data']">Team data page</a>
+  </button>
+  <button>
+    <a [routerLink]="['/tournament-data']">Tournament data page</a>
+  </button>
+  <button>
+    <a [routerLink]="['/sport-facility-data']">Tournament data page</a>
+  </button>
 </nav>
 
 <div *ngFor="let citys of city; let i = index">
   GetCity
-  {{city[i].id | json}}
+  {{city[i].name | json}}
 </div>
 <div>
   <br>Get Count
   {{cityCount | json}}
   <br>Get ID
-  {{cityId.name | json}}
+  {{cityId | json}}
 </div>

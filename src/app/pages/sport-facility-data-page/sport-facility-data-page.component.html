@@ -1,1 +1,13 @@
-<p>sport-facility-data-page works!</p>
+<p>sport-facility-data-page</p>
+
+<div style="text-align: center">
+  <h1 style="text-decoration-style: solid">{{facilitytId.name}}</h1>
+  <br>
+  Adress: {{facilitytId.street.name}} {{facilitytId.number}}, {{facilitytId.street.postCode}} {{facilitytId.street.city}}
+  <br>
+  Sport Types: <p *ngFor="let types of facilitytId.sport_types; let i = index">Name: {{facilitytId.sport_types[i].name}}</p>
+  <br>
+  Photos: <div *ngFor="let types of facilitytId.sportsFacilityPhotos; let i = index">
+  <img src={{facilitytId.sportsFacilityPhotos[i].url}}>
+</div>
+</div>

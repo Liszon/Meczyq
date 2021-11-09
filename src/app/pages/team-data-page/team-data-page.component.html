@@ -1,1 +1,16 @@
-<p>team-data-page works!</p>
+<p>team-data-page</p>
+
+
+
+Podaj ID teamu i kliknij enter
+<input #box (keyup.enter)="teamInfo(box.value)">
+
+<div style="text-align: center">
+  <h1 style="text-decoration-style: solid">{{teamId.name}}</h1>
+  <br>
+  Sport Type: team nie zwraca typu sportu jakim zajmuje sie druzyna
+  <br>
+  Capitan: {{teamId.owner.nick}}
+  <br>
+  Members: <p *ngFor="let member of teamId.team_users; let i = index">Nick: {{teamId.team_users[i].m_user}}</p>
+</div>

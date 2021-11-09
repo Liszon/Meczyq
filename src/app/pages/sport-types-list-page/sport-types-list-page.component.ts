@@ -10,12 +10,15 @@ import {SportTypeService} from "../../core/services/sport-type.service";
 })
 export class SportTypesListPageComponent implements OnInit {
 
-  sportslist: Observable<SportType[]> | undefined;
+  sporttypes: SportType[] = [];
+  sportCount: string | undefined;
 
 
   constructor(private eventService: SportTypeService) { }
 
   ngOnInit(): void {
+    this.eventService.getEventSportType().then(res => this.sporttypes = res as SportType[]);
+    this.eventService.getCountEventSportType().then(res2 => this.sportCount = res2 as string)
   }
 
 }

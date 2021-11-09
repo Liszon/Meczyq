@@ -1,1 +1,16 @@
-<p>tournament-data-page works!</p>
+<p>tournament-data-page </p>
+
+<div style="text-align: center">
+  <h1 style="text-decoration-style: solid">{{tournamentId.name}}</h1>
+  <br>
+  Sport Facility: {{tournamentId.sports_facility.name}}
+  <br>
+  Sport Type: {{tournamentId.sport_type.name}}
+  <br>
+  Start Date and Time: {{tournamentId.start_date}}
+  <br>
+  End Date and Time: {{tournamentId.end_date}}
+  <br>
+  Organizer: {{tournamentId.organizer.name}}
+  Teams: <p *ngFor="let team of tournamentId.team_tournaments; let i = index">{{tournamentId.team_tournaments[i].name}}</p>
+</div>
