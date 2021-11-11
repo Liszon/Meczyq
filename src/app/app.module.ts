@@ -36,6 +36,8 @@ import { SportTypesListPageComponent } from './pages/sport-types-list-page/sport
 import {FormsModule} from "@angular/forms";
 import { PickUpGameListComponent } from './pages/pick-up-game-list/pick-up-game-list.component';
 import { SportsFacilityListPageComponent } from './pages/sports-facility-list-page/sports-facility-list-page.component';
+import { DeleteSportFacilityComponent } from './pages/delete-sport-facility/delete-sport-facility.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { SportsFacilityListPageComponent } from './pages/sports-facility-list-pa
     SportFacilityDataPageComponent,
     SportTypesListPageComponent,
     PickUpGameListComponent,
-    SportsFacilityListPageComponent
+    SportsFacilityListPageComponent,
+    DeleteSportFacilityComponent
   ],
     imports: [
         BrowserModule,
@@ -86,6 +89,7 @@ import { SportsFacilityListPageComponent } from './pages/sports-facility-list-pa
             {path: 'create-team', component: CreateTeamPageComponent},
             {path: 'create-text-chat', component: CreateTextChatPageComponent},
             {path: 'create-tournament', component: CreateTournamentPageComponent},
+            {path: 'delete-sports-facility', component: DeleteSportFacilityComponent},
             {path: 'edit-pick-up-game-data', component: EditPickUpGameDataPageComponent},
             {path: 'edit-sport-facility-data', component: EditSportFacilityDataPageComponent},
             {path: 'edit-sport-type', component: EditSportTypePageComponent},
