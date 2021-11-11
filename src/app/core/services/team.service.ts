@@ -30,10 +30,14 @@ export class TeamService {
   }
 
   postEventTeam(team: NewTeam){
-    return this.http.post(environment.apiUrl+this.eventsPath, team);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(team);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventTeam(id: string, team: Team){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, team);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(team);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

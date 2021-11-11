@@ -30,10 +30,14 @@ export class SportsFacilityService {
   }
 
   postEventSportsFacility(sportfacility: NewSportsFacility){
-    return this.http.post(environment.apiUrl+this.eventsPath, sportfacility);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(sportfacility);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventSportsFacility(id: string, sportfacility: NewSportsFacility){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, sportfacility);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(sportfacility);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

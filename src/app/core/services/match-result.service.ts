@@ -25,12 +25,16 @@ export class MatchResultService {
     return this.http.get(environment.apiUrl+this.eventsPath+'/'+ id).toPromise()
   }
 
-  public postEventMatchResult(MatchResult: NewMatchResult){
-    return this.http.post(environment.apiUrl+this.eventsPath, MatchResult);
+  public postEventMatchResult(matchResult: NewMatchResult){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(matchResult);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
-  public putIdEventMatchResult(id: string, MatchResult: NewMatchResult){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, MatchResult);
+  public putIdEventMatchResult(id: string, matchResult: NewMatchResult){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(matchResult);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 
   public deleteEventMatchResult(id: string){

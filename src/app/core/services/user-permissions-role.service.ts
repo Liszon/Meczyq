@@ -26,10 +26,14 @@ export class UserPermissionsRoleService {
   }
 
   postEventUserPermissionsRole(userpermissions: NewUsersPermissionRole){
-    return this.http.post(environment.apiUrl+this.eventsPath, userpermissions);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userpermissions);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putRoleEventUserPermissionsRole(role: string, userpermissions: NewUsersPermissionRole){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+role, userpermissions);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userpermissions);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+role, body,{'headers': headers});
   }
 }

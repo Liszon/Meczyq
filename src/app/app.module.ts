@@ -38,6 +38,11 @@ import { PickUpGameListComponent } from './pages/pick-up-game-list/pick-up-game-
 import { SportsFacilityListPageComponent } from './pages/sports-facility-list-page/sports-facility-list-page.component';
 import { DeleteSportFacilityComponent } from './pages/delete-sport-facility/delete-sport-facility.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MainTournamentsPageComponent } from './pages/main-tournaments-page/main-tournaments-page.component';
+import { MainTeamsPageComponent } from './pages/main-teams-page/main-teams-page.component';
+import { MainPickUpGamePageComponent } from './pages/main-pick-up-game-page/main-pick-up-game-page.component';
+import { MainSportsFacilityPageComponent } from './pages/main-sports-facility-page/main-sports-facility-page.component';
+import { MainSportTypesPageComponent } from './pages/main-sport-types-page/main-sport-types-page.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +78,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     SportTypesListPageComponent,
     PickUpGameListComponent,
     SportsFacilityListPageComponent,
-    DeleteSportFacilityComponent
+    DeleteSportFacilityComponent,
+    MainTournamentsPageComponent,
+    MainTeamsPageComponent,
+    MainPickUpGamePageComponent,
+    MainSportsFacilityPageComponent,
+    MainSportTypesPageComponent
   ],
     imports: [
         BrowserModule,
@@ -100,6 +110,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
             {path: 'invite-team-to-tournament', component: InviteTeamToTournamentPageComponent},
             {path: 'invite-user-to-team', component: InviteUserToTeamPageComponent},
             {path: 'invite-user-to-text-chat', component: InviteUserToTextChatPageComponent},
+            {path: 'main-tournaments', component: MainTournamentsPageComponent},
+            {path: 'main-pick-up-game', component: MainPickUpGamePageComponent},
+            {path: 'main-teams', component: MainTeamsPageComponent},
+            {path: 'main-sports-facility', component: MainSportsFacilityPageComponent},
+            {path: 'main-sport-types', component: MainSportTypesPageComponent},
             {path: 'pick-up-game-data', component: PickUpGameDataPageComponent},
             {path: 'pick-up-game-list', component: PickUpGameListComponent},
             {path: 'sport-facility-data', component: SportFacilityDataPageComponent},

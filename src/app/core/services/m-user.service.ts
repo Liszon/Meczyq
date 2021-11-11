@@ -31,10 +31,14 @@ export class MUserService {
   }
 
   postEventMUser(muser: NewMUser){
-    return this.http.post(environment.apiUrl+this.eventsPath, muser);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(muser);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventMUser(id: string, muser: NewMUser){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, muser);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(muser);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

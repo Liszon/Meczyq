@@ -31,11 +31,15 @@ export class CountryService {
   }
 
   postEventCountry(country: NewCountry){
-    return this.http.post(environment.apiUrl+this.eventsPath, country);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(country);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventCountry(id: string, country: NewCountry){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, country);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(country);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, country,{'headers': headers});
   }
 
 }

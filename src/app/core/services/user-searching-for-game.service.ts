@@ -30,10 +30,14 @@ export class UserSearchingForGameService {
   }
 
   postEventUserSearchingForGame(usersearchingforgame: NewUserSearchingForGame){
-    return this.http.post(environment.apiUrl+this.eventsPath, usersearchingforgame);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(usersearchingforgame);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventUserSearchingForGame(id: string, usersearchingforgame: NewUserSearchingForGame){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, usersearchingforgame);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(usersearchingforgame);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

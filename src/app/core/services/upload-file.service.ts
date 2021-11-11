@@ -33,6 +33,8 @@ export class UploadFileService {
   }
 
   postEventUploadFile(file: NewUploadFile){
-    return this.http.post(environment.apiUrl+this.eventsPath, file);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(file);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 }

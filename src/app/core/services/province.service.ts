@@ -30,10 +30,14 @@ export class ProvinceService {
   }
 
   postEventProvince(province: NewProvince){
-    return this.http.post(environment.apiUrl+this.eventsPath, province);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(province);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventProvince(id: string, province: NewProvince){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, province);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(province);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

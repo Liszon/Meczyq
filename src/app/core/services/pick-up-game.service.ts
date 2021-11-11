@@ -30,10 +30,14 @@ export class PickUpGameService {
   }
 
   postEventPickUpGame(pickupgame: NewPickUpGame){
-    return this.http.post(environment.apiUrl+this.eventsPath, pickupgame);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(pickupgame);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventPickUpGame(id: string, pickupgame: NewPickUpGame){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, pickupgame);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(pickupgame);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

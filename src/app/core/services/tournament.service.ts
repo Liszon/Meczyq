@@ -37,6 +37,8 @@ export class TournamentService {
   }
 
   putIdEventTournament(id: string, tournament: NewTournament){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, tournament);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(tournament);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body, {'headers': headers});
   }
 }

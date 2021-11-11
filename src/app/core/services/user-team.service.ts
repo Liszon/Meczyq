@@ -30,10 +30,14 @@ export class UserTeamService {
   }
 
   postEventUserTeam(userteam: NewUserTeam){
-    return this.http.post(environment.apiUrl+this.eventsPath, userteam);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userteam);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventUserTeam(id: string, userteam: NewUserTeam){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, userteam);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userteam);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

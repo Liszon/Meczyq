@@ -30,10 +30,14 @@ export class StreetService {
   }
 
   postEventStreet(street: NewStreet){
-    return this.http.post(environment.apiUrl+this.eventsPath, street);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(street);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventStreet(id: string, street: NewStreet){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, street);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(street);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

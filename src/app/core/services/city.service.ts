@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { City } from "../models/city";
-import { NewCity} from "../models/new-city";
 
 
 @Injectable({
@@ -23,8 +22,10 @@ export class CityService {
 
   }
 
-  public postEventCity(city: NewCity){
-    return this.http.post(environment.apiUrl+this.eventsPath, city);
+  public postEventCity(city: City){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(city);
+    return this.http.post(environment.apiUrl+this.eventsPath, body, {'headers': headers});
   }
 
   public getCountEventCity(){
@@ -35,8 +36,10 @@ export class CityService {
     return this.http.get(environment.apiUrl+this.eventsPath+'/'+ id).toPromise()
   }
 
-  public putIdEventCity(id: string, city: NewCity){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, city);
+  public putIdEventCity(id: string, city: City){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(city);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body, {'headers': headers});
   }
 
   public deleteEventCity(id: string){

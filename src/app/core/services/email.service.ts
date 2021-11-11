@@ -17,11 +17,15 @@ export class EmailService {
   }
 
   postEventEmail(email: NewEmail){
-    return this.http.post(environment.apiUrl+this.eventsPath, email);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(email);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   postEventEmailTest(email: NewEmail){
-    return this.http.post(environment.apiUrl+this.eventsPath, email);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(email);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
 }

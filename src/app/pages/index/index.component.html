@@ -1,31 +1,9 @@
-<nav id="navbar">
-  <button id="home-button">
-    <a [routerLink]="['/home']">Meczyq</a>
-  </button>
+<div style="text-align: center">
   <button>
     <a [routerLink]="['/login']">Logowanie</a>
   </button>
+  <br><br>
   <button>
     <a [routerLink]="['/register']">Rejestracja</a>
   </button>
-  <button>
-    <a [routerLink]="['/team-data']">Team data page</a>
-  </button>
-  <button>
-    <a [routerLink]="['/tournament-data']">Tournament data page</a>
-  </button>
-  <button>
-    <a [routerLink]="['/sport-facility-data']">Tournament data page</a>
-  </button>
-</nav>
-
-<div *ngFor="let citys of city; let i = index">
-  GetCity
-  {{city[i].name | json}}
-</div>
-<div>
-  <br>Get Count
-  {{cityCount | json}}
-  <br>Get ID
-  {{cityId | json}}
 </div>

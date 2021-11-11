@@ -30,10 +30,14 @@ export class SportTypeService {
   }
 
   postEventSportType(sporttype: NewSportType){
-    return this.http.post(environment.apiUrl+this.eventsPath, sporttype);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(sporttype);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventSportType(id: string, sporttype: NewSportType){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, sporttype);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(sporttype);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

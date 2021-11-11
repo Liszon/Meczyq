@@ -47,26 +47,38 @@ export class UserPermissionsUserService {
   }
 
   postLocalEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
-    return this.http.post(environment.apiUrl+this.eventsPathauth+"/local", userpermissions);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userpermissions);
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/local", body,{'headers': headers});
   }
 
   postLocalRegisterEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
-    return this.http.post(environment.apiUrl+this.eventsPathauth+"/local/register", userpermissions);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userpermissions);
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/local/register", body,{'headers': headers});
   }
 
   postForgotPassEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
-    return this.http.post(environment.apiUrl+this.eventsPathauth+"/forgot-password", userpermissions);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userpermissions);
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/forgot-password", body,{'headers': headers});
   }
 
   postResetPassEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
-    return this.http.post(environment.apiUrl+this.eventsPathauth+"/reset-password", userpermissions);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userpermissions);
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/reset-password", body,{'headers': headers});
   }
 
   postSendEmailConfirmationEventUserPermissionsUser(userpermissions: NewUsersPermissionUser){
-    return this.http.post(environment.apiUrl+this.eventsPathauth+"/send-email-confirmation", userpermissions);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userpermissions);
+    return this.http.post(environment.apiUrl+this.eventsPathauth+"/send-email-confirmation", body,{'headers': headers});
   }
 
   putIdEventUserPermissionsUser(id: string, userpermissions: NewUsersPermissionUser){
-    return this.http.put(environment.apiUrl+this.eventsPathusers+'/'+id, userpermissions);
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(userpermissions);
+    return this.http.put(environment.apiUrl+this.eventsPathusers+'/'+id, body,{'headers': headers});
   }
 }

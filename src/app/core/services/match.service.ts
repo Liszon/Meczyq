@@ -29,11 +29,15 @@ export class MatchService {
     return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventMatch(Match: NewMatch){
-    return this.http.post(environment.apiUrl+this.eventsPath, Match);
+  postEventMatch(match: NewMatch){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(match);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
-  putIdEventMatch(id: string, Match: NewMatch){
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, Match);
+  putIdEventMatch(id: string, match: NewMatch){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(match);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }
