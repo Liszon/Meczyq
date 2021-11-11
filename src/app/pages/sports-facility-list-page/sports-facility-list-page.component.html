@@ -1,0 +1,17 @@
+<p>sports-facility-list-page works!</p>
+
+<div>
+  <table style="width:100%">
+    <tr>
+      <td>Name</td>
+      <td>Address</td>
+      <td>Sport types</td>
+    </tr>
+    <tr *ngFor="let facility of sportsFacility; let i = index">
+      <td>{{sportsFacility[i].name}}</td>
+      <td>{{sportsFacility[i].street.name}}, {{sportsFacility[i].street.city}}</td>
+      <td *ngFor="let facility of sportsFacility[i].sport_types; let x = index">{{sportsFacility[i].sport_types[x].name}}</td>
+    </tr>
+  </table>
+</div>
+

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import { NewTeam} from "../models/new-team";
+import {Team} from "../models/team";
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class TeamService {
     return this.http.post(environment.apiUrl+this.eventsPath, team);
   }
 
-  putIdEventTeam(id: string, team: NewTeam){
+  putIdEventTeam(id: string, team: Team){
     return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, team);
   }
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {NewTournament} from "../models/new-tournament";
+import {NewTournament, PostData} from "../models/new-tournament";
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -29,8 +30,10 @@ export class TournamentService {
     return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventTournament(tournament: NewTournament){
-    return this.http.post(environment.apiUrl+this.eventsPath, tournament);
+  postEventTournament(tournament: PostData): Observable<any>{
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(tournament);
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
   putIdEventTournament(id: string, tournament: NewTournament){

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MUser} from "../../core/models/m-user";
 
 @Component({
   selector: 'app-user-data-page',

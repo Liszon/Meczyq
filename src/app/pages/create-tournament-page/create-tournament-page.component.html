@@ -1,1 +1,33 @@
-<p>create-tournament-page works!</p>
+<div style="text-align: center">
+  <h1>Create new Tournament</h1>
+  <div>
+    <div>
+      <label>Organizer: </label>
+      <input [(ngModel)]="tournament.organizer">
+      <br>
+      <label>Sports Facility: </label>
+      <!--<input [(ngModel)]="tournament.sport_facility">-->
+      <select [ngModel]="tournament.sport_facility">
+        <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].name | json">{{sportsFacilityList[i].name}}</option>
+      </select>
+      <br>
+      <label>Sport Type: </label>
+      <input [(ngModel)]="tournament.sport_type">
+      <br>
+      <label>Tournament Name: </label>
+      <!--<input [(ngModel)]="tournament.name">-->
+      <select [ngModel]="tournament.name">
+        <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].name | json">{{sportsFacilityList[i].name}}</option>
+      </select>
+
+      <input [ngModel]="tournament.sport_facility" type="radio" *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].name | json">
+      <br>
+      <label>Start Date: </label>
+      <input [(ngModel)]="tournament.start_date">
+      <br>
+      <label>End Date: </label>
+      <input [(ngModel)]="tournament.end_date">
+    </div>
+    <button (click)="createTournament()">Create</button>
+  </div>
+</div>

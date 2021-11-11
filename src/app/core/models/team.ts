@@ -3,7 +3,7 @@ export interface Team {
   name: string;
   owner: {
     id: string;
-    nick: string;
+    Name: string;
     teams: [string];
     user_teams: [string];
     published_at: string;

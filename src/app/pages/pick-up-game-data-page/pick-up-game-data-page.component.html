@@ -1,1 +1,14 @@
 <p>pick-up-game-data-page works!</p>
+
+Podaj ID i kliknij enter
+<input #box (keyup.enter)="pickupInfo(box.value)">
+
+<div style="text-align: center">
+  <h1 style="text-decoration-style: solid">{{pickupId.name}}</h1>
+  <br>
+  Sport Type: {{pickupId.sport_type.name}}
+  <br>
+  Sport Facility: {{pickupId.sports_facility.name}}
+  <br>
+  Owner: {{pickupId.owner.Name}}
+</div>

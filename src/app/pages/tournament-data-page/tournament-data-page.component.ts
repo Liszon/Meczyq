@@ -14,7 +14,10 @@ export class TournamentDataPageComponent implements OnInit {
   constructor(private eventService: TournamentService) { }
 
   ngOnInit(): void {
-    this.eventService.getIdEventTournament('1').then(data => {this.tournamentId = data as Tournament[];})
+  }
+
+  tournamentInfo(id: string){
+    this.eventService.getIdEventTournament(id).then(data => {this.tournamentId = data as Tournament[];})
   }
 
 }

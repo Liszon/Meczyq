@@ -34,6 +34,8 @@ import { PickUpGameDataPageComponent } from './pages/pick-up-game-data-page/pick
 import { SportFacilityDataPageComponent } from './pages/sport-facility-data-page/sport-facility-data-page.component';
 import { SportTypesListPageComponent } from './pages/sport-types-list-page/sport-types-list-page.component';
 import {FormsModule} from "@angular/forms";
+import { PickUpGameListComponent } from './pages/pick-up-game-list/pick-up-game-list.component';
+import { SportsFacilityListPageComponent } from './pages/sports-facility-list-page/sports-facility-list-page.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import {FormsModule} from "@angular/forms";
     TeamDataPageComponent,
     PickUpGameDataPageComponent,
     SportFacilityDataPageComponent,
-    SportTypesListPageComponent
+    SportTypesListPageComponent,
+    PickUpGameListComponent,
+    SportsFacilityListPageComponent
   ],
     imports: [
         BrowserModule,
@@ -93,7 +97,9 @@ import {FormsModule} from "@angular/forms";
             {path: 'invite-user-to-team', component: InviteUserToTeamPageComponent},
             {path: 'invite-user-to-text-chat', component: InviteUserToTextChatPageComponent},
             {path: 'pick-up-game-data', component: PickUpGameDataPageComponent},
+            {path: 'pick-up-game-list', component: PickUpGameListComponent},
             {path: 'sport-facility-data', component: SportFacilityDataPageComponent},
+            {path: 'sport-facility-list', component: SportsFacilityListPageComponent},
             {path: 'sport-type-list', component: SportTypesListPageComponent},
             {path: 'team-data', component: TeamDataPageComponent},
             {path: 'tournament-data', component: TournamentDataPageComponent},

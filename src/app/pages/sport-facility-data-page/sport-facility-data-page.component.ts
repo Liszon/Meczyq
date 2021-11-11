@@ -14,7 +14,10 @@ export class SportFacilityDataPageComponent implements OnInit {
   constructor(private eventService: SportsFacilityService) { }
 
   ngOnInit(): void {
-    this.eventService.getIdEventSportsFacility('1').then(data => {this.facilitytId = data as SportsFacility[];})
+  }
+
+  sportFacilityInfo(id: string){
+    this.eventService.getIdEventSportsFacility(id).then(data => {this.facilitytId = data as SportsFacility[];})
   }
 
 }

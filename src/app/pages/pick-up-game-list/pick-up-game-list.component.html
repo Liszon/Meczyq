@@ -1,0 +1,14 @@
+<p>pick-up-game-list works!</p>
+
+<div style="text-align: center" *ngFor="let list of pickGame; let i = index">
+  <div>
+    Name: {{pickGame[i].name}}
+    <br>
+    Sports Facility: {{pickGame[i].sports_facility.name}}
+    <br>
+    Sport Type: {{pickGame[i].sport_type.name}}
+    <br>
+    Owner: {{pickGame[i].owner.Name}}
+  </div>
+  <br><br>
+</div>

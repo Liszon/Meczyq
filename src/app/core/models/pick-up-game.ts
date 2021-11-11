@@ -22,7 +22,7 @@ export interface PickUpGame {
   }
   owner: {
     id: string;
-    nick: string;
+    Name: string;
     published_at: string;
     created_by: string;
     updated_by: string;
