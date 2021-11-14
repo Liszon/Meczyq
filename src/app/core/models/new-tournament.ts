@@ -1,6 +1,6 @@
 export class PostData{
   organizer: string | undefined;
-  sport_facility: string | undefined;
+  sports_facility: string | undefined;
   sport_type: string | undefined;
   name: string | undefined;
   start_date: string | undefined;

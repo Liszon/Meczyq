@@ -4,29 +4,30 @@
     <div>
       <label>Organizer: </label>
       <input [(ngModel)]="tournament.organizer">
+      <!--<select [(ngModel)]="tournament.organizer">
+        <option *ngFor="let list of userPermUserList; let i = index" [value]="userPermUserList[i].id| json">{{userPermUserList[i].username}}</option>
+      </select>-->
       <br>
       <label>Sports Facility: </label>
       <!--<input [(ngModel)]="tournament.sport_facility">-->
-      <select [ngModel]="tournament.sport_facility">
-        <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].name | json">{{sportsFacilityList[i].name}}</option>
+      <select [(ngModel)]="tournament.sports_facility">
+        <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
       </select>
       <br>
       <label>Sport Type: </label>
-      <input [(ngModel)]="tournament.sport_type">
+      <!--<input [(ngModel)]="tournament.sport_type">-->
+      <select [(ngModel)]="tournament.sport_type">
+        <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
+      </select>
       <br>
       <label>Tournament Name: </label>
-      <!--<input [(ngModel)]="tournament.name">-->
-      <select [ngModel]="tournament.name">
-        <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].name | json">{{sportsFacilityList[i].name}}</option>
-      </select>
-
-      <input [ngModel]="tournament.sport_facility" type="radio" *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].name | json">
+      <input [(ngModel)]="tournament.name">
       <br>
       <label>Start Date: </label>
-      <input [(ngModel)]="tournament.start_date">
+      <input [(ngModel)]="tournament.start_date" type="datetime-local">
       <br>
       <label>End Date: </label>
-      <input [(ngModel)]="tournament.end_date">
+      <input [(ngModel)]="tournament.end_date" type="datetime-local">
     </div>
     <button (click)="createTournament()">Create</button>
   </div>
