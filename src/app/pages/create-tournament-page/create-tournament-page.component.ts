@@ -16,13 +16,12 @@ import {UsersPermissionUser} from "../../core/models/users-permission-user";
 
 export class CreateTournamentPageComponent implements OnInit {
 
+  constructor(private tournamentService: TournamentService, private facilityService: SportsFacilityService, private userPermUserService: UserPermissionsUserService, private sportTypeService: SportTypeService) { }
+
   tournament = new PostData();
   sportsFacilityList: SportsFacility[] = [];
   userPermUserList: UsersPermissionUser[] = [];
   sportTypesList: SportType[] = [];
-
-
-  constructor(private tournamentService: TournamentService, private facilityService: SportsFacilityService, private userPermUserService: UserPermissionsUserService, private sportTypeService: SportTypeService) { }
 
   ngOnInit(): void {
     this.facilityService.getEventSportFacility().then(res => this.sportsFacilityList = res as SportsFacility[]);

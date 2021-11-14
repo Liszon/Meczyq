@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import  {PickUpGame} from "../models/pick-up-game";
-import { NewPickUpGame } from "../models/new-pick-up-game";
+import {NewPickUpGame, NewPickUpGameClassPost} from "../models/new-pick-up-game";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class PickUpGameService {
     return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventPickUpGame(pickupgame: NewPickUpGame){
+  postEventPickUpGame(pickupgame: NewPickUpGameClassPost): Observable<any>{
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(pickupgame);
     return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});

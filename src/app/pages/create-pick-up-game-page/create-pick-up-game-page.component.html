@@ -1,1 +1,23 @@
 <p>create-pick-up-game-page works!</p>
+<div style="text-align: center">
+  <div>
+    <div>
+      <label>Name: </label>
+      <input [(ngModel)]="newPickUpGame.name">
+      <br>
+      <label>Sports Facility: </label>
+      <select [(ngModel)]="newPickUpGame.sports_facility">
+        <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
+      </select>
+      <br>
+      <label>Sport Type: </label>
+      <select [(ngModel)]="newPickUpGame.sport_type">
+        <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
+      </select>
+      <br>
+      <label>Owner ID: </label>
+      <input [(ngModel)]="newPickUpGame.owner">
+    </div>
+    <button (click)="createPickUpgame()">Create</button>
+  </div>
+</div>
