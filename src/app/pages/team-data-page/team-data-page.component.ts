@@ -10,12 +10,14 @@ import {Team} from "../../core/models/team";
 export class TeamDataPageComponent implements OnInit {
 
   teamId: any;
-  id_team: string | undefined;
+  id_team: any;
+  teamList: Team[] = [];
 
   constructor(private eventService: TeamService) { }
 
   ngOnInit(): void {
     //this.eventService.getIdEventTeam('1').then(data => {this.teamId = data as Team[];})
+    this.eventService.getEventTeam().then(res => this.teamList = res as Team[]);
   }
 
   teamInfo(id: string){

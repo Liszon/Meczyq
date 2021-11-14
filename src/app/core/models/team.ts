@@ -15,7 +15,7 @@ export interface Team {
     startDate: string;
     endDate: string;
     inviteDate: string;
-    m_user: string;
+    mUser: string;
     team: string;
     published_at: string;
     created_by: string;

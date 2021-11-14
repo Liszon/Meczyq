@@ -1,10 +1,6 @@
 <p>team-data-page</p>
 
-
-
-Podaj ID teamu i kliknij enter
-<input #box (keyup.enter)="teamInfo(box.value)">
-
+<!--
 <div style="text-align: center">
   <h1 style="text-decoration-style: solid">{{teamId.name}}</h1>
   <br>
@@ -12,5 +8,24 @@ Podaj ID teamu i kliknij enter
   <br>
   Capitan: {{teamId.owner.Name}}
   <br>
-  Members: <p *ngFor="let member of teamId.team_users; let i = index">Nick: {{teamId.team_users[i].m_user}}</p>
+  Members: <p *ngFor="let member of teamId.team_users; let i = index">Nick: {{teamId.team_users[i].mUser}}</p>
+</div>
+-->
+
+<div style="text-align: center">
+  Enter team ID and click enter
+  <input #box (keyup.enter)="teamInfo(box.value)">
+  <br>
+  <table style="width:50%; text-align: center">
+    <tr>
+      <td>Name</td>
+      <td>Capitan</td>
+      <td>Members</td>
+    </tr>
+    <tr>
+      <td>{{teamId.name}}</td>
+      <td>{{teamId.owner.Name}}</td>
+      <td *ngFor="let member of teamId.team_users; let i = index">{{teamId.team_users[i].mUser}}</td>
+    </tr>
+  </table>
 </div>
