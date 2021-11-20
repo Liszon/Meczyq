@@ -29,6 +29,7 @@ export class CreatePickUpGamePageComponent implements OnInit {
   }
 
   createPickUpgame() {
+
     this.pickUpGameService.postEventPickUpGame(this.newPickUpGame).subscribe(data => {
       console.log(data)
     })

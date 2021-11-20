@@ -6,17 +6,17 @@
       <input [(ngModel)]="newPickUpGame.name">
       <br>
       <label>Sports Facility: </label>
-      <select [(ngModel)]="newPickUpGame.sports_facility">
+      <select [(ngModel)]="newPickUpGame.sports_facility.id">
         <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
       </select>
       <br>
       <label>Sport Type: </label>
-      <select [(ngModel)]="newPickUpGame.sport_type">
+      <select [(ngModel)]="newPickUpGame.sport_type.id">
         <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
       </select>
       <br>
       <label>Owner ID: </label>
-      <input [(ngModel)]="newPickUpGame.owner">
+      <input [(ngModel)]="newPickUpGame.owner.id">
     </div>
     <button (click)="createPickUpgame()">Create</button>
   </div>

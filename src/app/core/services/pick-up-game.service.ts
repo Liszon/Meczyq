@@ -33,6 +33,7 @@ export class PickUpGameService {
   postEventPickUpGame(pickupgame: NewPickUpGameClassPost): Observable<any>{
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(pickupgame);
+    console.log(body)
     return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 

@@ -1,10 +1,24 @@
 <div style="text-align: center">
-  <form>
-    <label for="email">Email</label><br>
-    <input id="email" type="email"><br>
-    <label for="pass">Hasło</label><br>
-    <input id="pass" type="password"><br>
-    <input type="submit" value="Login">
-  </form>
+
+  <div *ngIf="isLoggedIn; else loggedOut">
+    You are logged in.
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <ng-template #loggedOut>
+
+    <form #loginForm ="ngForm"  class="mForm">
+      {{user|json}}<br>
+      <label for="email">Email</label><br>
+      <input id="email" name="email" type="email"  [(ngModel)]="user.email" required><br>
+      <label for="password">Password</label><br>
+      <input id="password" name="password" type="password"  [(ngModel)]="user.password" required><br>
+      <button type="button"  value="Login" (click)="onSubmit()" >Login</button>
+    </form>
+
+
+  </ng-template>
+
 
 </div>
+
