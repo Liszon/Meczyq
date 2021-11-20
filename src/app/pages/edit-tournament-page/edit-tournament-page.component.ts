@@ -14,6 +14,10 @@ import {SportTypeService} from "../../core/services/sport-type.service";
 })
 export class EditTournamentPageComponent implements OnInit {
 
+  idEditName: string;
+  idEditSportsFacility: string;
+  idEditSportType: string;
+  idEditDate: string;
   editNameValue = new PutName();
   editSportsFacilityValue = new PutSportsFacility();
   editSportTypeValue = new PutSportType();
@@ -21,10 +25,29 @@ export class EditTournamentPageComponent implements OnInit {
   tournamentsList: Tournament[] = [];
   sportTypesList: SportType[] = [];
   sportsFacilityList: SportsFacility[] = [];
-  id: string;
+  isShowEditName = false;
+  isShowEditSportsFacility = false;
+  isShowEditSportType = false;
+  isShowEditDate = false;
 
   constructor(private tournamentService: TournamentService, private facilityService: SportsFacilityService, private sportTypeService: SportTypeService) {
-    this.id = '';
+    this.idEditName = '';
+    this.idEditSportsFacility = '';
+    this.idEditSportType = '';
+    this.idEditDate = '';
+  }
+
+  showConfirmation(option: number){
+    switch (option){
+      case 1: this.isShowEditName = !this.isShowEditName;
+      break;
+      case 2: this.isShowEditSportsFacility = !this.isShowEditSportsFacility;
+      break;
+      case 3: this.isShowEditSportType = !this.isShowEditSportType;
+      break;
+      case 4: this.isShowEditDate = !this.isShowEditDate;
+      break;
+    }
   }
 
   ngOnInit(): void {
@@ -37,28 +60,32 @@ export class EditTournamentPageComponent implements OnInit {
   {
     this.tournamentService.putEditNameEventTournament(id, this.editNameValue).subscribe(data => {
       console.log(data)
-    })
+    });
+    this.showConfirmation(1);
   }
 
   EditSportFacility(id: string)
   {
     this.tournamentService.putEditSportsFacilityEventTournament(id, this.editSportsFacilityValue).subscribe(data => {
       console.log(data)
-    })
+    });
+    this.showConfirmation(2);
   }
 
   EditSportType(id: string)
   {
     this.tournamentService.putEditSportTypeEventTournament(id, this.editSportTypeValue).subscribe(data => {
       console.log(data)
-    })
+    });
+    this.showConfirmation(3);
   }
 
   EditDate(id: string)
   {
     this.tournamentService.putEditDateEventTournament(id, this.editDateValue).subscribe(data => {
       console.log(data)
-    })
+    });
+    this.showConfirmation(4);
   }
 
 }

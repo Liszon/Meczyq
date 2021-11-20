@@ -9,13 +9,11 @@
       </select>-->
       <br>
       <label>Sports Facility: </label>
-      <!--<input [(ngModel)]="tournament.sport_facility">-->
       <select [(ngModel)]="tournament.sports_facility">
         <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
       </select>
       <br>
       <label>Sport Type: </label>
-      <!--<input [(ngModel)]="tournament.sport_type">-->
       <select [(ngModel)]="tournament.sport_type">
         <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
       </select>
@@ -30,5 +28,8 @@
       <input [(ngModel)]="tournament.end_date" type="datetime-local">
     </div>
     <button (click)="createTournament()">Create</button>
+    <div *ngIf="isShow">
+      <h3>The new tournament has been created</h3>
+    </div>
   </div>
 </div>

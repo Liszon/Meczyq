@@ -1,10 +1,15 @@
 <p>delete-sport-facility works!</p>
 
 <div style="text-align: center">
-  type in the ID of the sport object and press enter
-
-  <form (submit)="delete(id.value)">
-    <input #id type="text">
-    <input type="submit">
-  </form>
+  <h2>Delete the Sports Facility</h2>
+  <div>
+    <label>Sports Facility</label>
+    <select [(ngModel)]="idDelete">
+      <option *ngFor="let list of sportsFacilitiesList; let i = index" [value]="sportsFacilitiesList[i].id | json">{{sportsFacilitiesList[i].name}}</option>
+    </select>
+  </div>
+  <button (click)="delete(idDelete)">Delete</button>
+  <div *ngIf="isShow">
+    <h3>The sports facility has been removed</h3>
+  </div>
 </div>

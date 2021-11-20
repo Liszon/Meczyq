@@ -5,6 +5,22 @@ export class NewPickUpGameClassPost {
   owner: string | undefined;
 }
 
+export class PutName{
+  name: string | undefined;
+}
+
+export class PutSportsFacility{
+  sports_facility: {
+    id: string;
+  } | undefined;
+}
+
+export class PutSportType{
+  sport_type: {
+    id: string;
+  } | undefined;
+}
+
 export interface NewPickUpGame {
   name: string;
   sports_facility: string;

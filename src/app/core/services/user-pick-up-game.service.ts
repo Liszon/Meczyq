@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
-import { UserPickUpGame} from "../models/user-pick-up-game";
+import {AddUserPickUpGame, UserPickUpGame} from "../models/user-pick-up-game";
 import { NewUserPickUpGame} from "../models/new-user-pick-up-game";
 
 @Injectable({
@@ -30,13 +30,13 @@ export class UserPickUpGameService {
     return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventUserPickUpGame(userpickupgame: NewUserPickUpGame){
+  postEventUserPickUpGame(userpickupgame: AddUserPickUpGame){
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(userpickupgame);
     return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
-  putIdEventUserPickUpGame(id: string, userpickupgame: NewUserPickUpGame){
+  putAddUserPickUpGameEventUserPickUpGame(id: string, userpickupgame: AddUserPickUpGame){
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(userpickupgame);
     return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});

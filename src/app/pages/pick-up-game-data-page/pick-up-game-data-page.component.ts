@@ -9,15 +9,26 @@ import {PickUpGame} from "../../core/models/pick-up-game";
 })
 export class PickUpGameDataPageComponent implements OnInit {
 
+  id: string;
+  pickupList: PickUpGame[] = [];
   pickupId: any;
+  isShow = false;
 
-  constructor(private pickupService: PickUpGameService) { }
+  constructor(private pickupService: PickUpGameService) {
+    this.id = '';
+  }
 
   ngOnInit(): void {
+    this.pickupService.getEventPickUpGame().then(res => this.pickupList = res as PickUpGame[]);
+  }
+
+  showConfirmation(){
+    this.isShow = true;
   }
 
   pickupInfo(id: string){
-    return this.pickupService.getIdEventPickUpGame(id).then(data => {this.pickupId = data as PickUpGame[];})
+    this.pickupService.getIdEventPickUpGame(id).then(data => {this.pickupId = data as PickUpGame[];});
+    this.showConfirmation();
   }
 
 }

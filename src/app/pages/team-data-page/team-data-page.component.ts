@@ -9,18 +9,25 @@ import {Team} from "../../core/models/team";
 })
 export class TeamDataPageComponent implements OnInit {
 
+  id: string;
   teamId: any;
-  id_team: any;
   teamList: Team[] = [];
+  isShow = false;
 
-  constructor(private eventService: TeamService) { }
+  constructor(private eventService: TeamService) {
+    this.id = '';
+  }
 
   ngOnInit(): void {
-    //this.eventService.getIdEventTeam('1').then(data => {this.teamId = data as Team[];})
     this.eventService.getEventTeam().then(res => this.teamList = res as Team[]);
   }
 
+  showConfirmation(){
+    this.isShow = true;
+  }
+
   teamInfo(id: string){
-    return this.eventService.getIdEventTeam(id).then(data => {this.teamId = data as Team[];})
+    this.eventService.getIdEventTeam(id).then(data => {this.teamId = data as Team[];});
+    this.showConfirmation()
   }
 }

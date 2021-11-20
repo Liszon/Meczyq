@@ -19,5 +19,8 @@
       <input [(ngModel)]="newPickUpGame.owner">
     </div>
     <button (click)="createPickUpgame()">Create</button>
+    <div *ngIf="isShow">
+      <h3>The new team has been created</h3>
+    </div>
   </div>
 </div>

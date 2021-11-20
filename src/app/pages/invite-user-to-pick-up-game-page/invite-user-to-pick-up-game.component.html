@@ -1,0 +1,22 @@
+<p>invite-user-to-pick-up-game works!</p>
+
+<div style="text-align: center">
+  <div>
+    <h2>Invite user to Pick-up Game</h2>
+    <div>
+      <label>Pick-up Game </label>
+      <select [(ngModel)]="addUser.pick_up_game">
+        <option *ngFor="let list of pickupList; let i = index" [value]="pickupList[i].id | json">{{pickupList[i].name}}</option>
+      </select>
+      <br>
+      <label>Username </label>
+      <select [(ngModel)]="addUser.m_user">
+        <option *ngFor="let list of mUserList; let i = index" [value]="mUserList[i].id | json">{{mUserList[i].usersPermissionsUser.username}}</option>
+      </select>
+    </div>
+    <button (click)="addUserEvent()">Invite</button>
+    <div *ngIf="isShowAdd">
+      <h3>The user has been invited to the Pick-up Game</h3>
+    </div>
+  </div>
+</div>

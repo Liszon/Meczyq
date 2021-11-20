@@ -5,14 +5,17 @@
     <h2>Edit Tournament Name</h2>
     <div>
       <label>Tournament </label>
-      <select [(ngModel)]="id">
+      <select [(ngModel)]="idEditName">
         <option *ngFor="let list of tournamentsList; let i = index" [value]="tournamentsList[i].id | json">{{tournamentsList[i].name}}</option>
       </select>
       <br>
       <label>New name </label>
       <input [(ngModel)]="editNameValue.name">
     </div>
-    <button (click)="EditName(id)">Change Name</button>
+    <button (click)="EditName(idEditName)">Change Name</button>
+    <div *ngIf="isShowEditName">
+      <h3>The name of the tournament has been changed</h3>
+    </div>
   </div>
 
   <br><br>
@@ -21,7 +24,7 @@
     <h2>Edit Tournament Sports Facility</h2>
     <div>
       <label>Tournament </label>
-      <select [(ngModel)]="id">
+      <select [(ngModel)]="idEditSportsFacility">
         <option *ngFor="let list of tournamentsList; let i = index" [value]="tournamentsList[i].id | json">{{tournamentsList[i].name}}</option>
       </select>
       <br>
@@ -30,7 +33,10 @@
         <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
       </select>
     </div>
-    <button (click)="EditSportFacility(id)">Change Sport Facility</button>
+    <button (click)="EditSportFacility(idEditSportsFacility)">Change Sport Facility</button>
+    <div *ngIf="isShowEditSportsFacility">
+      <h3>The sports facility of the tournament has been changed</h3>
+    </div>
   </div>
 
   <br><br>
@@ -39,7 +45,7 @@
     <h2>Edit Tournament Sport Type</h2>
     <div>
       <label>Tournament </label>
-      <select [(ngModel)]="id">
+      <select [(ngModel)]="idEditSportType">
         <option *ngFor="let list of tournamentsList; let i = index" [value]="tournamentsList[i].id | json">{{tournamentsList[i].name}}</option>
       </select>
       <br>
@@ -48,7 +54,10 @@
         <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
       </select>
     </div>
-    <button (click)="EditSportType(id)">Change Sport Type</button>
+    <button (click)="EditSportType(idEditSportType)">Change Sport Type</button>
+    <div *ngIf="isShowEditSportType">
+      <h3>The sport type of the tournament has been changed</h3>
+    </div>
   </div>
 
   <br><br>
@@ -57,7 +66,7 @@
     <h2>Edit Tournament Date</h2>
     <div>
       <label>Tournament </label>
-      <select [(ngModel)]="id">
+      <select [(ngModel)]="idEditDate">
         <option *ngFor="let list of tournamentsList; let i = index" [value]="tournamentsList[i].id | json">{{tournamentsList[i].name}}</option>
       </select>
       <br>
@@ -67,6 +76,9 @@
       <label>New end date </label>
       <input type="datetime-local" [(ngModel)]="editDateValue.end_date">
     </div>
-    <button (click)="EditDate(id)">Change Date</button>
+    <button (click)="EditDate(idEditDate)">Change Date</button>
+    <div *ngIf="isShowEditDate">
+      <h3>The date of the tournament has been changed</h3>
+    </div>
   </div>
 </div>
