@@ -1,1 +1,22 @@
 <p>edit-team-data works!</p>
+
+<div style="text-align: center">
+  <div>
+    <h2>Edit Team Name</h2>
+    <div>
+      <label>Old Name </label>
+      <select [(ngModel)]="idName">
+        <option *ngFor="let list of teamsList; let i = index" [value]="teamsList[i].id | json">{{teamsList[i].name}}</option>
+      </select>
+      <br>
+      <label>New name </label>
+      <input [(ngModel)]="editNameValue.name">
+    </div>
+    <button (click)="editName(idName)">Change Name</button>
+    <br>
+    <div *ngIf="isShow">
+      <h3>The team name has been changed</h3>
+    </div>
+  </div>
+  <br>
+</div>

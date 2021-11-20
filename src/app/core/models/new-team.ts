@@ -1,3 +1,7 @@
+export class PutName{
+  name: string | undefined;
+}
+
 export interface NewTeam {
   name: string;
   owner: string;

@@ -1,1 +1,45 @@
 <p>invite-team-to-tournament-page works!</p>
+<div style="text-align: center">
+  <div>
+    <h2>Add Team to the Tournament</h2>
+    <div>
+      <label>Tournament </label>
+      <select [(ngModel)]="id">
+        <option *ngFor="let list of tournamentsList; let i = index" [value]="tournamentsList[i].id | json">{{tournamentsList[i].name}}</option>
+      </select>
+      <br>
+      <label>Team </label>
+      <select [(ngModel)]="idTeam">
+        <option *ngFor="let lista of teamslist; let i = index" [value]="teamslist[i].id | json">{{teamslist[i].name}}</option>
+      </select>
+    </div>
+    <button (click)="addTeam(id)">Add Team</button>
+  </div>
+  <br>
+  <div *ngIf="isShowAdd">
+    <h3>The team has been added to the tournament</h3>
+  </div>
+</div>
+
+<br><br>
+
+<div style="text-align: center">
+    <h2>Remove Team from the Tournament</h2>
+    <div>
+      <div>
+        <label>Tournament </label>
+        <select [(ngModel)]="idRemove">
+          <option *ngFor="let list of tournamentsList; let i = index" [value]="tournamentsList[i].id | json">{{tournamentsList[i].name}}</option>
+        </select>
+        <br>
+        <label>Team </label>
+        <select [(ngModel)]="idTeamRemove">
+          <option *ngFor="let lista of teamslist; let i = index" [value]="teamslist[i].id | json">{{teamslist[i].name}}</option>
+        </select>
+    </div>
+      <button (click)="deleteTeam(idRemove)">Remove Team</button>
+      <div *ngIf="isShowRemove">
+        <h3>The team has been removed from the tournament</h3>
+      </div>
+  </div>
+</div>
