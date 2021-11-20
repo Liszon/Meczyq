@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {NewTournament, PostData} from "../models/new-tournament";
+import {
+  NewTournament,
+  PostData,
+  PutName,
+  PutSportsFacility,
+  PutSportType,
+  PutStartDateEndDate
+} from "../models/new-tournament";
 import {Observable} from "rxjs";
 
 
@@ -36,9 +43,33 @@ export class TournamentService {
     return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
   }
 
-  putIdEventTournament(id: string, tournament: NewTournament){
+  putEditNameEventTournament(id: string, tournament: PutName){
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(tournament);
     return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body, {'headers': headers});
+  }
+
+  putEditSportsFacilityEventTournament(id: string, tournament: PutSportsFacility){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(tournament);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body, {'headers': headers});
+  }
+
+  putEditSportTypeEventTournament(id: string, tournament: PutSportType){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(tournament);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body, {'headers': headers});
+  }
+
+  putEditDateEventTournament(id: string, tournament: PutStartDateEndDate){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(tournament);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body, {'headers': headers});
+  }
+
+  putEditTeamTournamentsEventTournament(id: string, tournament: string){
+    const headers = { 'content-type': 'application/json'};
+    //const body=JSON.stringify(tournament);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, tournament, {'headers': headers});
   }
 }

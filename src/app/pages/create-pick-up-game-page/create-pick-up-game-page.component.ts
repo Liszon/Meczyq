@@ -21,6 +21,7 @@ export class CreatePickUpGamePageComponent implements OnInit {
   sportsFacilityList: SportsFacility[] = [];
   userPermUserList: UsersPermissionUser[] = [];
   sportTypesList: SportType[] = [];
+  isShow = false;
 
   ngOnInit(): void {
     this.facilityService.getEventSportFacility().then(res => this.sportsFacilityList = res as SportsFacility[]);
@@ -28,11 +29,16 @@ export class CreatePickUpGamePageComponent implements OnInit {
     this.sportTypeService.getEventSportType().then(res => this.sportTypesList = res as SportType[]);
   }
 
+  showConfirmation(){
+    this.isShow = !this.isShow;
+  }
+
   createPickUpgame() {
 
     this.pickUpGameService.postEventPickUpGame(this.newPickUpGame).subscribe(data => {
       console.log(data)
-    })
+    });
+    this.showConfirmation();
   }
 
 

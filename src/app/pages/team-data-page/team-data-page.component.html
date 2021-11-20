@@ -1,31 +1,26 @@
 <p>team-data-page</p>
-
-<!--
 <div style="text-align: center">
-  <h1 style="text-decoration-style: solid">{{teamId.name}}</h1>
-  <br>
-  Sport Type: team nie zwraca typu sportu jakim zajmuje sie druzyna
-  <br>
-  Capitan: {{teamId.owner.Name}}
-  <br>
-  Members: <p *ngFor="let member of teamId.team_users; let i = index">Nick: {{teamId.team_users[i].mUser}}</p>
-</div>
--->
+  <h2>Display Team Details</h2>
+  <div>
+    <label>Team </label>
+    <select [(ngModel)]="id">
+      <option *ngFor="let list of teamList; let i = index" [value]="teamList[i].id | json">{{teamList[i].name}}</option>
+    </select>
+  </div>
+  <button (click)="teamInfo(id)">Show details</button>
+  <div *ngIf="isShow">
+    <table style="width:50%; text-align: center">
+      <tr>
+        <td>Name</td>
+        <td>Capitan</td>
+        <td>Members</td>
+      </tr>
+      <tr>
+        <td>{{teamId.name}}</td>
+        <td>{{teamId.owner.Name}}</td>
+        <td *ngFor="let member of teamId.team_users; let i = index">{{teamId.team_users[i].mUser}}</td>
+      </tr>
+    </table>
+  </div>
 
-<div style="text-align: center">
-  Enter team ID and click enter
-  <input #box (keyup.enter)="teamInfo(box.value)">
-  <br>
-  <table style="width:50%; text-align: center">
-    <tr>
-      <td>Name</td>
-      <td>Capitan</td>
-      <td>Members</td>
-    </tr>
-    <tr>
-      <td>{{teamId.name}}</td>
-      <td>{{teamId.owner.Name}}</td>
-      <td *ngFor="let member of teamId.team_users; let i = index">{{teamId.team_users[i].mUser}}</td>
-    </tr>
-  </table>
 </div>

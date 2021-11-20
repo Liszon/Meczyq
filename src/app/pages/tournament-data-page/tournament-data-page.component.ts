@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TournamentService} from "../../core/services/tournament.service";
 import {Tournament} from "../../core/models/tournament";
+import {TeamService} from "../../core/services/team.service";
+import {Team} from "../../core/models/team";
 
 @Component({
   selector: 'app-tournament-data-page',
@@ -9,15 +11,27 @@ import {Tournament} from "../../core/models/tournament";
 })
 export class TournamentDataPageComponent implements OnInit {
 
+  id: string;
   tournamentId: any;
+  tournamentList: Tournament[] = [];
+  isShow = false;
+  teamNames: any;
 
-  constructor(private eventService: TournamentService) { }
+  constructor(private tournamentService: TournamentService, private teamService: TeamService) {
+    this.id = '';
+  }
 
   ngOnInit(): void {
+    this.tournamentService.getEventTournament().then(res => this.tournamentList = res as Tournament[]);
   }
+
+  showConfirmation(){
+    this.isShow = true;
+  }
+
 
   tournamentInfo(id: string){
-    this.eventService.getIdEventTournament(id).then(data => {this.tournamentId = data as Tournament[];})
+    this.tournamentService.getIdEventTournament(id).then(data => {this.tournamentId = data as Tournament[];});
+    this.showConfirmation();
   }
-
 }

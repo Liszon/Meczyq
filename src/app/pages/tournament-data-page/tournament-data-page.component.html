@@ -1,21 +1,34 @@
 <p>tournament-data-page </p>
 
-Podaj ID teamu i kliknij enter
-<input #box (keyup.enter)="tournamentInfo(box.value)">
-
 <div style="text-align: center">
-  <h1 style="text-decoration-style: solid">{{tournamentId.name}}</h1>
-  <br>
-  Sport Facility: {{tournamentId.sports_facility.name}}
-  <br>
-  Sport Type: {{tournamentId.sport_type.name}}
-  <br>
-  Start Date and Time: {{tournamentId.start_date}}
-  <br>
-  End Date and Time: {{tournamentId.end_date}}
-  <br>
-  Organizer: {{tournamentId.organizer.Name}}
-  <br>
-  <div *ngFor="let team of tournamentId.team_tournaments; let i = index" >Team: {{tournamentId.team_tournaments[i].team}}<br></div>
-
+  <div>
+    <h2>Display Tournament Data</h2>
+    <div>
+      <label>Tournament </label>
+      <select [(ngModel)]="id">
+        <option *ngFor="let list of tournamentList; let i = index" [value]="tournamentList[i].id | json">{{tournamentList[i].name}}</option>
+      </select>
+    </div>
+    <button (click)="tournamentInfo(id)">Show</button>
+    <div *ngIf="isShow">
+      <table style="width:100%; text-align: center">
+        <tr>
+          <td>Name</td>
+          <td>Organizer</td>
+          <td>Sports Facility</td>
+          <td>Sport Type</td>
+          <td>Start Date</td>
+          <td>End Date</td>
+        </tr>
+        <tr>
+          <td>{{tournamentId.name}}</td>
+          <td>{{tournamentId.organizer.Name}}</td>
+          <td>{{tournamentId.sports_facility.name}}</td>
+          <td>{{tournamentId.sport_type.name}}</td>
+          <td>{{tournamentId.start_date}}</td>
+          <td>{{tournamentId.end_date}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

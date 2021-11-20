@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {TeamService} from "../../core/services/team.service";
+import {CreateNewTeam} from "../../core/models/new-team";
 
 @Component({
   selector: 'app-create-team-page',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTeamPageComponent implements OnInit {
 
-  constructor() { }
+  newTeam = new CreateNewTeam();
+  isShow = false;
+
+  constructor(private teamService: TeamService) { }
 
   ngOnInit(): void {
+  }
+
+  showConfirmation(){
+    this.isShow = !this.isShow;
+  }
+
+  createNewTeamEvent(){
+    this.teamService.postEventTeam(this.newTeam).subscribe(data => {
+      console.log(data)
+    });
+    this.showConfirmation();
   }
 
 }

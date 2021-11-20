@@ -43,9 +43,13 @@ import { MainTeamsPageComponent } from './pages/main-teams-page/main-teams-page.
 import { MainPickUpGamePageComponent } from './pages/main-pick-up-game-page/main-pick-up-game-page.component';
 import { MainSportsFacilityPageComponent } from './pages/main-sports-facility-page/main-sports-facility-page.component';
 import { MainSportTypesPageComponent } from './pages/main-sport-types-page/main-sport-types-page.component';
+
 import {LoginGuard} from "./auth/guards/login.guard";
 import {TokenInterceptor} from "./auth/token.interceptor";
 
+
+
+import { InviteUserToPickUpGameComponent } from './pages/invite-user-to-pick-up-game-page/invite-user-to-pick-up-game.component';
 
 
 @NgModule({
@@ -87,7 +91,8 @@ import {TokenInterceptor} from "./auth/token.interceptor";
     MainTeamsPageComponent,
     MainPickUpGamePageComponent,
     MainSportsFacilityPageComponent,
-    MainSportTypesPageComponent
+    MainSportTypesPageComponent,
+    InviteUserToPickUpGameComponent
   ],
     imports: [
         BrowserModule,
@@ -117,6 +122,7 @@ import {TokenInterceptor} from "./auth/token.interceptor";
             {path: 'invite-team-to-tournament', component: InviteTeamToTournamentPageComponent},
             {path: 'invite-user-to-team', component: InviteUserToTeamPageComponent},
             {path: 'invite-user-to-text-chat', component: InviteUserToTextChatPageComponent},
+            {path: 'invite-user-to-pick-up-game', component: InviteUserToPickUpGameComponent},
             {path: 'main-tournaments', component: MainTournamentsPageComponent},
             {path: 'main-pick-up-game', component: MainPickUpGamePageComponent},
             {path: 'main-teams', component: MainTeamsPageComponent},

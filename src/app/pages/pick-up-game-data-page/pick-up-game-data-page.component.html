@@ -1,14 +1,30 @@
 <p>pick-up-game-data-page works!</p>
 
-Podaj ID i kliknij enter
-<input #box (keyup.enter)="pickupInfo(box.value)">
-
 <div style="text-align: center">
-  <h1 style="text-decoration-style: solid">{{pickupId.name}}</h1>
-  <br>
-  Sport Type: {{pickupId.sport_type.name}}
-  <br>
-  Sport Facility: {{pickupId.sports_facility.name}}
-  <br>
-  Owner: {{pickupId.owner.Name}}
+  <div>
+    <h2>Display Pick Up Game Data</h2>
+    <div>
+      <label>Pick up game </label>
+      <select [(ngModel)]="id">
+        <option *ngFor="let list of pickupList; let i = index" [value]="pickupList[i].id | json">{{pickupList[i].name}}</option>
+      </select>
+    </div>
+    <button (click)="pickupInfo(id)">Show</button>
+    <div *ngIf="isShow">
+      <table style="width:100%; text-align: center">
+        <tr>
+          <td>Name</td>
+          <td>Owner</td>
+          <td>Sports Facility</td>
+          <td>Sport Type</td>
+        </tr>
+        <tr>
+          <td>{{pickupId.name}}</td>
+          <td>{{pickupId.owner.Name}}</td>
+          <td>{{pickupId.sports_facility.name}}</td>
+          <td>{{pickupId.sport_type.name}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

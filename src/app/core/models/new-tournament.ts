@@ -7,6 +7,28 @@ export class PostData{
   end_date: string | undefined;
 }
 
+export class PutName{
+  name: string | undefined;
+}
+
+export class PutSportsFacility{
+  sports_facility: {
+    id: string;
+  } | undefined;
+}
+
+export class PutSportType{
+  sport_type: {
+    id: string;
+  } | undefined;
+}
+
+export class PutStartDateEndDate{
+  start_date: string | undefined;
+  end_date: string | undefined;
+}
+
+
 export interface NewTournament {
   organizer: string;
   sport_facility: string;

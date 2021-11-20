@@ -1,1 +1,18 @@
 <p>create-team-page works!</p>
+
+<div style="text-align: center">
+  <div>
+    <h2>Create a new team</h2>
+    <div>
+      <label>Name </label>
+      <input [(ngModel)]="newTeam.name">
+      <br>
+      <label>Owner </label>
+      <input [(ngModel)]="newTeam.owner">
+    </div>
+    <button (click)="createNewTeamEvent()">Create</button>
+    <div *ngIf="isShow">
+      <h3>The new team has been created</h3>
+    </div>
+  </div>
+</div>
