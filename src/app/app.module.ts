@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './pages/index/index.component';
@@ -43,7 +43,14 @@ import { MainTeamsPageComponent } from './pages/main-teams-page/main-teams-page.
 import { MainPickUpGamePageComponent } from './pages/main-pick-up-game-page/main-pick-up-game-page.component';
 import { MainSportsFacilityPageComponent } from './pages/main-sports-facility-page/main-sports-facility-page.component';
 import { MainSportTypesPageComponent } from './pages/main-sport-types-page/main-sport-types-page.component';
+
+import {LoginGuard} from "./auth/guards/login.guard";
+import {TokenInterceptor} from "./auth/token.interceptor";
+
+
+
 import { InviteUserToPickUpGameComponent } from './pages/invite-user-to-pick-up-game-page/invite-user-to-pick-up-game.component';
+
 
 @NgModule({
   declarations: [
@@ -95,7 +102,10 @@ import { InviteUserToPickUpGameComponent } from './pages/invite-user-to-pick-up-
             {path: 'login', component: LoginpageComponent},
             {path: 'change-user-password', component: ChangeUserPasswordPageComponent},
             {path: 'chat', component: ChatPageComponent},
-            {path: 'create-pick-up-game', component: CreatePickUpGamePageComponent},
+            {path: 'create-pick-up-game', component: CreatePickUpGamePageComponent,
+              canActivate: [LoginGuard],
+              canLoad: [LoginGuard]
+            },
             {path: 'create-sport-facility', component: CreateSportFacilityPageComponent},
             {path: 'create- sport-type', component: CreateSportTypePageComponent},
             {path: 'create-team', component: CreateTeamPageComponent},
@@ -133,7 +143,14 @@ import { InviteUserToPickUpGameComponent } from './pages/invite-user-to-pick-up-
         HttpClientModule,
         FormsModule
     ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
