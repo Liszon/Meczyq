@@ -4,18 +4,19 @@ import { LoginComponent } from './containers/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
-import { AuthGuard } from './guards/auth.guard';
+
+
 import { AuthService } from './services/auth.service';
-import { RandomGuard } from './guards/login.guard';
+
 import { TokenInterceptor } from './token.interceptor';
+import {LoginGuard} from "./guards/login.guard";
 
 @NgModule({
   declarations: [LoginComponent],
   providers: [
-    AuthGuard,
+    LoginGuard,
     AuthService,
-    RandomGuard,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -27,9 +28,7 @@ import { TokenInterceptor } from './token.interceptor';
     RouterModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule
+
   ]
 })
 export class AuthModule { }
