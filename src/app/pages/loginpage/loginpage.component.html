@@ -1,3 +1,4 @@
+<!--
 <div style="text-align: center">
 
   <div *ngIf="isLoggedIn; else loggedOut">
@@ -21,4 +22,34 @@
 
 
 </div>
+-->
 
+<div class="header center">Log In</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <!--
+    <mat-form-field>
+      <input matInput type="text" id="username" placeholder="Username" autocomplete="off" formControlName="username" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" id="password" placeholder="Password" formControlName="password" required>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">LOG IN</button>
+    </div>
+  -->
+
+  <div>
+    <label>Email</label>
+    <input type="email" formControlName="email">
+  </div>
+  <div>
+    <label>Password</label>
+    <input type="password" formControlName="password">
+  </div>
+  <div>
+    <button type="submit">Login</button>
+  </div>
+</form>

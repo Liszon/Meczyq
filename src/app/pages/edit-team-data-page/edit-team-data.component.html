@@ -1,12 +1,17 @@
-<p>edit-team-data works!</p>
-
 <div style="text-align: center">
-  <div>
+  <div *ngIf="isShowInitial">
+    <h1>Are you sure you want to start editing</h1>
+    <button (click)="initialfunc()">YES</button>
+  </div>
+  <div *ngIf="isShowNoContent">
+    <h1>You are not the captain of any team</h1>
+  </div>
+  <div *ngIf="isShowContent">
     <h2>Edit Team Name</h2>
     <div>
       <label>Old Name </label>
       <select [(ngModel)]="idName">
-        <option *ngFor="let list of teamsList; let i = index" [value]="teamsList[i].id | json">{{teamsList[i].name}}</option>
+        <option *ngFor="let list of teamsList2; let i = index" [value]="teamsList2[i].id | json">{{teamsList2[i].name}}</option>
       </select>
       <br>
       <label>New name </label>
@@ -18,5 +23,5 @@
       <h3>The team name has been changed</h3>
     </div>
   </div>
-  <br>
+
 </div>

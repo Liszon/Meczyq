@@ -1,62 +1,74 @@
-<p>edit-pick-up-game-data-page works!</p>
-
 <div style="text-align: center">
-  <div>
-    <h2>Edit Tournament Name</h2>
-    <div>
-      <label>Tournament </label>
-      <select [(ngModel)]="idEditName">
-        <option *ngFor="let list of pickUpGameList; let i = index" [value]="pickUpGameList[i].id | json">{{pickUpGameList[i].name}}</option>
-      </select>
-      <br>
-      <label>New name </label>
-      <input [(ngModel)]="EditNameValue.name">
-    </div>
-    <button (click)="editName(idEditName)">Change Name</button>
-    <div *ngIf="isShowEditName">
-      <h3>The name of the pick-up game has been changed</h3>
-    </div>
+
+
+  <div *ngIf="isShowInitial">
+    <h1>Are you sure you want to start editing</h1>
+    <button (click)="initialfunc()">YES</button>
+  </div>
+  <div *ngIf="isShowNoContent">
+    <h1>You are not the organizer of any Pick-up game</h1>
   </div>
 
-  <br><br>
-
-  <div>
-    <h2>Edit Pick-up Game Sports Facility</h2>
+  <div *ngIf="isShowContent">
     <div>
-      <label>Tournament </label>
-      <select [(ngModel)]="idEditSportsFacility">
-        <option *ngFor="let list of pickUpGameList; let i = index" [value]="pickUpGameList[i].id | json">{{pickUpGameList[i].name}}</option>
-      </select>
-      <br>
-      <label>Sports facility </label>
-      <select [(ngModel)]="EditSportsFacilityValue.sports_facility">
-        <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
-      </select>
-    </div>
-    <button (click)="editSportFacility(idEditSportsFacility)">Change Sport Facility</button>
-    <div *ngIf="isShowEditSportsFacility">
-      <h3>The sports facility of the pick-up Game has been changed</h3>
-    </div>
-  </div>
+      <div>
+        <h2>Edit Pick-up game Name</h2>
+        <div>
+          <label>Pick-up game name </label>
+          <select [(ngModel)]="idEditName">
+            <option *ngFor="let list of pickUpGameList2; let i = index" [value]="pickUpGameList2[i].id | json">{{pickUpGameList2[i].name}}</option>
+          </select>
+          <br>
+          <label>New name </label>
+          <input [(ngModel)]="EditNameValue.name">
+        </div>
+        <button (click)="editName(idEditName)">Change Name</button>
+        <div *ngIf="isShowEditName">
+          <h3>The name of the pick-up game has been changed</h3>
+        </div>
+      </div>
 
-  <br><br>
+      <br><br>
 
-  <div>
-    <h2>Edit Tournament Sport Type</h2>
-    <div>
-      <label>Tournament </label>
-      <select [(ngModel)]="idEditSportType">
-        <option *ngFor="let list of pickUpGameList; let i = index" [value]="pickUpGameList[i].id | json">{{pickUpGameList[i].name}}</option>
-      </select>
-      <br>
-      <label>Sport type </label>
-      <select [(ngModel)]="EditSportTypeValue.sport_type">
-        <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
-      </select>
-    </div>
-    <button (click)="editSportType(idEditSportType)">Change Sport Type</button>
-    <div *ngIf="isShowEditSportType">
-      <h3>The sport type of the pick-up Game has been changed</h3>
+      <div>
+        <h2>Edit Pick-up Game Sports Facility</h2>
+        <div>
+          <label>Pick-up game name</label>
+          <select [(ngModel)]="idEditSportsFacility">
+            <option *ngFor="let list of pickUpGameList2; let i = index" [value]="pickUpGameList2[i].id | json">{{pickUpGameList[i].name}}</option>
+          </select>
+          <br>
+          <label>Sports facility </label>
+          <select [(ngModel)]="EditSportsFacilityValue.sports_facility">
+            <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
+          </select>
+        </div>
+        <button (click)="editSportFacility(idEditSportsFacility)">Change Sport Facility</button>
+        <div *ngIf="isShowEditSportsFacility">
+          <h3>The sports facility of the pick-up Game has been changed</h3>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div>
+        <h2>Edit Pick-up game Sport Type</h2>
+        <div>
+          <label>Pick-up game name</label>
+          <select [(ngModel)]="idEditSportType">
+            <option *ngFor="let list of pickUpGameList2; let i = index" [value]="pickUpGameList2[i].id | json">{{pickUpGameList2[i].name}}</option>
+          </select>
+          <br>
+          <label>Sport type </label>
+          <select [(ngModel)]="EditSportTypeValue.sport_type">
+            <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
+          </select>
+        </div>
+        <button (click)="editSportType(idEditSportType)">Change Sport Type</button>
+        <div *ngIf="isShowEditSportType">
+          <h3>The sport type of the pick-up Game has been changed</h3>
+        </div>
+      </div>
     </div>
   </div>
 </div>

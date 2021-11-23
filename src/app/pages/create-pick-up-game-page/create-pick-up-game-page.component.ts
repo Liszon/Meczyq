@@ -15,18 +15,22 @@ import {SportType} from "../../core/models/sport-type";
 })
 export class CreatePickUpGamePageComponent implements OnInit {
 
-  constructor(private pickUpGameService: PickUpGameService, private facilityService: SportsFacilityService, private userPermUserService: UserPermissionsUserService, private sportTypeService: SportTypeService) { }
+  constructor(private pickUpGameService: PickUpGameService, private facilityService: SportsFacilityService,
+              private userPermUserService: UserPermissionsUserService, private sportTypeService: SportTypeService) {  }
 
   newPickUpGame = new NewPickUpGameClassPost();
   sportsFacilityList: SportsFacility[] = [];
   userPermUserList: UsersPermissionUser[] = [];
   sportTypesList: SportType[] = [];
+  userMe: any;
   isShow = false;
 
   ngOnInit(): void {
     this.facilityService.getEventSportFacility().then(res => this.sportsFacilityList = res as SportsFacility[]);
     this.userPermUserService.getUsersEventUserPermissionsUser().then(res => this.userPermUserList = res as UsersPermissionUser[]);
     this.sportTypeService.getEventSportType().then(res => this.sportTypesList = res as SportType[]);
+    this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => this.userMe = res as UsersPermissionUser);
+
   }
 
   showConfirmation(){
@@ -35,6 +39,7 @@ export class CreatePickUpGamePageComponent implements OnInit {
 
   createPickUpgame() {
 
+    this.newPickUpGame.owner = this.userMe.id;
     this.pickUpGameService.postEventPickUpGame(this.newPickUpGame).subscribe(data => {
       console.log(data)
     });

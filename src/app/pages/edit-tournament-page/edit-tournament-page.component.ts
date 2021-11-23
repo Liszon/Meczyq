@@ -6,6 +6,8 @@ import {SportsFacility} from "../../core/models/sports-facility";
 import {TournamentService} from "../../core/services/tournament.service";
 import {SportsFacilityService} from "../../core/services/sports-facility.service";
 import {SportTypeService} from "../../core/services/sport-type.service";
+import {UsersPermissionUser} from "../../core/models/users-permission-user";
+import {UserPermissionsUserService} from "../../core/services/user-permissions-user.service";
 
 @Component({
   selector: 'app-edit-tournament-page',
@@ -23,14 +25,20 @@ export class EditTournamentPageComponent implements OnInit {
   editSportTypeValue = new PutSportType();
   editDateValue = new PutStartDateEndDate();
   tournamentsList: Tournament[] = [];
+  tournamentsList2: Tournament[] = [];
   sportTypesList: SportType[] = [];
   sportsFacilityList: SportsFacility[] = [];
   isShowEditName = false;
   isShowEditSportsFacility = false;
   isShowEditSportType = false;
   isShowEditDate = false;
+  isShowNoContent = false;
+  isShowContent = false;
+  isShowInitial = true;
+  userMe: any;
 
-  constructor(private tournamentService: TournamentService, private facilityService: SportsFacilityService, private sportTypeService: SportTypeService) {
+  constructor(private tournamentService: TournamentService, private facilityService: SportsFacilityService,
+              private sportTypeService: SportTypeService, private userPermUserService: UserPermissionsUserService) {
     this.idEditName = '';
     this.idEditSportsFacility = '';
     this.idEditSportType = '';
@@ -54,6 +62,36 @@ export class EditTournamentPageComponent implements OnInit {
     this.facilityService.getEventSportFacility().then(res => this.sportsFacilityList = res as SportsFacility[]);
     this.sportTypeService.getEventSportType().then(res => this.sportTypesList = res as SportType[]);
     this.tournamentService.getEventTournament().then(res => this.tournamentsList = res as Tournament[]);
+    this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => this.userMe = res as UsersPermissionUser);
+  }
+
+  initialfunc(){
+    this.findUserGames();
+    this.showContent();
+    this.isShowInitial = false;
+  }
+
+  showContent(){
+
+    if(this.tournamentsList2.length != 0)
+    {
+      this.isShowContent = true;
+    } else
+    {
+      this.isShowNoContent = true;
+    }
+  }
+
+  findUserGames(){
+    let x;
+
+    for(x=0; x<this.tournamentsList.length; x++)
+    {
+      if(this.userMe.id == this.tournamentsList[x].organizer.id)
+      {
+        this.tournamentsList2.push(this.tournamentsList[x]);
+      }
+    }
   }
 
   EditName(id: string)

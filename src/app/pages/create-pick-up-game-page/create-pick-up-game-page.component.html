@@ -1,4 +1,3 @@
-<p>create-pick-up-game-page works!</p>
 <div style="text-align: center">
   <div>
     <div>
@@ -14,9 +13,11 @@
       <select [(ngModel)]="newPickUpGame.sport_type.id">
         <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
       </select>
+      <!--
       <br>
       <label>Owner ID: </label>
       <input [(ngModel)]="newPickUpGame.owner.id">
+      -->
     </div>
     <button (click)="createPickUpgame()">Create</button>
     <div *ngIf="isShow">

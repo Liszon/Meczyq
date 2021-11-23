@@ -23,11 +23,13 @@ export class CreateTournamentPageComponent implements OnInit {
   userPermUserList: UsersPermissionUser[] = [];
   sportTypesList: SportType[] = [];
   isShow = false;
+  userMe: any;
 
   ngOnInit(): void {
     this.facilityService.getEventSportFacility().then(res => this.sportsFacilityList = res as SportsFacility[]);
     this.userPermUserService.getUsersEventUserPermissionsUser().then(res => this.userPermUserList = res as UsersPermissionUser[]);
     this.sportTypeService.getEventSportType().then(res => this.sportTypesList = res as SportType[]);
+    this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => this.userMe = res as UsersPermissionUser);
   }
 
   showConfirmation(){
@@ -35,6 +37,7 @@ export class CreateTournamentPageComponent implements OnInit {
   }
 
   createTournament(){
+    this.tournament.organizer = this.userMe.id;
     this.tournamentService.postEventTournament(this.tournament).subscribe(data => {
       console.log(data)
     });

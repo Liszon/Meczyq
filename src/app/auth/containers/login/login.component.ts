@@ -12,11 +12,16 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
+    this.loginForm = this.formBuilder.group({
+      email: [''],
+      password: ['']
+    });
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: [''],
+      email: [''],
       password: ['']
     });
   }
@@ -26,7 +31,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(
       {
-        username: this.f.username.value,
+        email: this.f.email.value,
         password: this.f.password.value
       }
     )
