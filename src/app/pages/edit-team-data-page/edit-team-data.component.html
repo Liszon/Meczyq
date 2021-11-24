@@ -3,9 +3,11 @@
     <h1>Are you sure you want to start editing</h1>
     <button (click)="initialfunc()">YES</button>
   </div>
+
   <div *ngIf="isShowNoContent">
     <h1>You are not the captain of any team</h1>
   </div>
+
   <div *ngIf="isShowContent">
     <h2>Edit Team Name</h2>
     <div>

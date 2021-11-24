@@ -3,6 +3,8 @@ import {TournamentService} from "../../core/services/tournament.service";
 import {TeamService} from "../../core/services/team.service";
 import {Tournament} from "../../core/models/tournament";
 import {Team} from "../../core/models/team";
+import {UsersPermissionUser} from "../../core/models/users-permission-user";
+import {UserPermissionsUserService} from "../../core/services/user-permissions-user.service";
 
 @Component({
   selector: 'app-invite-team-to-tournament-page',
@@ -16,12 +18,20 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
   idRemove: string;
   idTeamRemove: string;
   tournamentsList: Tournament[] = [];
+  tournamentsList2: Tournament[] = [];
   teamslist: Team[] = [];
-  isShowAdd = false;
+  isShowAddConfirmation = false;
+  isShowRemoveConfirmation = false;
+  isShowNoContent = false;
+  isShowContent = false;
+  isShowInitial = true;
+  isShowADD = false;
   isShowRemove = false;
+  userMe: any;
 
 
-  constructor(private tournamentService: TournamentService, private teamService: TeamService) {
+  constructor(private tournamentService: TournamentService, private teamService: TeamService,
+              private userPermUserService: UserPermissionsUserService) {
     this.id = '';
     this.idTeam = '';
     this.idRemove = '';
@@ -31,15 +41,58 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
   ngOnInit(): void {
     this.tournamentService.getEventTournament().then(res => this.tournamentsList = res as Tournament[]);
     this.teamService.getEventTeam().then(res => this.teamslist = res as Team[]);
+    this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => this.userMe = res as UsersPermissionUser);
   }
 
+  showAdd()
+  {
+    if(!this.isShowRemove)
+    {
+      this.findUserGames();
+      this.showContent();
+    }
+    this.isShowADD = true;
+  }
+
+  showRemove()
+  {
+    if (!this.isShowADD)
+    {
+      this.findUserGames();
+      this.showContent();
+    }
+    this.isShowRemove = true;
+  }
+
+  showContent(){
+
+    if(this.tournamentsList2.length != 0)
+    {
+      this.isShowContent = true;
+    } else
+    {
+      this.isShowNoContent = true;
+    }
+  }
+
+  findUserGames(){
+    let x;
+
+    for(x=0; x<this.tournamentsList.length; x++)
+    {
+      if(this.userMe.id == this.tournamentsList[x].organizer.id)
+      {
+        this.tournamentsList2.push(this.tournamentsList[x]);
+      }
+    }
+  }
 
   showConfirmationADD(){
-    this.isShowAdd = !this.isShowAdd;
+    this.isShowAddConfirmation = true;
   }
 
   showConfirmationRemove(){
-    this.isShowRemove = !this.isShowRemove;
+    this.isShowRemoveConfirmation = true;
   }
 
   addTeam(id: string){
@@ -89,7 +142,7 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
     }
     this.tournamentService.putEditTeamTournamentsEventTournament(id, temp).subscribe(data => {
       console.log(data)
-    })
+    });
     this.showConfirmationRemove();
   }
 

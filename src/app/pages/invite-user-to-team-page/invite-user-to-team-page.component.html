@@ -1,1 +1,55 @@
-<p>invite-user-to-team-page works!</p>
+<div style="text-align: center">
+  <div *ngIf="isShowInitial">
+    <h1>You want to add or remove a user from the team</h1>
+    <button (click)="showAdd()">Add</button>
+    <button (click)="showRemove()">Remove</button>
+  </div>
+
+  <div *ngIf="isShowNoContent">
+    <h1>You are not the organizer of any Tournament</h1>
+  </div>
+
+  <div *ngIf="isShowContent">
+
+    <div *ngIf="isShowADD">
+      <div>
+        <h2>Invite new member</h2>
+        <label>Team</label>
+        <select [(ngModel)]="addUser.team">
+          <option *ngFor="let list of teamList2; let i = index" [value]="teamList2[i].id | json">{{teamList2[i].name}}</option>
+        </select>
+        <br>
+        <label>User</label>
+        <select [(ngModel)]="addUser.mUser">
+          <option *ngFor="let list of mUserList; let i = index" [value]="mUserList[i].id | json">{{mUserList[i].usersPermissionsUser.username}}</option>
+        </select>
+      </div>
+      <button (click)="addUserEvent()">Invite User</button>
+      <div *ngIf="isShowAddConfirmation">
+        <h2>The user has been invited to the team</h2>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div *ngIf="isShowRemove">
+      <div>
+        <h2>Remove a member from the team</h2>
+        <label>Team</label>
+        <select [(ngModel)]="idTeam">
+          <option *ngFor="let list of teamList2; let i = index" [value]="teamList2[i].id | json">{{teamList2[i].name}}</option>
+        </select>
+        <br>
+        <label>User</label>
+        <select [(ngModel)]="idUser">
+          <option *ngFor="let list of mUserList; let i = index" [value]="mUserList[i].id | json">{{mUserList[i].usersPermissionsUser.username}}</option>
+        </select>
+      </div>
+      <button (click)="removeUserEvent()">Remove</button>
+      <div *ngIf="isShowRemoveConfirmation">
+        <h2>The user has been removed from the team</h2>
+      </div>
+    </div>
+  </div>
+
+</div>

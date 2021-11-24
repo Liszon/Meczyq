@@ -1,12 +1,20 @@
-<p>invite-user-to-pick-up-game works!</p>
-
 <div style="text-align: center">
-  <div>
+
+  <div *ngIf="isShowInitial">
+    <h1>Are you sure you want to invite someone to the Pick-up game</h1>
+    <button (click)="initialfunc()">YES</button>
+  </div>
+
+  <div *ngIf="isShowNoContent">
+    <h1>You are not the organizer of any Pick-up game</h1>
+  </div>
+
+  <div *ngIf="isShowContent">
     <h2>Invite user to Pick-up Game</h2>
     <div>
       <label>Pick-up Game </label>
       <select [(ngModel)]="addUser.pick_up_game">
-        <option *ngFor="let list of pickupList; let i = index" [value]="pickupList[i].id | json">{{pickupList[i].name}}</option>
+        <option *ngFor="let list of pickupList2; let i = index" [value]="pickupList2[i].id | json">{{pickupList2[i].name}}</option>
       </select>
       <br>
       <label>Username </label>

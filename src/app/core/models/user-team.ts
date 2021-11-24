@@ -1,3 +1,9 @@
+export class AddUserTeam {
+  inviteDate: string | undefined;
+  team: string | undefined;
+  mUser: string | undefined;
+}
+
 export interface UserTeam {
   id: string;
   startDate: string;

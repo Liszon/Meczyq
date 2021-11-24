@@ -50,6 +50,7 @@ import {TokenInterceptor} from "./auth/token.interceptor";
 
 
 import { InviteUserToPickUpGameComponent } from './pages/invite-user-to-pick-up-game-page/invite-user-to-pick-up-game.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
@@ -92,13 +93,15 @@ import { InviteUserToPickUpGameComponent } from './pages/invite-user-to-pick-up-
     MainPickUpGamePageComponent,
     MainSportsFacilityPageComponent,
     MainSportTypesPageComponent,
-    InviteUserToPickUpGameComponent
+    InviteUserToPickUpGameComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      {path: "", redirectTo: "home", pathMatch: "full"},
-      {path: 'home', component: IndexComponent},
+      //{path: "", redirectTo: "home", pathMatch: "full"},
+      {path: '', component: IndexComponent},
+      {path: 'home', component: HomeComponent},
       {path: 'login', component: LoginpageComponent},
       {path: 'change-user-password', component: ChangeUserPasswordPageComponent},
       {path: 'chat', component: ChatPageComponent},

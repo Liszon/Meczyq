@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
-import {UserTeam} from "../models/user-team";
+import {AddUserTeam, UserTeam} from "../models/user-team";
 import { NewUserTeam} from "../models/new-user-team";
 
 @Injectable({
@@ -26,18 +26,18 @@ export class UserTeamService {
   }
 
   deleteEventUserTeam(id: string){
-    return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
+    return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id)
   }
 
-  postEventUserTeam(userteam: NewUserTeam){
+  postEventUserTeam(userteam: AddUserTeam){
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(userteam);
-    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});
+    return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers})
   }
 
   putIdEventUserTeam(id: string, userteam: NewUserTeam){
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(userteam);
-    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers})
   }
 }

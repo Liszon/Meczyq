@@ -9,7 +9,7 @@ import { NewMatch} from "../models/new-match";
 })
 export class MatchService {
 
-  private eventsPath = "match-result";
+  private eventsPath = "matches";
 
   constructor(private http: HttpClient) { }
 

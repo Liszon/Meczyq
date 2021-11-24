@@ -1,3 +1,35 @@
 <div style="text-align: center">
 
+  <div *ngIf="isShowNoContent">
+    <h2>Show User Details</h2>
+    <button (click)="showContent()">Show Details</button>
+  </div>
+
+  <div *ngIf="isShowContent">
+
+    <div>
+      <label>Username: </label>
+      {{userPermisionUser.username}}
+      <br>
+      <label>Name: </label>
+      {{mUser.firstName}}  {{mUser.secondName}}
+      <br>
+      <label>Lastname: </label>
+      {{mUser.lastName}}
+      <br>
+      <label>Email: </label>
+      {{userPermisionUser.email}}
+      <br>
+      <label>My teams: </label>
+      <div *ngFor="let list of mUser.teams; let i = index">
+        {{mUser.teams[i].name}}
+      </div>
+      <label>Date of account creation: </label>
+      {{(mUser.created_at).substr(0,10)}}
+    </div>
+
+
+    <button (click)="logout()">Logout</button>
+  </div>
+
 </div>

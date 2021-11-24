@@ -1,16 +1,26 @@
-<p>sport-facility-data-page</p>
-
-Podaj ID teamu i kliknij enter
-<input #box (keyup.enter)="sportFacilityInfo(box.value)">
-
 <div style="text-align: center">
-  <h1 style="text-decoration-style: solid">{{facilitytId.name}}</h1>
-  <br>
-  Adress: {{facilitytId.street.name}} {{facilitytId.number}}, {{facilitytId.street.postCode}} {{facilitytId.street.city}}
-  <br>
-  Sport Types: <p *ngFor="let types of facilitytId.sport_types; let i = index">Name: {{facilitytId.sport_types[i].name}}</p>
-  <br>
-  <div *ngFor="let types of facilitytId.sportsFacilityPhotos; let i = index">
-    <img src={{facilitytId.sportsFacilityPhotos[i].url}}>
+
+  <div>
+    <h2>Display sport facility details</h2>
+    <div>
+      <label>Sports facility </label>
+      <select [(ngModel)]="id">
+        <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
+      </select>
+    </div>
+    <button (click)="sportFacilityInfo(id)">Show</button>
   </div>
+
+  <div *ngIf="isShow">
+    <h1 style="text-decoration-style: solid">{{facilitytId.name}}</h1>
+    <br>
+    Adress: {{facilitytId.street.name}} {{facilitytId.number}}, {{facilitytId.street.postCode}} {{facilitytId.street.city}}
+    <br>
+    Sport Types: <p *ngFor="let types of facilitytId.sport_types; let i = index">Name: {{facilitytId.sport_types[i].name}}</p>
+    <br>
+    <div *ngFor="let types of facilitytId.sportsFacilityPhotos; let i = index">
+      <img src={{facilitytId.sportsFacilityPhotos[i].url}}>
+    </div>
+  </div>
+
 </div>

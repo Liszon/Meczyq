@@ -38,6 +38,10 @@ export class UserPermissionsUserService {
     return this.http.get(environment.apiUrl+this.eventsPathusers+"/me").toPromise()
   }
 
+  getUserMeSub(){
+    return this.http.get(environment.apiUrl+this.eventsPathusers+"/me")
+  }
+
   getUsersIdEventUserPermissionsUser(id: string){
     return this.http.get(environment.apiUrl+this.eventsPathusers+"/"+id).toPromise()
   }

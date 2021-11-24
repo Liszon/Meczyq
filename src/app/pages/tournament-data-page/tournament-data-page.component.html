@@ -1,5 +1,3 @@
-<p>tournament-data-page </p>
-
 <div style="text-align: center">
   <div>
     <h2>Display Tournament Data</h2>
@@ -11,7 +9,7 @@
     </div>
     <button (click)="tournamentInfo(id)">Show</button>
     <div *ngIf="isShow">
-      <table style="width:100%; text-align: center">
+      <table style="width: 100%; text-align: center">
         <tr>
           <td>Name</td>
           <td>Organizer</td>
@@ -22,11 +20,28 @@
         </tr>
         <tr>
           <td>{{tournamentId.name}}</td>
-          <td>{{tournamentId.organizer.Name}}</td>
+          <td>{{tournamentId.organizer.firstName}} {{tournamentId.organizer.lastName}}</td>
           <td>{{tournamentId.sports_facility.name}}</td>
           <td>{{tournamentId.sport_type.name}}</td>
           <td>{{tournamentId.start_date}}</td>
           <td>{{tournamentId.end_date}}</td>
+        </tr>
+      </table>
+
+      <br>
+
+      <table style="text-align: center; width: 100%">
+        <tr>
+          <td>Date</td>
+          <td>Home</td>
+          <td>Away</td>
+          <td>Match Result</td>
+        </tr>
+        <tr *ngFor="let list of matches2; let i = index">
+          <td>{{matches2[i].date}}</td>
+          <td>{{teamsName(matches2[i].teamTournament1.team)}}</td>
+          <td>{{teamsName(matches2[i].teamTournament2.team)}}</td>
+          <td>{{matches2[i].matchResult.result}}</td>
         </tr>
       </table>
     </div>

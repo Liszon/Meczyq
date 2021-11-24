@@ -63,8 +63,13 @@ logout():void
     )
       .subscribe(success => {
         if (success) {
-          this.router.navigate(['/secret-random-number']);
+          this.router.navigate(['/home']);
         }
       });
+  }
+
+  logout()
+  {
+    this.authService.logout();
   }
 }

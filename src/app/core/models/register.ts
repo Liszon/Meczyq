@@ -1,3 +1,9 @@
+export class newRegister {
+  username: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+}
+
 export interface Register {
   username: string;
   email: string;

@@ -9,15 +9,27 @@ import {SportsFacility} from "../../core/models/sports-facility";
 })
 export class SportFacilityDataPageComponent implements OnInit {
 
+  sportsFacilityList: SportsFacility[] = [];
   facilitytId: any;
+  id: string;
+  isShow = false;
 
-  constructor(private eventService: SportsFacilityService) { }
+  constructor(private facilityService: SportsFacilityService) {
+    this.id = '';
+  }
 
   ngOnInit(): void {
+    this.facilityService.getEventSportFacility().then(res => this.sportsFacilityList = res as SportsFacility[]);
+  }
+
+  isShowEvent()
+  {
+    this.isShow = true;
   }
 
   sportFacilityInfo(id: string){
-    this.eventService.getIdEventSportsFacility(id).then(data => {this.facilitytId = data as SportsFacility[];})
+    this.facilityService.getIdEventSportsFacility(id).then(data => {this.facilitytId = data as SportsFacility});
+    this.isShowEvent();
   }
 
 }
