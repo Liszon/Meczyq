@@ -7,7 +7,7 @@
 
   <div *ngIf="isShowContent">
 
-    <div>
+    <div class="mWindow">
       <label>Username: </label>
       {{userPermisionUser.username}}
       <br>
@@ -26,10 +26,12 @@
       </div>
       <label>Date of account creation: </label>
       {{(mUser.created_at).substr(0,10)}}
+
+      <button (click)="logout()">Logout</button>
     </div>
 
 
-    <button (click)="logout()">Logout</button>
+
   </div>
 
 </div>

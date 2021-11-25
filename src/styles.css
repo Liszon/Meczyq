@@ -8,5 +8,60 @@ body
   min-height: 100vh;
 
   background: rgb(255,255,255);
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(94,119,242,1) 100%);
+
 }
+
+/*window*/
+ .mWindow
+{
+background: #c3c3c4;
+  border-radius:1rem;
+   padding:1rem;
+  display:flex;
+  flex-direction: column;
+
+
+}
+.mWindow *
+{
+  margin:0.3rem;
+
+}
+.mForm
+{
+  text-align: right;
+}
+.mOutput
+{
+  text-align: center;
+}
+
+/*button*/
+.myButton, button, input[type=submit] {
+  margin: 0.1rem;
+  background-color:#10269f;
+
+  border-radius:28px;
+  border: 1px solid #10269f;
+  cursor:pointer;
+  color:#ffffff;
+
+  font-size:17px;
+  padding:16px 31px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #064792;
+}
+.mButton:hover, button:hover, input[type=submit]:hover {
+  background-color: #3346a7;
+}
+.mButton:active ,button:active, input[type=submit]:active{
+  position:relative;
+  top:1px;
+}
+.myButton a, button a, input[type=submit] a
+ {
+
+  text-decoration: none;
+  color:#ffffff;
+}
+
