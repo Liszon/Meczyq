@@ -24,7 +24,7 @@
 </div>
 -->
 
-<div class="header center">Log In</div>
+<div class="header center">Log In to use all website functions</div>
 
 <form [formGroup]="loginForm" (ngSubmit)="login()" class="mWindow mForm">
   <!--
@@ -50,6 +50,10 @@
     <input type="password" formControlName="password">
   </div>
   <div>
+  <a  [routerLink]="['/register']" class="nav-link">Click to Sign-up </a>
+  </div>
+  <div>
     <button type="submit">Login</button>
   </div>
+
 </form>
