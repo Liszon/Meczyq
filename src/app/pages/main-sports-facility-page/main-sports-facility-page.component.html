@@ -1,13 +1,17 @@
-<p>main-sports-facility-page works!</p>
-
-<nav>
-  <button>
-    <a [routerLink]="['/sport-facility-data']">Display sports facility data</a>
-  </button>
-  <button>
-    <a [routerLink]="['/sport-facility-list']">Display sports facilities list</a>
-  </button>
-  <button>
-    <a [routerLink]="['/delete-sports-facility']">Delete sports facility</a>
-  </button>
-</nav>
+<div style="text-align: center; margin-top: 10%" class="mWindow">
+  <h1>Sports Facilities</h1>
+  <nav>
+    <button>
+      <a [routerLink]="['/sport-facility-data']">Display sports facility data</a>
+    </button>
+    <button>
+      <a [routerLink]="['/sport-facility-list']">Display sports facilities list</a>
+    </button>
+    <!--
+    <button>
+      <a [routerLink]="['/delete-sports-facility']">Delete sports facility</a>
+    </button>
+    -->
+  </nav>
+  <button [routerLink]="['/home']">Main Menu</button>
+</div>

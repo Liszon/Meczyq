@@ -1,18 +1,23 @@
-<p>sport-types-list-page</p>
-
-<div>
+<div class="mWindow" style="text-align: center">
+  <h1>Sport type list</h1>
   <table style="width:100%">
+    <thead>
     <tr>
       <td>Name</td>
       <td>Id</td>
       <td>Sport facility</td>
       <td>Published at</td>
     </tr>
+    </thead>
+    <tbody>
     <tr *ngFor="let sport of sporttypes; let i = index">
       <td>{{sporttypes[i].name}}</td>
       <td>{{sporttypes[i].id}}</td>
       <td>{{sporttypes[i].sports_facilities[0].name}}</td>
       <td>{{sporttypes[i].published_at}}</td>
     </tr>
+    </tbody>
   </table>
+  <button [routerLink]="['/main-sport-types']">Sports Types</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

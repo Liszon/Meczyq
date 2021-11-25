@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div style="text-align: center; margin-top: 10%" class="mWindow">
 
   <div *ngIf="isShowNoContent">
     <h2>Show User Details</h2>
@@ -7,31 +7,31 @@
 
   <div *ngIf="isShowContent">
 
-    <div class="mWindow">
-      <label>Username: </label>
-      {{userPermisionUser.username}}
+    <div>
+      <h2>Username: </h2>
+      <h3>{{userPermisionUser.username}}</h3>
       <br>
-      <label>Name: </label>
-      {{mUser.firstName}}  {{mUser.secondName}}
+      <h2>Name: </h2>
+      <h3>{{mUser.firstName}}  {{mUser.secondName}}</h3>
       <br>
-      <label>Lastname: </label>
-      {{mUser.lastName}}
+      <h2>Lastname: </h2>
+      <h3>{{mUser.lastName}}</h3>
       <br>
-      <label>Email: </label>
-      {{userPermisionUser.email}}
+      <h2>Email: </h2>
+        <h3>{{userPermisionUser.email}}</h3>
       <br>
-      <label>My teams: </label>
+      <h2>My teams: </h2>
       <div *ngFor="let list of mUser.teams; let i = index">
-        {{mUser.teams[i].name}}
+        <h3>{{mUser.teams[i].name}}</h3>
       </div>
-      <label>Date of account creation: </label>
-      {{(mUser.created_at).substr(0,10)}}
+      <h2>Date of account creation: </h2>
+          <h3>{{(mUser.created_at).substr(0,10)}}</h3>
 
       <button (click)="logout()">Logout</button>
     </div>
 
-
-
   </div>
+
+  <button [routerLink]="['/home']">Main Menu</button>
 
 </div>

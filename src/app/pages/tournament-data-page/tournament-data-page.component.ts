@@ -5,6 +5,8 @@ import {TeamService} from "../../core/services/team.service";
 import {Team} from "../../core/models/team";
 import {Match} from "../../core/models/match";
 import {MatchService} from "../../core/services/match.service";
+import {MUserService} from "../../core/services/m-user.service";
+import {MUser, MuserFull} from "../../core/models/m-user";
 
 @Component({
   selector: 'app-tournament-data-page',
@@ -17,13 +19,13 @@ export class TournamentDataPageComponent implements OnInit {
   tournamentId: any;
   tournamentList: Tournament[] = [];
   teamsNames: Team[] = [];
-  teamNameHome: Team[] = [];
-  teamNameAway: Team[] = [];
+  mUserList: any;
   matches: Match[] = [];
   matches2: Match[] = [];
   isShow = false;
 
-  constructor(private tournamentService: TournamentService, private teamService: TeamService, private matchService: MatchService) {
+  constructor(private tournamentService: TournamentService, private teamService: TeamService, private matchService: MatchService,
+              private mUserService: MUserService) {
     this.id = '';
   }
 
@@ -31,6 +33,7 @@ export class TournamentDataPageComponent implements OnInit {
     this.tournamentService.getEventTournament().then(res => this.tournamentList = res as Tournament[]);
     this.matchService.getEventMatch().then(res => this.matches = res as Match[]);
     this.teamService.getEventTeam().then(res => this.teamsNames = res as Team[]);
+    this.mUserService.getEventMUser().then(res => this.mUserList = res as MuserFull[]);
   }
 
   showConfirmation(){
@@ -40,6 +43,7 @@ export class TournamentDataPageComponent implements OnInit {
 
   tournamentInfo(id: string){
     this.tournamentService.getIdEventTournament(id).then(data => {this.tournamentId = data as Tournament[];});
+    this.mUserService.getIdEventMUsery(this.tournamentId.organizer.usersPermissionsUser).then(res => this.mUserList = res as MuserFull);
     this.showConfirmation();
     this.showMatches();
   }

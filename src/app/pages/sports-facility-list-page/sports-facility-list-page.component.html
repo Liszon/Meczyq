@@ -1,19 +1,25 @@
-<p>sports-facility-list-page works!</p>
-
-<div>
+<div style="text-align: center" class="mWindow">
+  <h1>Sports facilities list</h1>
+  <br>
   <table style="width:100%">
+    <thead>
     <tr>
-      <td>ID</td>
+      <td>Id</td>
       <td>Name</td>
       <td>Address</td>
       <td>Sport types</td>
     </tr>
+    </thead>
+    <tbody>
     <tr *ngFor="let facility of sportsFacility; let i = index">
       <td>{{sportsFacility[i].id}}</td>
       <td>{{sportsFacility[i].name}}</td>
       <td>{{sportsFacility[i].street.name}}, {{sportsFacility[i].street.city}}</td>
       <td *ngFor="let facility of sportsFacility[i].sport_types; let x = index">{{sportsFacility[i].sport_types[x].name}}</td>
     </tr>
+    </tbody>
   </table>
+  <button [routerLink]="['/main-sports-facility']">Back to Sports Facilities</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>
 

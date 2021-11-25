@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div style="text-align: center" class="mWindow">
   <div>
     <h2>Display Tournament Data</h2>
     <div>
@@ -10,6 +10,7 @@
     <button (click)="tournamentInfo(id)">Show</button>
     <div *ngIf="isShow">
       <table style="width: 100%; text-align: center">
+        <thead>
         <tr>
           <td>Name</td>
           <td>Organizer</td>
@@ -18,32 +19,41 @@
           <td>Start Date</td>
           <td>End Date</td>
         </tr>
+        </thead>
+        <tbody>
         <tr>
           <td>{{tournamentId.name}}</td>
-          <td>{{tournamentId.organizer.firstName}} {{tournamentId.organizer.lastName}}</td>
+          <td>{{mUserList.usersPermissionsUser.username}}</td>
           <td>{{tournamentId.sports_facility.name}}</td>
           <td>{{tournamentId.sport_type.name}}</td>
-          <td>{{tournamentId.start_date}}</td>
-          <td>{{tournamentId.end_date}}</td>
+          <td>{{tournamentId.start_date.substr(0,10)}}</td>
+          <td>{{tournamentId.end_date.substr(0,10)}}</td>
         </tr>
+        </tbody>
       </table>
 
       <br>
-
+      <h2>Matches</h2>
       <table style="text-align: center; width: 100%">
+        <thead>
         <tr>
           <td>Date</td>
           <td>Home</td>
           <td>Away</td>
           <td>Match Result</td>
         </tr>
+        </thead>
+        <tbody>
         <tr *ngFor="let list of matches2; let i = index">
-          <td>{{matches2[i].date}}</td>
+          <td>{{matches2[i].date.substr(0,10)}}</td>
           <td>{{teamsName(matches2[i].teamTournament1.team)}}</td>
           <td>{{teamsName(matches2[i].teamTournament2.team)}}</td>
           <td>{{matches2[i].matchResult.result}}</td>
         </tr>
+        </tbody>
       </table>
     </div>
   </div>
+  <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

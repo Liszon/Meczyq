@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div style="text-align: center" class="mWindow">
 
   <div>
     <h2>Display sport facility details</h2>
@@ -8,19 +8,33 @@
         <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
       </select>
     </div>
+    <br>
     <button (click)="sportFacilityInfo(id)">Show</button>
   </div>
 
   <div *ngIf="isShow">
-    <h1 style="text-decoration-style: solid">{{facilitytId.name}}</h1>
-    <br>
-    Adress: {{facilitytId.street.name}} {{facilitytId.number}}, {{facilitytId.street.postCode}} {{facilitytId.street.city}}
-    <br>
-    Sport Types: <p *ngFor="let types of facilitytId.sport_types; let i = index">Name: {{facilitytId.sport_types[i].name}}</p>
-    <br>
+    <table style="width:100%">
+      <thead>
+      <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Sport types</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{facilitytId.id}}</td>
+        <td>{{facilitytId.name}}</td>
+        <td>{{facilitytId.street.name}} {{facilitytId.number}}, {{facilitytId.street.postCode}} {{facilitytId.street.city}}</td>
+        <td *ngFor="let types of facilitytId.sport_types; let i = index">{{facilitytId.sport_types[i].name}}</td>
+      </tr>
+      </tbody>
+    </table>
     <div *ngFor="let types of facilitytId.sportsFacilityPhotos; let i = index">
       <img src={{facilitytId.sportsFacilityPhotos[i].url}}>
     </div>
   </div>
-
+  <button [routerLink]="['/main-sports-facility']">Back to Sports Facilities</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

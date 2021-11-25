@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TeamService} from "../../core/services/team.service";
 import {Team} from "../../core/models/team";
+import {MUserService} from "../../core/services/m-user.service";
 
 @Component({
   selector: 'app-team-data-page',
@@ -14,7 +15,7 @@ export class TeamDataPageComponent implements OnInit {
   teamList: Team[] = [];
   isShow = false;
 
-  constructor(private eventService: TeamService) {
+  constructor(private eventService: TeamService, private mUserService: MUserService) {
     this.id = '';
   }
 

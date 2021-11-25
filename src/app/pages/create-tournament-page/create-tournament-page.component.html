@@ -1,14 +1,7 @@
-<div style="text-align: center">
+<div style="text-align: center" class="mWindow">
   <h1>Create new Tournament</h1>
   <div>
     <div>
-      <label>Organizer: </label>
-      <!--
-      <input [(ngModel)]="tournament.organizer">
-      <select [(ngModel)]="tournament.organizer">
-        <option *ngFor="let list of userPermUserList; let i = index" [value]="userPermUserList[i].id| json">{{userPermUserList[i].username}}</option>
-      </select>-->
-      <br>
       <label>Sports Facility: </label>
       <select [(ngModel)]="tournament.sports_facility">
         <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
@@ -33,4 +26,6 @@
       <h3>The new tournament has been created</h3>
     </div>
   </div>
+  <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

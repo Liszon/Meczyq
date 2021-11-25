@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div style="text-align: center" class="mWindow">
 
   <div *ngIf="isShowInitial">
     <h1>You want to add or remove a team from the tournament</h1>
@@ -25,6 +25,7 @@
             <option *ngFor="let lista of teamslist; let i = index" [value]="teamslist[i].id | json">{{teamslist[i].name}}</option>
           </select>
         </div>
+        <br>
         <button (click)="addTeam(id)">Add Team</button>
       </div>
       <br>
@@ -49,6 +50,7 @@
             <option *ngFor="let lista of teamslist; let i = index" [value]="teamslist[i].id | json">{{teamslist[i].name}}</option>
           </select>
         </div>
+        <br>
         <button (click)="deleteTeam(idRemove)">Remove Team</button>
         <div *ngIf="isShowRemoveConfirmation">
           <h3>The team has been removed from the tournament</h3>
@@ -56,5 +58,6 @@
       </div>
     </div>
   </div>
-
+  <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

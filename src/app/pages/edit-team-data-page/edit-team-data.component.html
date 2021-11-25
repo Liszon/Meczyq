@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div style="text-align: center" class="mWindow">
   <div *ngIf="isShowInitial">
     <h1>Are you sure you want to start editing</h1>
     <button (click)="initialfunc()">YES</button>
@@ -19,11 +19,13 @@
       <label>New name </label>
       <input [(ngModel)]="editNameValue.name">
     </div>
+    <br>
     <button (click)="editName(idName)">Change Name</button>
     <br>
     <div *ngIf="isShow">
       <h3>The team name has been changed</h3>
     </div>
   </div>
-
+  <button [routerLink]="['/main-teams']">Back to Teams</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

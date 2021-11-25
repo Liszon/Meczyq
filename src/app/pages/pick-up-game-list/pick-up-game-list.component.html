@@ -1,14 +1,24 @@
-<p>pick-up-game-list works!</p>
 
-<div style="text-align: center" *ngFor="let list of pickGame; let i = index">
-  <div>
-    Name: {{pickGame[i].name}}
-    <br>
-    Sports Facility: {{pickGame[i].sports_facility.name}}
-    <br>
-    Sport Type: {{pickGame[i].sport_type.name}}
-    <br>
-    Owner: {{pickGame[i].owner.Name}}
-  </div>
-  <br><br>
+<div style="text-align: center" class="mWindow">
+  <h1>Pick-up Game List</h1>
+  <table style="width:100%">
+    <thead>
+    <tr>
+      <td>Name</td>
+      <td>Sports facility</td>
+      <td>Sport type</td>
+      <td>Organizer</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let list of pickGame; let i = index">
+      <td>{{pickGame[i].name}}</td>
+      <td>{{pickGame[i].sports_facility.name}}</td>
+      <td>{{pickGame[i].sport_type.name}}</td>
+      <td>{{pickGame[i].owner.firstName}} {{pickGame[i].owner.lastName}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <button [routerLink]="['/main-pick-up-game']">Back to Pick-up Games</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

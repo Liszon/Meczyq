@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div style="text-align: center" class="mWindow">
   <h2>Display Team Details</h2>
   <div>
     <label>Team </label>
@@ -6,20 +6,26 @@
       <option *ngFor="let list of teamList; let i = index" [value]="teamList[i].id | json">{{teamList[i].name}}</option>
     </select>
   </div>
+  <br>
   <button (click)="teamInfo(id)">Show details</button>
-  <div *ngIf="isShow">
-    <table style="width:50%; text-align: center">
-      <tr>
-        <td>Name</td>
-        <td>Capitan</td>
-        <td>Members</td>
-      </tr>
-      <tr>
-        <td>{{teamId.name}}</td>
-        <td>{{teamId.owner.Name}}</td>
-        <td *ngFor="let member of teamId.team_users; let i = index">{{teamId.team_users[i].mUser}}</td>
-      </tr>
+  <div *ngIf="isShow" style="text-align: center; width: 100%">
+    <table>
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Capitan</td>
+          <td>Members</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{teamId.name}}</td>
+          <td>{{teamId.owner.firstName}}  {{teamId.owner.lastName}}</td>
+          <td>{{teamId.team_users.length}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
-
+  <button [routerLink]="['/main-teams']">Back to Teams</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

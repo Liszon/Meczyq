@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div style="text-align: center" class="mWindow">
   <div>
     <h2>Display Pick Up Game Data</h2>
     <div>
@@ -10,19 +10,25 @@
     <button (click)="pickupInfo(id)">Show</button>
     <div *ngIf="isShow">
       <table style="width:100%; text-align: center">
+        <thead>
         <tr>
           <td>Name</td>
           <td>Owner</td>
           <td>Sports Facility</td>
           <td>Sport Type</td>
         </tr>
+        </thead>
+        <tbody>
         <tr>
           <td>{{pickupId.name}}</td>
-          <td>{{pickupId.owner.Name}}</td>
+          <td>{{pickupId.owner.firstName}} {{pickupId.owner.lastName}}</td>
           <td>{{pickupId.sports_facility.name}}</td>
           <td>{{pickupId.sport_type.name}}</td>
         </tr>
+        </tbody>
       </table>
     </div>
   </div>
+  <button [routerLink]="['/main-pick-up-game']">Back to Pick-up Games</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

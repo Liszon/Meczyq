@@ -1,18 +1,21 @@
-<p>main-pick-up-game-page works!</p>
-<nav>
-  <button>
-    <a [routerLink]="['/pick-up-game-list']">Pick-up Games list</a>
-  </button>
-  <button>
-    <a [routerLink]="['/pick-up-game-data']">Display Pick-up Game data</a>
-  </button>
-  <button>
-    <a [routerLink]="['/edit-pick-up-game-data']">Edit Pick-up Game data</a>
-  </button>
-  <button>
-    <a [routerLink]="['/create-pick-up-game']">Create new Pick-up Game</a>
-  </button>
-  <button>
-    <a [routerLink]="['/invite-user-to-pick-up-game']">Invite user to the Pick-up Game</a>
-  </button>
-</nav>
+<div style="margin-top: 10%; text-align: center" class="mWindow">
+  <h1>Pick-up Games</h1>
+  <nav>
+    <button>
+      <a [routerLink]="['/pick-up-game-list']">Pick-up Games list</a>
+    </button>
+    <button>
+      <a [routerLink]="['/pick-up-game-data']">Display Pick-up Game data</a>
+    </button>
+    <button>
+      <a [routerLink]="['/edit-pick-up-game-data']">Edit Pick-up Game data</a>
+    </button>
+    <button>
+      <a [routerLink]="['/create-pick-up-game']">Create new Pick-up Game</a>
+    </button>
+    <button>
+      <a [routerLink]="['/invite-user-to-pick-up-game']">Invite user to the Pick-up Game</a>
+    </button>
+  </nav>
+  <button [routerLink]="['/home']">Main Menu</button>
+</div>

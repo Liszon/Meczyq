@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div style="text-align: center" class="mWindow">
 
   <div *ngIf="isShowInitial">
     <h1>Are you sure you want to start editing</h1>
@@ -91,4 +91,6 @@
       </div>
     </div>
   </div>
+  <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>

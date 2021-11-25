@@ -22,7 +22,11 @@ export interface PickUpGame {
   }
   owner: {
     id: string;
-    Name: string;
+    firstName: string;
+    secondName: string;
+    lastName: string;
+    phoneNumber: string;
+    usersPermissionsUser: string;
     published_at: string;
     created_by: string;
     updated_by: string;

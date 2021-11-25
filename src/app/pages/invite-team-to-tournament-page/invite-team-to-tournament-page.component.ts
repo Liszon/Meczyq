@@ -52,6 +52,10 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
       this.showContent();
     }
     this.isShowADD = true;
+    if (this.isShowContent && this.isShowADD && this.isShowRemove)
+    {
+      this.isShowInitial = false;
+    }
   }
 
   showRemove()
@@ -62,6 +66,10 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
       this.showContent();
     }
     this.isShowRemove = true;
+    if (this.isShowContent && this.isShowADD && this.isShowRemove)
+    {
+      this.isShowInitial = false;
+    }
   }
 
   showContent(){

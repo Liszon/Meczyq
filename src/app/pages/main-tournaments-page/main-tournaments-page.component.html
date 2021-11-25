@@ -1,17 +1,19 @@
-<p>main-tournaments-page works!</p>
+<div style="text-align: center; margin-top: 10%" class="mWindow">
+  <h1>Tournaments</h1>
+  <nav>
+    <button>
+      <a [routerLink]="['/tournament-data']">Display tournament data</a>
+    </button>
+    <button>
+      <a [routerLink]="['/edit-tournament']">Edit tournament data</a>
+    </button>
+    <button>
+      <a [routerLink]="['/create-tournament']">Create new tournament</a>
+    </button>
+    <button>
+      <a [routerLink]="['/invite-team-to-tournament']">Add or Remove team from tournament</a>
+    </button>
 
-<nav>
-  <button>
-    <a [routerLink]="['/tournament-data']">Display tournament data</a>
-  </button>
-  <button>
-    <a [routerLink]="['/edit-tournament']">Edit tournament data</a>
-  </button>
-  <button>
-    <a [routerLink]="['/create-tournament']">Create new tournament</a>
-  </button>
-  <button>
-    <a [routerLink]="['/invite-team-to-tournament']">Add or Remove team from tournament</a>
-  </button>
-
-</nav>
+  </nav>
+  <button [routerLink]="['/home']">Main Menu</button>
+</div>

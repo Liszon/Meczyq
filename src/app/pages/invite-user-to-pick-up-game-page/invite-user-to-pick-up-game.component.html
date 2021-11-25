@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div style="text-align: center" class="mWindow">
 
   <div *ngIf="isShowInitial">
     <h1>Are you sure you want to invite someone to the Pick-up game</h1>
@@ -22,9 +22,12 @@
         <option *ngFor="let list of mUserList; let i = index" [value]="mUserList[i].id | json">{{mUserList[i].usersPermissionsUser.username}}</option>
       </select>
     </div>
+    <br>
     <button (click)="addUserEvent()">Invite</button>
     <div *ngIf="isShowAdd">
       <h3>The user has been invited to the Pick-up Game</h3>
     </div>
   </div>
+  <button [routerLink]="['/main-pick-up-game']">Back to Pick-up Games</button>
+  <button [routerLink]="['/home']">Main Menu</button>
 </div>
