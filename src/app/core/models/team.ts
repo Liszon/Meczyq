@@ -3,12 +3,14 @@ export interface Team {
   name: string;
   owner: {
     id: string;
-    Name: string;
-    teams: [string];
-    user_teams: [string];
+    firstName: string;
+    secondName: string;
+    lastName: string;
+    phoneNumber: string;
+    usersPermissionsUser: string;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   };
   team_users: [{
     id: string;
@@ -18,8 +20,10 @@ export interface Team {
     mUser: string;
     team: string;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }];
   published_at: string;
+  created_at: string;
+  updated_at: string;
 }

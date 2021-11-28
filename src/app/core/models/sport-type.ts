@@ -1,16 +1,17 @@
 export interface SportType {
   id: string;
   name: string;
+  published_at: string;
+  created_at: string;
+  updated_at: string;
   sports_facilities: [{
     id: string;
     street: string;
     name: string;
     number: string;
     sportsFacilityPhotos: [string];
-    sport_types: [string];
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }];
-  published_at: string;
 }

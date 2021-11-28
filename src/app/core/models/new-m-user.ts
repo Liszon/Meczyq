@@ -1,6 +1,9 @@
 export interface NewMUser {
-  nick: string;
+  firstName: string;
+  secondName: string;
+  lastName: string;
+  phoneNumber: string;
   published_at: string;
-  created_by: string;
-  updated_by: string;
+  created_at: string;
+  updated_at: string;
 }

@@ -9,16 +9,15 @@ export interface PickUpGame {
     sportsFacilityPhotos: [string];
     sport_types: [string];
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }
   sport_type: {
     id: string;
     name: string;
-    sports_facilities: [string];
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }
   owner: {
     id: string;
@@ -28,8 +27,20 @@ export interface PickUpGame {
     phoneNumber: string;
     usersPermissionsUser: string;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }
+  user_pick_up_games: [{
+    id: string;
+    m_user: string;
+    pick_up_game: string;
+    inviteDate: string;
+    participates: string;
+    published_at: string;
+    created_at: string;
+    updated_at: string;
+  }]
   published_at: string;
+  created_at: string;
+  updated_at: string;
 }

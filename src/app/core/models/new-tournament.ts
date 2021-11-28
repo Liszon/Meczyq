@@ -1,5 +1,5 @@
 export class PostData{
-  organizer: string | undefined;
+  owner: string | undefined;
   sports_facility: string | undefined;
   sport_type: string | undefined;
   name: string | undefined;
@@ -30,7 +30,7 @@ export class PutStartDateEndDate{
 
 
 export interface NewTournament {
-  organizer: string;
+  owner: string;
   sport_facility: string;
   sport_type: string;
   name: string;

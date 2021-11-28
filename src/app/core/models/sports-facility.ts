@@ -6,11 +6,14 @@ export interface SportsFacility {
     postCode: string;
     city: string;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   };
   name: string;
   number: string;
+  published_at: string;
+  created_at: string;
+  updated_at: string;
   sportsFacilityPhotos: [{
     id: string;
     name: string;
@@ -34,10 +37,8 @@ export interface SportsFacility {
   sport_types: [{
     id: string;
     name: string;
-    sports_facilities: [string];
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }];
-  published_at: string;
 }

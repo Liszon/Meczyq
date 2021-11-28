@@ -6,7 +6,7 @@ export interface MUser {
 
 export interface MuserFull {
   id: string;
-  Name: string;
+  firstName: string;
   secondName: string;
   lastName: string;
   phoneNumber: string;

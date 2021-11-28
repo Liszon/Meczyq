@@ -4,25 +4,25 @@ export interface TeamTournament {
     id: string;
     name: string;
     owner: string;
-    team_users: [string];
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   };
   invite_date: string;
   tournament: {
     id: string;
-    organizer: string;
+    owner: string;
     sports_facility: string;
     sport_type: string;
     name: string;
     start_date: string;
     end_date: string;
-    team_tournaments: [string];
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }
   partisipates: boolean;
   published_at: string;
+  created_at: string;
+  updated_at: string;
 }

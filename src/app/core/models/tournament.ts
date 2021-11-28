@@ -1,13 +1,15 @@
 export interface Tournament {
   id: string;
-  organizer: {
+  owner: {
     id: string;
-    nick: string;
-    teams: [string];
-    user_teams: [string];
+    firstName: string;
+    secondName: string;
+    lastName: string;
+    phoneNumber: string;
+    usersPermissionsUser: string;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   };
   sports_facility: {
     id: string;
@@ -15,18 +17,17 @@ export interface Tournament {
     name: string;
     number: string;
     sportsFacilityPhotos: [string];
-    sport_types: [string];
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   };
   sport_type: {
     id: string;
     name: string;
     sport_facilities: [string];
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   };
   name: string;
   start_date: string;
@@ -38,8 +39,10 @@ export interface Tournament {
     tournament: string;
     participates: boolean;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }];
   published_at: string;
+  created_at: string;
+  updated_at: string;
 }

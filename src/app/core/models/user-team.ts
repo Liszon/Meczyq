@@ -9,23 +9,25 @@ export interface UserTeam {
   startDate: string;
   endDate: string;
   inviteDate: string;
-  m_user: {
+  mUser: {
     id: string;
-    nick: string;
-    teams: [string];
-    user_teams: [string];
+    firstName: string;
+    secondName: string;
+    lastName: string;
+    phoneNumber: string;
+    usersPermissionsUser: string;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }
   team: {
     id: string;
     name: string;
     owner: string;
-    team_users: [string];
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }
-  published_at: string;
+  created_at: string;
+  updated_at: string;
 }

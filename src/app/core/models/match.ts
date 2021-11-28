@@ -5,8 +5,8 @@ export interface Match {
     id: string;
     result: string;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   };
   teamTournament1: {
     id: string;
@@ -15,8 +15,8 @@ export interface Match {
     tournament: string;
     participates: boolean;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   };
   teamTournament2: {
     id: string;
@@ -25,8 +25,10 @@ export interface Match {
     tournament: string;
     participates: boolean;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   };
   published_at: string;
+  created_at: string;
+  updated_at: string;
 }

@@ -21,10 +21,6 @@ import {CreateSportFacilityPageComponent} from './pages/create-sport-facility-pa
 import {EditSportFacilityDataPageComponent} from './pages/edit-sport-facility-data-page/edit-sport-facility-data-page.component';
 import {CreateSportTypePageComponent} from './pages/create-sport-type-page/create-sport-type-page.component';
 import {EditSportTypePageComponent} from './pages/edit-sport-type-page/edit-sport-type-page.component';
-import {CreateTextChatPageComponent} from './pages/create-text-chat-page/create-text-chat-page.component';
-import {EditTextChatPageComponent} from './pages/edit-text-chat-page/edit-text-chat-page.component';
-import {InviteUserToTextChatPageComponent} from './pages/invite-user-to-text-chat-page/invite-user-to-text-chat-page.component';
-import {ChatPageComponent} from './pages/chat-page/chat-page.component';
 import {UserDataPageComponent} from './pages/user-data-page/user-data-page.component';
 import {TournamentDataPageComponent} from './pages/tournament-data-page/tournament-data-page.component';
 import {TournamentsAvailableInAreaPageComponent} from './pages/tournaments-available-in-area-page/tournaments-available-in-area-page.component';
@@ -72,10 +68,6 @@ import {HomeComponent} from './pages/home/home.component';
     EditSportFacilityDataPageComponent,
     CreateSportTypePageComponent,
     EditSportTypePageComponent,
-    CreateTextChatPageComponent,
-    EditTextChatPageComponent,
-    InviteUserToTextChatPageComponent,
-    ChatPageComponent,
     UserDataPageComponent,
     TournamentDataPageComponent,
     TournamentsAvailableInAreaPageComponent,
@@ -103,7 +95,6 @@ import {HomeComponent} from './pages/home/home.component';
       {path: 'home', component: HomeComponent},
       {path: 'login', component: LoginpageComponent},
       {path: 'change-user-password', component: ChangeUserPasswordPageComponent},
-      {path: 'chat', component: ChatPageComponent},
       {
         path: 'create-pick-up-game', component: CreatePickUpGamePageComponent,
         canActivate: [LoginGuard],
@@ -119,10 +110,6 @@ import {HomeComponent} from './pages/home/home.component';
       },
       {
         path: 'create-team', component: CreateTeamPageComponent, canActivate: [LoginGuard],
-        canLoad: [LoginGuard]
-      },
-      {
-        path: 'create-text-chat', component: CreateTextChatPageComponent, canActivate: [LoginGuard],
         canLoad: [LoginGuard]
       },
       {
@@ -150,10 +137,6 @@ import {HomeComponent} from './pages/home/home.component';
         canLoad: [LoginGuard]
       },
       {
-        path: 'edit-text-chat', component: EditTextChatPageComponent, canActivate: [LoginGuard],
-        canLoad: [LoginGuard]
-      },
-      {
         path: 'edit-tournament', component: EditTournamentPageComponent, canActivate: [LoginGuard],
         canLoad: [LoginGuard]
       },
@@ -167,10 +150,6 @@ import {HomeComponent} from './pages/home/home.component';
       },
       {
         path: 'invite-user-to-team', component: InviteUserToTeamPageComponent, canActivate: [LoginGuard],
-        canLoad: [LoginGuard]
-      },
-      {
-        path: 'invite-user-to-text-chat', component: InviteUserToTextChatPageComponent, canActivate: [LoginGuard],
         canLoad: [LoginGuard]
       },
       {

@@ -30,6 +30,7 @@ export class InviteUserToTeamPageComponent implements OnInit {
   isShowInitial = true;
   isShowADD = false;
   isShowRemove = false;
+  isShowUserInTeam = false;
   userMe: any;
 
   constructor(private teamService: TeamService, private muserService: MUserService,

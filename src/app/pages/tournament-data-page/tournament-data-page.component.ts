@@ -43,7 +43,7 @@ export class TournamentDataPageComponent implements OnInit {
 
   tournamentInfo(id: string){
     this.tournamentService.getIdEventTournament(id).then(data => {this.tournamentId = data as Tournament[];});
-    this.mUserService.getIdEventMUsery(this.tournamentId.organizer.usersPermissionsUser).then(res => this.mUserList = res as MuserFull);
+    this.mUserService.getIdEventMUsery(this.tournamentId.owner.usersPermissionsUser).then(res => this.mUserList = res as MuserFull);
     this.showConfirmation();
     this.showMatches();
   }

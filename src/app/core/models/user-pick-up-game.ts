@@ -9,14 +9,14 @@ export interface UserPickUpGame {
   id: string;
   m_user: {
     id: string;
-    Name: string;
+    firstName: string;
     secondName: string;
     lastName: string;
     phoneNumber: string;
     usersPermissionsUser: string;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }
   pick_up_game: {
     id: string;
@@ -25,11 +25,12 @@ export interface UserPickUpGame {
     sport_type: string;
     owner: string;
     published_at: string;
-    created_by: string;
-    updated_by: string;
+    created_at: string;
+    updated_at: string;
   }
   inviteDate: string;
   participates: boolean;
-  created_at: string;
   published_at: string;
+  created_at: string;
+  updated_at: string;
 }

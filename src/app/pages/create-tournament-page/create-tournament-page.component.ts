@@ -37,7 +37,7 @@ export class CreateTournamentPageComponent implements OnInit {
   }
 
   createTournament(){
-    this.tournament.organizer = this.userMe.id;
+    this.tournament.owner = this.userMe.id;
     this.tournamentService.postEventTournament(this.tournament).subscribe(data => {
       console.log(data)
     });

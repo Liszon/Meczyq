@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import { NewMatch} from "../models/new-match";
+import {NewMatch, NewMatchPost} from "../models/new-match";
 
 
 @Injectable({
@@ -29,7 +29,7 @@ export class MatchService {
     return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventMatch(match: NewMatch){
+  postEventMatch(match: NewMatchPost){
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(match);
     return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});

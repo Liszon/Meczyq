@@ -87,7 +87,7 @@ export class EditTournamentPageComponent implements OnInit {
 
     for(x=0; x<this.tournamentsList.length; x++)
     {
-      if(this.userMe.id == this.tournamentsList[x].organizer.id)
+      if(this.userMe.id == this.tournamentsList[x].owner.id)
       {
         this.tournamentsList2.push(this.tournamentsList[x]);
       }
