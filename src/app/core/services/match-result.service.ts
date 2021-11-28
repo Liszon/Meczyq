@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class MatchResultService {
 
-  private eventsPath = "match-result";
+  private eventsPath = "match-results";
 
   constructor(private http: HttpClient) { }
 

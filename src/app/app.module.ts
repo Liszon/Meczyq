@@ -24,7 +24,7 @@ import {EditSportTypePageComponent} from './pages/edit-sport-type-page/edit-spor
 import {UserDataPageComponent} from './pages/user-data-page/user-data-page.component';
 import {TournamentDataPageComponent} from './pages/tournament-data-page/tournament-data-page.component';
 import {TournamentsAvailableInAreaPageComponent} from './pages/tournaments-available-in-area-page/tournaments-available-in-area-page.component';
-import {TournamentGamePageComponent} from './pages/tournament-game-page/tournament-game-page.component';
+import {TournamentGamePageComponent} from './pages/tournament-add-game-result/tournament-game-page.component';
 import {TeamDataPageComponent} from './pages/team-data-page/team-data-page.component';
 import {PickUpGameDataPageComponent} from './pages/pick-up-game-data-page/pick-up-game-data-page.component';
 import {SportFacilityDataPageComponent} from './pages/sport-facility-data-page/sport-facility-data-page.component';
@@ -203,7 +203,7 @@ import {HomeComponent} from './pages/home/home.component';
         canLoad: [LoginGuard]
       },
       {
-        path: 'tournament-game', component: TournamentGamePageComponent, canActivate: [LoginGuard],
+        path: 'tournament-add-game-result', component: TournamentGamePageComponent, canActivate: [LoginGuard],
         canLoad: [LoginGuard]
       },
       {

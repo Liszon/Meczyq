@@ -1,0 +1,55 @@
+<div style="text-align: center" class="mWindow">
+  <div *ngIf="isShowInitial">
+    <h1>Are you sure you want to add the match result</h1>
+    <button (click)="initialfunc()">YES</button>
+  </div>
+
+  <div *ngIf="isShowNoContent">
+    <h1>You are not the organizer of any Tournament</h1>
+  </div>
+
+  <div *ngIf="isShowTournamentList">
+    <h1>Select a tournament</h1>
+    <br>
+    <div>
+      <label>Tournament </label>
+      <select [(ngModel)]="tournamentID">
+        <option *ngFor="let list of tournamentsList2; let i = index" [value]="tournamentsList2[i].id | json">{{tournamentsList2[i].name}}</option>
+      </select>
+    </div>
+    <br>
+    <button (click)="showTeams(tournamentID)">Confirm your selection</button>
+  </div>
+
+  <div *ngIf="isShowTeamList">
+    <div>
+      <label>Home team</label>
+      <select [(ngModel)]="team1ID">
+        <option *ngFor="let list of tournamentDetails.team_tournaments; let i = index" [value]="tournamentDetails.team_tournaments[i].id | json">{{teamsList[i].name}}</option>
+      </select>
+      <br>
+      <label>Away team</label>
+      <select [(ngModel)]="team2ID">
+        <option *ngFor="let list of tournamentDetails.team_tournaments; let i = index" [value]="tournamentDetails.team_tournaments[i].id | json">{{teamsList[i].name}}</option>
+      </select>
+      <br>
+      <label>Date</label>
+      <input [(ngModel)]="newMatch.date" type="datetime-local">
+      <br>
+      <label>Result</label>
+      <select [(ngModel)]="newMatch.matchResult">
+        <option *ngFor="let list of matchResultList; let i = index" [value]="matchResultList[i].id | json">{{matchResultList[i].result}}</option>
+      </select>
+    </div>
+    <button (click)="addResult()">Add result</button>
+    <br>
+    <div *ngIf="isShowError">
+      <h2>An error has occurred, check the correctness of the entered data</h2>
+    </div>
+    <div *ngIf="isShowConfirmation">
+      <h2>The match result has been added</h2>
+    </div>
+  </div>
+  <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>
+  <button [routerLink]="['/home']">Main Menu</button>
+</div>

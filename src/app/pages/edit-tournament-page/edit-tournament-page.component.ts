@@ -8,6 +8,8 @@ import {SportsFacilityService} from "../../core/services/sports-facility.service
 import {SportTypeService} from "../../core/services/sport-type.service";
 import {UsersPermissionUser} from "../../core/models/users-permission-user";
 import {UserPermissionsUserService} from "../../core/services/user-permissions-user.service";
+import {MatchResultService} from "../../core/services/match-result.service";
+import {MatchResult} from "../../core/models/match-result";
 
 @Component({
   selector: 'app-edit-tournament-page',
@@ -28,6 +30,7 @@ export class EditTournamentPageComponent implements OnInit {
   tournamentsList2: Tournament[] = [];
   sportTypesList: SportType[] = [];
   sportsFacilityList: SportsFacility[] = [];
+  matchResultList: MatchResult[] = [];
   isShowEditName = false;
   isShowEditSportsFacility = false;
   isShowEditSportType = false;
@@ -38,7 +41,8 @@ export class EditTournamentPageComponent implements OnInit {
   userMe: any;
 
   constructor(private tournamentService: TournamentService, private facilityService: SportsFacilityService,
-              private sportTypeService: SportTypeService, private userPermUserService: UserPermissionsUserService) {
+              private sportTypeService: SportTypeService, private userPermUserService: UserPermissionsUserService,
+              private matchResultService: MatchResultService) {
     this.idEditName = '';
     this.idEditSportsFacility = '';
     this.idEditSportType = '';
