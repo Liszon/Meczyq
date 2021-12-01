@@ -4,15 +4,16 @@
     <div>
       <label>Name </label>
       <input [(ngModel)]="newTeam.name">
-      <!--
-      <br>
-      <label>Owner </label>
-      <input [(ngModel)]="newTeam.owner">
-      -->
     </div>
     <button (click)="createNewTeamEvent()">Create</button>
-    <div *ngIf="isShow">
+    <div *ngIf="isShowSucces">
       <h3>The new team has been created</h3>
+    </div>
+    <div *ngIf="isShowFailName">
+      <h3>The selected name is already taken</h3>
+    </div>
+    <div *ngIf="isShowFail">
+      <h3>An error occured</h3>
     </div>
   </div>
   <button [routerLink]="['/main-teams']">Back to Teams</button>

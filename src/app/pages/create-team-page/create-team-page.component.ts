@@ -12,25 +12,59 @@ import {UsersPermissionUser} from "../../core/models/users-permission-user";
 export class CreateTeamPageComponent implements OnInit {
 
   newTeam = new CreateNewTeam();
-  isShow = false;
+  isShowSucces = false;
+  isShowFail = false;
+  isShowFailName = false;
   userMe: any;
+  response: string;
+  status: string;
 
-  constructor(private teamService: TeamService, private userPermUserService: UserPermissionsUserService) { }
+  constructor(private teamService: TeamService, private userPermUserService: UserPermissionsUserService) {
+    this.response = '';
+    this.status = '';
+  }
 
   ngOnInit(): void {
     this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => this.userMe = res as UsersPermissionUser);
   }
 
-  showConfirmation(){
-    this.isShow = !this.isShow;
-  }
-
   createNewTeamEvent(){
+    this.response = '';
     this.newTeam.owner = this.userMe.id;
-    this.teamService.postEventTeam(this.newTeam).subscribe(data => {
-      console.log(data)
-    });
-    this.showConfirmation();
+    this.teamService.postEventTeam(this.newTeam).subscribe(
+      data => {console.log(data);
+        if(this.response == '')
+        {
+          this.response = '200'
+          this.isShowFailName = false;
+          this.isShowFail = false;
+          this.isShowSucces = true;
+        }
+        },
+      error => {this.response = error.status;
+        if(this.response == '500')
+        {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        }
+        if(this.response == '403')
+        {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        }
+        if(this.response == '400')
+        {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        }
+      },
+      );
+
+
+
   }
 
 }
