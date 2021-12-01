@@ -24,6 +24,13 @@
 </div>
 -->
 
+<div *ngIf="isLoggedIn; else loggedOut">
+  You are logged in.
+  <button (click)="logout()">Logout</button>
+</div>
+
+<ng-template #loggedOut>
+
 <div class="header center">Log In to use all website functions</div>
 
 <form [formGroup]="loginForm" (ngSubmit)="login()" class="mWindow mForm">
@@ -41,6 +48,8 @@
     </div>
   -->
 
+
+
   <div>
     <label>Email</label>
     <input type="email" formControlName="email">
@@ -57,3 +66,4 @@
   </div>
 
 </form>
+</ng-template>

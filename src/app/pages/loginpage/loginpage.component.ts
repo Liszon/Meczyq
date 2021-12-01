@@ -10,12 +10,10 @@ import {Router} from "@angular/router";
 })
 
 export class LoginpageComponent implements OnInit {
-  /*
-  user = {password:"password",
-    email:"email"} ;
+
   isLoggedIn=false;
 
-   */
+
   loginForm: FormGroup;
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router ) {
@@ -26,31 +24,27 @@ export class LoginpageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*
-    this.isLoggedIn=this.authService.isLoggedIn()
-    this.user = {
-      email:"t@t3.pl",
-      password:"test3test3",};
 
-     */
+    this.isLoggedIn=this.authService.isLoggedIn()
+
 
   }
 
 
-/*
 
-onSubmit(): void
-{
-  console.log(this.user);
-  this.authService.login(this.user).subscribe(()=>window.location.reload());
-}
+
+// onSubmit(): void
+// {
+//   console.log(this.user);
+//   this.authService.login(this.user).subscribe(()=>window.location.reload());
+// }
 logout():void
 {
   this.authService.logout();
   window.location.reload();
 }
 
- */
+
 
   get f() { return this.loginForm.controls; }
 
@@ -68,8 +62,5 @@ logout():void
       });
   }
 
-  logout()
-  {
-    this.authService.logout();
-  }
+
 }

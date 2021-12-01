@@ -11,10 +11,10 @@ export class AuthService {
 
   private readonly JWT_TOKEN = 'JWT_TOKEN';
 
-  private loggedUser: string | null;
+  private _loggedUser: string | null;
 
   constructor(private http: HttpClient) {
-    this.loggedUser=null;
+    this._loggedUser=null;
   }
 
   login(user: { email: string, password: string }) {
@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   logout() {
-    this.loggedUser = null;
+    this._loggedUser = null;
     this.removeToken();
   }
 
@@ -45,12 +45,14 @@ export class AuthService {
   }
 
   private doLoginUser(email: string, token:string) {
-    this.loggedUser = email;
+    this._loggedUser = email;
     this.storeJwtToken(token);
   }
 
 
-
+  get loggedUser(): string | null {
+    return this._loggedUser;
+  }
 
   private storeJwtToken(jwt: string) {
     localStorage.setItem(this.JWT_TOKEN, jwt);
