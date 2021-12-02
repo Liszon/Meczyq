@@ -17,28 +17,46 @@ export class AuthService {
     this._loggedUser=null;
   }
 
-  login(user: { email: string, password: string }) {
-    let observable= this.http.post<any>(`${environment.apiUrl}auth/local`, {
+  async login(user: { email: string, password: string }) {
+    let statusCode=200;
+    let observable= await this.http.post<any>(`${environment.apiUrl}auth/local`, {
        "identifier": user.email,
 
        "password":  user.password
-     }) ;
+     }) .toPromise()
 
-    observable.subscribe(res => this.doLoginUser(res.user.email,res.jwt ))
-    return observable;
+      .then(res => {
+        console.log(res)
+        this.doLoginUser(res.user.email,res.jwt )
+
+      }).catch(res => {
+        statusCode=res.status;
+        console.log(res.status)});
+
+
+    return statusCode ;
 
   }
-  register(user: { email: string, username: string, password: string }) {
-    let observable= this.http.post<any>(`${environment.apiUrl}auth/local/register`, {
+  async register(user: { email: string, username: string, password: string }) {
+
+    let statusCode=200;
+    let observable=await this.http.post<any>(`${environment.apiUrl}auth/local/register`, {
 
       "username": user.username,
       "email": user.email,
 
       "password":  user.password
-    }) ;
+    }) .toPromise()
 
-    observable.subscribe(res => this.doLoginUser(res.user.email,res.jwt ))
-    return observable;
+      .then(res => {
+        this.doLoginUser(res.user.email,res.jwt )
+
+      }).catch(res => {
+        statusCode=res.status;
+        console.log(res.status)});
+
+
+    return statusCode ;
 
   }
   logout() {
@@ -60,6 +78,8 @@ export class AuthService {
     this._loggedUser = email;
     this.storeJwtToken(token);
     this.storeLoggedUser(email);
+
+    console.log(this.isLoggedIn())
   }
 
 
