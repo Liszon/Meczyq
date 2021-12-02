@@ -16,14 +16,19 @@ import {SportType} from "../../core/models/sport-type";
 export class CreatePickUpGamePageComponent implements OnInit {
 
   constructor(private pickUpGameService: PickUpGameService, private facilityService: SportsFacilityService,
-              private userPermUserService: UserPermissionsUserService, private sportTypeService: SportTypeService) {  }
+              private userPermUserService: UserPermissionsUserService, private sportTypeService: SportTypeService) {
+    this.response = '';
+  }
 
   newPickUpGame = new NewPickUpGameClassPost();
   sportsFacilityList: SportsFacility[] = [];
   userPermUserList: UsersPermissionUser[] = [];
   sportTypesList: SportType[] = [];
   userMe: any;
-  isShow = false;
+  isShowSucces = false;
+  isShowFail = false;
+  isShowFailName = false;
+  response: string;
 
   ngOnInit(): void {
     this.facilityService.getEventSportFacility().then(res => this.sportsFacilityList = res as SportsFacility[]);
@@ -33,18 +38,47 @@ export class CreatePickUpGamePageComponent implements OnInit {
 
   }
 
-  showConfirmation(){
-    this.isShow = !this.isShow;
-  }
-
   createPickUpgame() {
 
     this.newPickUpGame.owner = this.userMe.id;
-    this.pickUpGameService.postEventPickUpGame(this.newPickUpGame).subscribe(data => {
-      console.log(data)
-    });
-    this.showConfirmation();
-  }
+    this.pickUpGameService.postEventPickUpGame(this.newPickUpGame).subscribe(
+      data => {
+        console.log(data);
+        if (this.response == '') {
+          this.response = '200'
+          this.isShowFailName = false;
+          this.isShowFail = false;
+          this.isShowSucces = true;
+        }
+      },
+      error => {
+        this.response = error.status;
 
+        if (this.response == '500') {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        } else if (this.response == '403') {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        } else if (this.response == '400') {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        } else {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        }
+      },
+    );
+
+    if (this.newPickUpGame.name == '') {
+      this.isShowFailName = false;
+      this.isShowFail = true;
+      this.isShowSucces = false;
+    }
+  }
 
 }

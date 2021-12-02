@@ -13,15 +13,17 @@
       <select [(ngModel)]="newPickUpGame.sport_type.id">
         <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
       </select>
-      <!--
-      <br>
-      <label>Owner ID: </label>
-      <input [(ngModel)]="newPickUpGame.owner.id">
-      -->
+
     </div>
     <button (click)="createPickUpgame()">Create</button>
-    <div *ngIf="isShow">
-      <h3>The new team has been created</h3>
+    <div *ngIf="isShowSucces">
+      <h3>The new pick-up game has been created</h3>
+    </div>
+    <div *ngIf="isShowFailName">
+      <h3>The selected name is already taken</h3>
+    </div>
+    <div *ngIf="isShowFail">
+      <h3>An error occured</h3>
     </div>
   </div>
   <button [routerLink]="['/main-pick-up-game']">Back to Pick-up Games</button>

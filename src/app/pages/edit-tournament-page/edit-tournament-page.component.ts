@@ -22,6 +22,7 @@ export class EditTournamentPageComponent implements OnInit {
   idEditSportsFacility: string;
   idEditSportType: string;
   idEditDate: string;
+  idDelete: string;
   editNameValue = new PutName();
   editSportsFacilityValue = new PutSportsFacility();
   editSportTypeValue = new PutSportType();
@@ -38,6 +39,8 @@ export class EditTournamentPageComponent implements OnInit {
   isShowNoContent = false;
   isShowContent = false;
   isShowInitial = true;
+  isShowConfDelete = false;
+  isShowConfDeletePerm = false;
   userMe: any;
 
   constructor(private tournamentService: TournamentService, private facilityService: SportsFacilityService,
@@ -47,6 +50,7 @@ export class EditTournamentPageComponent implements OnInit {
     this.idEditSportsFacility = '';
     this.idEditSportType = '';
     this.idEditDate = '';
+    this.idDelete = '';
   }
 
   showConfirmation(option: number){
@@ -84,6 +88,11 @@ export class EditTournamentPageComponent implements OnInit {
     {
       this.isShowNoContent = true;
     }
+  }
+
+  showConfDelete()
+  {
+    this.isShowConfDelete = !this.isShowConfDelete;
   }
 
   findUserGames(){
@@ -128,6 +137,14 @@ export class EditTournamentPageComponent implements OnInit {
       console.log(data)
     });
     this.showConfirmation(4);
+  }
+
+  deleteTournament(id: string)
+  {
+    this.tournamentService.deleteEventTournament(id).subscribe(data => {
+      console.log(data);
+    });
+    this.isShowConfDeletePerm = true;
   }
 
 }

@@ -15,19 +15,27 @@ import {UsersPermissionUser} from "../../core/models/users-permission-user";
 export class EditTeamDataComponent implements OnInit {
 
   idName: string;
+  idDelete: string;
+  response: string;
   editNameValue = new PutName();
   sportTypesList: SportType[] = [];
   teamsList: Team[] = [];
   teamsList2: Team[] = [];
-  isShow = false;
   isShowNoContent = false;
   isShowContent = false;
   isShowInitial = true;
+  isShowConfDelete = false;
+  isShowConfDeletePerm = false;
+  isShowSucces = false;
+  isShowFail = false;
+  isShowFailName = false;
   userMe: any;
 
   constructor(private teamService: TeamService, private sportTypeService: SportTypeService,
               private userPermUserService: UserPermissionsUserService) {
     this.idName = '';
+    this.idDelete = '';
+    this.response = '';
   }
 
   ngOnInit(): void {
@@ -64,19 +72,64 @@ export class EditTeamDataComponent implements OnInit {
     }
   }
 
-
-  showConfirmation(){
-
-    {
-      this.isShow = true;
-    }
+  showConfDelete()
+  {
+    this.isShowConfDelete = !this.isShowConfDelete;
   }
 
   editName(id: string){
-    this.teamService.putEditNameEventTeam(id, this.editNameValue).subscribe(data => {
-      console.log(data)
+    this.teamService.putEditNameEventTeam(id, this.editNameValue).subscribe(
+      data => {console.log(data);
+        if(this.response == '')
+        {
+          this.response = '200'
+          this.isShowFailName = false;
+          this.isShowFail = false;
+          this.isShowSucces = true;
+        }
+      },
+      error => {this.response = error.status;
+
+        if(this.response == '500')
+        {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        } else
+        if(this.response == '403')
+        {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        } else
+        if(this.response == '400')
+        {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        } else
+        {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        }
+      },
+    );
+
+    if(this.editNameValue.name == '')
+    {
+      this.isShowFailName = false;
+      this.isShowFail = true;
+      this.isShowSucces = false;
+    }
+  }
+
+  deleteTeam(id: string)
+  {
+    this.teamService.deleteEventTeam(id).subscribe(data => {
+      console.log(data);
     });
-    this.showConfirmation();
+    this.isShowConfDeletePerm = true;
   }
 
 }

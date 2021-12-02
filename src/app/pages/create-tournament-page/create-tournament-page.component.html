@@ -22,8 +22,14 @@
       <input [(ngModel)]="tournament.end_date" type="datetime-local">
     </div>
     <button (click)="createTournament()">Create</button>
-    <div *ngIf="isShow">
+    <div *ngIf="isShowSucces">
       <h3>The new tournament has been created</h3>
+    </div>
+    <div *ngIf="isShowFailName">
+      <h3>The selected name is already taken</h3>
+    </div>
+    <div *ngIf="isShowFail">
+      <h3>An error occured</h3>
     </div>
   </div>
   <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>

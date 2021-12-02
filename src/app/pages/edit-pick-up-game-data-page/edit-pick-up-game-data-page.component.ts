@@ -19,6 +19,8 @@ export class EditPickUpGameDataPageComponent implements OnInit {
   idEditName: string;
   idEditSportType: string;
   idEditSportsFacility: string;
+  idDelete: string;
+  response: string;
   EditNameValue = new PutName();
   EditSportTypeValue = new PutSportType();
   EditSportsFacilityValue = new PutSportsFacility();
@@ -32,6 +34,11 @@ export class EditPickUpGameDataPageComponent implements OnInit {
   isShowNoContent = false;
   isShowContent = false;
   isShowInitial = true;
+  isShowConfDelete = false;
+  isShowConfDeletePerm = false;
+  isShowSucces = false;
+  isShowFail = false;
+  isShowFailName = false;
   userMe: any;
 
   constructor(private pickupService: PickUpGameService, private facilityService: SportsFacilityService,
@@ -39,6 +46,8 @@ export class EditPickUpGameDataPageComponent implements OnInit {
     this.idEditSportsFacility = '';
     this.idEditSportType = '';
     this.idEditName = '';
+    this.idDelete = '';
+    this.response = '';
   }
 
   ngOnInit(): void {
@@ -88,11 +97,56 @@ export class EditPickUpGameDataPageComponent implements OnInit {
     }
   }
 
+  showConfDelete()
+  {
+    this.isShowConfDelete = !this.isShowConfDelete;
+  }
+
   editName(id: string){
-    this.pickupService.putEditNameEventPickUpGame(id, this.EditNameValue).subscribe(data => {
-      console.log(data)
-    });
-    this.showConfirmation(1);
+    this.pickupService.putEditNameEventPickUpGame(id, this.EditNameValue).subscribe(
+      data => {console.log(data);
+        if(this.response == '')
+        {
+          this.response = '200'
+          this.isShowFailName = false;
+          this.isShowFail = false;
+          this.isShowSucces = true;
+        }
+      },
+      error => {this.response = error.status;
+
+        if(this.response == '500')
+        {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        } else
+        if(this.response == '403')
+        {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        } else
+        if(this.response == '400')
+        {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        } else
+        {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        }
+      },
+    );
+
+    if(this.EditNameValue.name == '')
+    {
+      this.isShowFailName = false;
+      this.isShowFail = true;
+      this.isShowSucces = false;
+    }
   }
 
   editSportFacility(id: string){
@@ -109,4 +163,11 @@ export class EditPickUpGameDataPageComponent implements OnInit {
     this.showConfirmation(3);
   }
 
+  deletePickUpGame(id: string)
+  {
+    this.pickupService.deleteEventPickUpGame(id).subscribe(data => {
+      console.log(data);
+    });
+    this.isShowConfDeletePerm = true;
+  }
 }

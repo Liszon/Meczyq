@@ -16,13 +16,19 @@ import {UsersPermissionUser} from "../../core/models/users-permission-user";
 
 export class CreateTournamentPageComponent implements OnInit {
 
-  constructor(private tournamentService: TournamentService, private facilityService: SportsFacilityService, private userPermUserService: UserPermissionsUserService, private sportTypeService: SportTypeService) { }
+  constructor(private tournamentService: TournamentService, private facilityService: SportsFacilityService,
+              private userPermUserService: UserPermissionsUserService, private sportTypeService: SportTypeService) {
+    this.response = '';
+  }
 
+  response: string;
   tournament = new PostData();
   sportsFacilityList: SportsFacility[] = [];
   userPermUserList: UsersPermissionUser[] = [];
   sportTypesList: SportType[] = [];
-  isShow = false;
+  isShowSucces = false;
+  isShowFail = false;
+  isShowFailName = false;
   userMe: any;
 
   ngOnInit(): void {
@@ -32,16 +38,56 @@ export class CreateTournamentPageComponent implements OnInit {
     this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => this.userMe = res as UsersPermissionUser);
   }
 
-  showConfirmation(){
-    this.isShow = !this.isShow;
-  }
+
 
   createTournament(){
     this.tournament.owner = this.userMe.id;
-    this.tournamentService.postEventTournament(this.tournament).subscribe(data => {
-      console.log(data)
-    });
-    this.showConfirmation();
+    this.tournamentService.postEventTournament(this.tournament).subscribe(
+      data => {console.log(data);
+        if(this.response == '')
+        {
+          this.response = '200'
+          this.isShowFailName = false;
+          this.isShowFail = false;
+          this.isShowSucces = true;
+        }
+      },
+      error => {this.response = error.status;
+
+        if(this.response == '500')
+        {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        } else
+        if(this.response == '403')
+        {
+          this.isShowFailName = true;
+          this.isShowFail = false;
+          this.isShowSucces = false;
+        } else
+        if(this.response == '400')
+        {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        } else
+        {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        }
+      },
+    );
+
+    if(this.tournament.name == '')
+    {
+      this.isShowFailName = false;
+      this.isShowFail = true;
+      this.isShowSucces = false;
+    }
+
+
   }
 
 }

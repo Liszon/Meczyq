@@ -22,10 +22,39 @@
     <br>
     <button (click)="editName(idName)">Change Name</button>
     <br>
-    <div *ngIf="isShow">
-      <h3>The team name has been changed</h3>
+    <div *ngIf="isShowSucces">
+      <h3>The new team has been created</h3>
     </div>
+    <div *ngIf="isShowFailName">
+      <h3>The selected name is already taken</h3>
+    </div>
+    <div *ngIf="isShowFail">
+      <h3>An error occured</h3>
+    </div>
+
+    <br><br>
+
+    <div>
+      <h2>Delete the team</h2>
+      <br>
+      <label>Team name</label>
+      <select [(ngModel)]="idDelete">
+        <option *ngFor="let list of teamsList2; let i = index" [value]="teamsList2[i].id | json">{{teamsList2[i].name}}</option>
+      </select>
+      <br>
+      <div *ngIf="isShowConfDelete==false">
+        <button (click)="showConfDelete()">Delete</button>
+      </div>
+      <div *ngIf="isShowConfDelete">
+        <h4>Are you sure?</h4>
+        <button (click)="deleteTeam(idDelete)">Delete</button>
+        <button (click)="showConfDelete()">No</button>
+      </div>
+      <div *ngIf="isShowConfDeletePerm">
+        <h3>The team has been permanently removed</h3>
+      </div>
+    </div>
+    <button [routerLink]="['/main-teams']">Back to Teams</button>
+    <button [routerLink]="['/home']">Main Menu</button>
   </div>
-  <button [routerLink]="['/main-teams']">Back to Teams</button>
-  <button [routerLink]="['/home']">Main Menu</button>
 </div>

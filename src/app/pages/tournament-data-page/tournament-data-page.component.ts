@@ -23,8 +23,7 @@ export class TournamentDataPageComponent implements OnInit {
   matches: Match[] = [];
   matches2: Match[] = [];
   isShow = false;
-  isShowConfDelete = false;
-  isShowConfDeletePerm = false;
+
 
   constructor(private tournamentService: TournamentService, private teamService: TeamService, private matchService: MatchService,
               private mUserService: MUserService) {
@@ -40,13 +39,6 @@ export class TournamentDataPageComponent implements OnInit {
 
   showConfirmation(){
     this.isShow = true;
-    this.isShowConfDeletePerm = false;
-    this.isShowConfDelete = false;
-  }
-
-  showConfDelete()
-  {
-    this.isShowConfDelete = !this.isShowConfDelete;
   }
 
   tournamentInfo(id: string){
@@ -54,14 +46,6 @@ export class TournamentDataPageComponent implements OnInit {
     this.mUserService.getIdEventMUsery(this.tournamentId.owner.usersPermissionsUser).then(res => this.mUserList = res as MuserFull);
     this.showConfirmation();
     this.showMatches();
-  }
-
-  deleteTournament(id: string)
-  {
-    this.tournamentService.deleteEventTournament(id).subscribe(data => {
-      console.log(data);
-    });
-    this.isShowConfDeletePerm = true;
   }
 
   showMatches()

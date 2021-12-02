@@ -90,6 +90,30 @@
         <h3>The date of the tournament has been changed</h3>
       </div>
     </div>
+
+    <br><br>
+
+    <div>
+      <h2>Delete the tournament</h2>
+      <br>
+      <label>Tournament </label>
+      <select [(ngModel)]="idDelete">
+        <option *ngFor="let list of tournamentsList2; let i = index" [value]="tournamentsList2[i].id | json">{{tournamentsList2[i].name}}</option>
+      </select>
+      <br>
+      <div *ngIf="isShowConfDelete==false">
+        <button (click)="showConfDelete()">Delete</button>
+      </div>
+      <div *ngIf="isShowConfDelete">
+        <h4>Are you sure?</h4>
+        <button (click)="deleteTournament(idDelete)">Delete</button>
+        <button (click)="showConfDelete()">No</button>
+      </div>
+      <div *ngIf="isShowConfDeletePerm">
+        <h3>The tournament has been permanently removed</h3>
+      </div>
+    </div>
+
   </div>
   <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>
   <button [routerLink]="['/home']">Main Menu</button>

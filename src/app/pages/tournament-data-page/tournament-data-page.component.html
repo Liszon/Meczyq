@@ -53,22 +53,6 @@
         </tbody>
       </table>
     </div>
-    <div *ngIf="isShow">
-      <br><br>
-      <h2>Delete the tournament</h2>
-      <br>
-      <div *ngIf="isShowConfDelete==false">
-        <button (click)="showConfDelete()">Delete</button>
-      </div>
-      <div *ngIf="isShowConfDelete">
-        <h4>Are you sure?</h4>
-        <button (click)="deleteTournament(id)">Delete</button>
-        <button (click)="showConfDelete()">No</button>
-      </div>
-      <div *ngIf="isShowConfDeletePerm">
-        <h3>The tournament has been permanently removed</h3>
-      </div>
-    </div>
   </div>
   <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>
   <button [routerLink]="['/home']">Main Menu</button>

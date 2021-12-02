@@ -17,11 +17,9 @@ export class CreateTeamPageComponent implements OnInit {
   isShowFailName = false;
   userMe: any;
   response: string;
-  status: string;
 
   constructor(private teamService: TeamService, private userPermUserService: UserPermissionsUserService) {
     this.response = '';
-    this.status = '';
   }
 
   ngOnInit(): void {
@@ -42,19 +40,25 @@ export class CreateTeamPageComponent implements OnInit {
         }
         },
       error => {this.response = error.status;
+
         if(this.response == '500')
         {
           this.isShowFailName = true;
           this.isShowFail = false;
           this.isShowSucces = false;
-        }
+        } else
         if(this.response == '403')
         {
           this.isShowFailName = true;
           this.isShowFail = false;
           this.isShowSucces = false;
-        }
+        } else
         if(this.response == '400')
+        {
+          this.isShowFailName = false;
+          this.isShowFail = true;
+          this.isShowSucces = false;
+        } else
         {
           this.isShowFailName = false;
           this.isShowFail = true;
@@ -63,6 +67,12 @@ export class CreateTeamPageComponent implements OnInit {
       },
       );
 
+    if(this.newTeam.name == '')
+    {
+      this.isShowFailName = false;
+      this.isShowFail = true;
+      this.isShowSucces = false;
+    }
 
 
   }
