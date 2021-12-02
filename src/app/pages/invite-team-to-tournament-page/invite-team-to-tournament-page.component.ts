@@ -20,6 +20,7 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
   idTournament: string;
   idRemove: string;
   idTeamRemove: string;
+  response: string;
   addNewTeam = new NewTeamTournament();
   tournamentsList: Tournament[] = [];
   tournamentsList2: Tournament[] = [];
@@ -31,6 +32,7 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
   isShowInitial = true;
   isShowADD = false;
   isShowRemove = false;
+  isShowFail = false;
   userMe: any;
 
 
@@ -41,6 +43,7 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
     this.idRemove = '';
     this.idTeamRemove = '';
     this.idTournament = '';
+    this.response = '';
   }
 
   ngOnInit(): void {
@@ -100,10 +103,6 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
     }
   }
 
-  showConfirmationADD(){
-    this.isShowAddConfirmation = true;
-  }
-
   showConfirmationRemove(){
     this.isShowRemoveConfirmation = true;
   }
@@ -114,9 +113,22 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
     this.addNewTeam.invite_date = (Date.now()).toString();
     this.addNewTeam.participates = true;
     this.teamTournamentService.postEventTeamTournament(this.addNewTeam).subscribe(
-      data => console.log(data)
-    );
-    this.showConfirmationADD();
+      data => {console.log(data);
+        if(this.response == '')
+        {
+          this.response = '200'
+          this.isShowFail = false;
+          this.isShowAddConfirmation = true;
+        }
+      },
+      error => {
+        this.response = error.status;
+
+        if (this.response != '') {
+          this.isShowFail = false;
+          this.isShowAddConfirmation = false;
+        }
+      });
   }
 
 
