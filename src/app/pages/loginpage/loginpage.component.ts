@@ -11,26 +11,25 @@ import {Router} from "@angular/router";
 
 export class LoginpageComponent implements OnInit {
 
-  isLoggedIn=false;
+  isLoggedIn = false;
 
 
   loginForm: FormGroup;
-
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router ) {
+error:string;
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formBuilder.group({
       email: [''],
       password: ['']
     });
+    this.error=''
   }
 
   ngOnInit(): void {
 
-    this.isLoggedIn=this.authService.isLoggedIn()
+    this.isLoggedIn = this.authService.isLoggedIn()
 
 
   }
-
-
 
 
 // onSubmit(): void
@@ -38,29 +37,35 @@ export class LoginpageComponent implements OnInit {
 //   console.log(this.user);
 //   this.authService.login(this.user).subscribe(()=>window.location.reload());
 // }
-logout():void
-{
-  this.authService.logout();
-  window.location.reload();
-}
+  logout(): void {
+    this.authService.logout();
+    window.location.reload();
+  }
 
 
+  get f() {
+    return this.loginForm.controls;
+  }
 
-  get f() { return this.loginForm.controls; }
+  async login() {
 
-  login() {
-    this.authService.login(
+    const status=await this.authService.login(
       {
         email: this.f.email.value,
         password: this.f.password.value
       }
     )
-      .subscribe(success => {
-        if (success) {
-          window.location.reload();
-          this.router.navigate(['/home']);
-        }
-      });
+    if (status==200) {
+
+      window.location.reload();
+
+
+    }
+    else {
+      this.error='data error'
+
+    }
+
   }
 
 

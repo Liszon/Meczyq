@@ -15,9 +15,11 @@ export class RegisterpageComponent implements OnInit {
 
 
   registerForm: FormGroup;
+  error: string;
 
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router ) {
+    this.error=''
     this.registerForm = this.formBuilder.group({
       email: [''],
       username: [''],
@@ -45,20 +47,28 @@ export class RegisterpageComponent implements OnInit {
 
   get f() { return this.registerForm.controls; }
 
-  register() {
-    this.authService.register(
-      {
-        email: this.f.email.value,
-        username: this.f.username.value,
-        password: this.f.password.value
-      }
-    )
-      .subscribe(success => {
-        if (success) {
-          window.location.reload();
-        }
-      });
-  }
+ async  register() {
 
 
+  const status=await this.authService.register(
+    {
+      email: this.f.email.value,
+      username: this.f.username.value,
+      password: this.f.password.value
+    }
+  )
+  if (status==200) {
+
+  window.location.reload();
+
+
+}
+else {
+  this.error='data error'
+
+}
+
+
+
+}
 }
