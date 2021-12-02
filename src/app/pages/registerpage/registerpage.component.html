@@ -1,11 +1,37 @@
-<div style="text-align: center">
-  <form>
-    <label for="email">Email</label><br>
-    <input id="email" type="email"><br>
-    <label for="login">Login</label><br>
-    <input id="login" type="text"><br>
-    <label for="pass">Hasło</label><br>
-    <input id="pass" type="password"><br>
-    <input type="submit" value="Rejestracja">
-  </form>
+
+
+<div *ngIf="isLoggedIn; else loggedOut">
+  You are logged in.
+  <button (click)="logout()">Logout</button>
 </div>
+
+<ng-template #loggedOut>
+
+  <div class="header center">Register to use all website functions</div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="register()" class="mWindow mForm">
+
+
+
+
+    <div>
+      <label>Email</label>
+      <input type="email" formControlName="email">
+    </div>
+    <div>
+      <label>Username</label>
+      <input type="text" formControlName="username">
+    </div>
+    <div>
+      <label>Password</label>
+      <input type="password" formControlName="password">
+    </div>
+    <div>
+      <a  [routerLink]="['/login']" class="nav-link">Click to Login </a>
+    </div>
+    <div>
+      <button type="submit">Register</button>
+    </div>
+
+  </form>
+</ng-template>

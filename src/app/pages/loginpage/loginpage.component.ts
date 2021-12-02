@@ -57,6 +57,7 @@ logout():void
     )
       .subscribe(success => {
         if (success) {
+          window.location.reload();
           this.router.navigate(['/home']);
         }
       });
