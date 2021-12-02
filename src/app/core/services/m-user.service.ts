@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
 import  {MUser} from "../models/m-user";
-import { NewMUser} from "../models/new-m-user";
+import {NewMUser, PutFirstname, PutLastName, PutPhoneNumber, PutSecondName} from "../models/new-m-user";
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +39,30 @@ export class MUserService {
   putIdEventMUser(id: string, muser: NewMUser){
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(muser);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
+  }
+
+  putEditFirstName(id: string, name: PutFirstname){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(name);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
+  }
+
+  putEditSecondName(id: string, name: PutSecondName){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(name);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
+  }
+
+  putEditLastName(id: string, lastname: PutLastName){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(lastname);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
+  }
+
+  putEditPhoneNumber(id: string, phonenumber: PutPhoneNumber){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(phonenumber);
     return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
 }

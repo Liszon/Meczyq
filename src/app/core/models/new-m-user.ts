@@ -1,3 +1,19 @@
+export class PutFirstname {
+  firstName: string | undefined;
+}
+
+export class PutSecondName {
+  secondName: string | undefined;
+}
+
+export class PutLastName {
+  lastName: string | undefined;
+}
+
+export class PutPhoneNumber {
+  phoneNumber: string | undefined;
+}
+
 export interface NewMUser {
   firstName: string;
   secondName: string;
