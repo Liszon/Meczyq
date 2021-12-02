@@ -16,17 +16,17 @@
         <h2>Add Team to the Tournament</h2>
         <div>
           <label>Tournament </label>
-          <select [(ngModel)]="id">
+          <select [(ngModel)]="addNewTeam.tournament.id">
             <option *ngFor="let list of tournamentsList2; let i = index" [value]="tournamentsList2[i].id | json">{{tournamentsList2[i].name}}</option>
           </select>
           <br>
           <label>Team </label>
-          <select [(ngModel)]="idTeam">
+          <select [(ngModel)]="addNewTeam.team.id">
             <option *ngFor="let lista of teamslist; let i = index" [value]="teamslist[i].id | json">{{teamslist[i].name}}</option>
           </select>
         </div>
         <br>
-        <button (click)="addTeam(id)">Add Team</button>
+        <button (click)="addTeam()">Add Team</button>
       </div>
       <br>
       <div *ngIf="isShowAddConfirmation">

@@ -5,6 +5,8 @@ import {Tournament} from "../../core/models/tournament";
 import {Team} from "../../core/models/team";
 import {UsersPermissionUser} from "../../core/models/users-permission-user";
 import {UserPermissionsUserService} from "../../core/services/user-permissions-user.service";
+import {TeamTournamentsService} from "../../core/services/team-tournaments.service";
+import {NewTeamTournament} from "../../core/models/new-team-tournament";
 
 @Component({
   selector: 'app-invite-team-to-tournament-page',
@@ -15,8 +17,10 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
 
   id: string;
   idTeam: string;
+  idTournament: string;
   idRemove: string;
   idTeamRemove: string;
+  addNewTeam = new NewTeamTournament();
   tournamentsList: Tournament[] = [];
   tournamentsList2: Tournament[] = [];
   teamslist: Team[] = [];
@@ -31,11 +35,12 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
 
 
   constructor(private tournamentService: TournamentService, private teamService: TeamService,
-              private userPermUserService: UserPermissionsUserService) {
+              private userPermUserService: UserPermissionsUserService, private teamTournamentService: TeamTournamentsService) {
     this.id = '';
     this.idTeam = '';
     this.idRemove = '';
     this.idTeamRemove = '';
+    this.idTournament = '';
   }
 
   ngOnInit(): void {
@@ -103,26 +108,17 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
     this.isShowRemoveConfirmation = true;
   }
 
-  addTeam(id: string){
-    var x;
-    var y;
-    var temp = '{ "team_tournaments": [';
-    for(x=0;x<this.tournamentsList.length;x++){
-      if(this.tournamentsList[x].id == id)
-      {
-        for(y=0;y<this.tournamentsList[x].team_tournaments.length;y++)
-        {
-          temp = temp + ' { "id": "'+this.tournamentsList[x].team_tournaments[y].id+'"},';
-        }
-        break;
-      }
-    }
-    temp = temp + ' { "id": "'+this.idTeam+'"}]}';
-    this.tournamentService.putEditTeamTournamentsEventTournament(id, temp).subscribe(data => {
-      console.log(data)
-    })
+  addTeam()
+  {
+    //this.addNewTeam.tournament.id = this.idTournament;
+    this.addNewTeam.invite_date = (Date.now()).toString();
+    this.addNewTeam.participates = true;
+    this.teamTournamentService.postEventTeamTournament(this.addNewTeam).subscribe(
+      data => console.log(data)
+    );
     this.showConfirmationADD();
   }
+
 
   deleteTeam(id: string){
     var x;
