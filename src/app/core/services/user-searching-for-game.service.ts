@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { environment} from "src/environments/environment";
-import  { UserSearchingForGame} from "../models/user-searching-for-game";
+import {NewUserSearchingGame, UserSearchingForGame} from "../models/user-searching-for-game";
 import { NewUserSearchingForGame} from "../models/new-user-searching-for-game";
 
 @Injectable({
@@ -29,7 +29,7 @@ export class UserSearchingForGameService {
     return this.http.delete(environment.apiUrl+this.eventsPath+"/"+id);
   }
 
-  postEventUserSearchingForGame(usersearchingforgame: NewUserSearchingForGame){
+  postEventUserSearchingForGame(usersearchingforgame: NewUserSearchingGame){
     const headers = { 'content-type': 'application/json'};
     const body=JSON.stringify(usersearchingforgame);
     return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers});

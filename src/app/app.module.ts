@@ -46,6 +46,7 @@ import {TokenInterceptor} from "./auth/token.interceptor";
 
 import {InviteUserToPickUpGameComponent} from './pages/invite-user-to-pick-up-game-page/invite-user-to-pick-up-game.component';
 import {HomeComponent} from './pages/home/home.component';
+import { UserSearchingGameComponent } from './pages/user-searching-game/user-searching-game.component';
 
 
 @NgModule({
@@ -85,7 +86,8 @@ import {HomeComponent} from './pages/home/home.component';
     MainSportsFacilityPageComponent,
     MainSportTypesPageComponent,
     InviteUserToPickUpGameComponent,
-    HomeComponent
+    HomeComponent,
+    UserSearchingGameComponent
   ],
   imports: [
     BrowserModule,
@@ -214,6 +216,10 @@ import {HomeComponent} from './pages/home/home.component';
       },
       {
         path: 'user-data', component: UserDataPageComponent, canActivate: [LoginGuard],
+        canLoad: [LoginGuard]
+      },
+      {
+        path: 'user-searching-game', component: UserSearchingGameComponent, canActivate: [LoginGuard],
         canLoad: [LoginGuard]
       },
       {path: 'register', component: RegisterpageComponent}

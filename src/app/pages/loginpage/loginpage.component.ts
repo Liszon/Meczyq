@@ -62,7 +62,7 @@ error:string;
 
     }
     else {
-      this.error='data error'
+      this.error='Wrong email or password'
 
     }
 

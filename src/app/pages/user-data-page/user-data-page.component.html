@@ -27,11 +27,12 @@
       <h2>Date of account creation: </h2>
           <h3>{{(mUser.created_at).substr(0,10)}}</h3>
 
-      <button (click)="logout()">Logout</button>
     </div>
 
+    <button [routerLink]="['/edit-user-data']">Edit details</button>
   </div>
 
   <button [routerLink]="['/home']">Main Menu</button>
+  <button (click)="logout()">Logout</button>
 
 </div>

@@ -92,24 +92,28 @@ export class TournamentGamePageComponent implements OnInit {
   addResult(){
     let x;
 
-    if(this.team1ID == this.team2ID)
+    if(this.newMatch.teamTournament1 == this.newMatch.teamTournament2)
     {
       this.isShowConfirmation = false;
       this.isShowError = true;
     } else
     {
       this.isShowError = false;
+      /*
       for (x=0; x<this.teamTournamentsList.length; x++)
       {
-        if(this.tournamentID == this.teamTournamentsList[x].tournament.id && this.team1ID == this.teamTournamentsList[x].team.id)
+        if( (this.team1ID == this.teamTournamentsList[x].team.id))
         {
           this.newMatch.teamTournament1 = this.teamTournamentsList[x].id;
         }
-        if(this.tournamentID == this.teamTournamentsList[x].tournament.id && this.team2ID == this.teamTournamentsList[x].team.id)
+        if( (this.team2ID == this.teamTournamentsList[x].team.id))
         {
           this.newMatch.teamTournament2 = this.teamTournamentsList[x].id;
         }
       }
+
+       */
+
       this.matchService.postEventMatch(this.newMatch).subscribe(data => {
         console.log(data)
       });

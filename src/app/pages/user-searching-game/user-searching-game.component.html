@@ -1,0 +1,56 @@
+<div style="text-align: center; margin-top: 10%" class="mWindow">
+
+  <div>
+    <h1>Search for a game</h1>
+  </div>
+
+  <div>
+    <div>
+      <label>Sports Facility: </label>
+      <select [(ngModel)]="newUserSearchingGame.sports_facilities">
+        <option *ngFor="let list of sportsFacilityList; let i = index" [value]="sportsFacilityList[i].id | json">{{sportsFacilityList[i].name}}</option>
+      </select>
+      <br>
+      <label>Sport Type: </label>
+      <select [(ngModel)]="newUserSearchingGame.sport_type">
+        <option *ngFor="let list of sportTypesList; let i = index" [value]="sportTypesList[i].id | json">{{sportTypesList[i].name}}</option>
+      </select>
+    </div>
+    <button (click)="addUserSearchingGame()">Search</button>
+    <div *ngIf="isShowAddConf">
+      <h3>We are looking for a game for you. Check regularly that you have not already been assigned to one.</h3>
+    </div>
+    <div *ngIf="isShowAddError">
+      <h3>Something went wrong. Please try again later</h3>
+    </div>
+  </div>
+<!--
+  <div *ngIf="isShowCheck">
+    <h3>Click to check if we have already found you a game</h3>
+    <button (click)="check()">Check</button>
+  </div>
+
+  <div *ngIf="isShowTable">
+    <h1>Pick-up Game List</h1>
+    <table style="width:100%">
+      <thead>
+      <tr>
+        <td>Name</td>
+        <td>Sports facility</td>
+        <td>Sport type</td>
+        <td>Organizer</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let list of myPickupGamesList; let i = index">
+        <td>{{myPickupGamesList[i].name}}</td>
+        <td>{{myPickupGamesList[i].sports_facility.name}}</td>
+        <td>{{myPickupGamesList[i].sport_type.name}}</td>
+        <td>{{myPickupGamesList[i].owner.firstName}} {{myPickupGamesList[i].owner.lastName}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+-->
+
+</div>

@@ -1,1 +1,75 @@
+<div style="text-align: center; margin-top: 10%" class="mWindow">
 
+  <div *ngIf="isShowContent">
+    <h1>Edit User Details</h1>
+    <br>
+    <div>
+      <div>
+        <div>
+          <label>First Name</label>
+          <input [(ngModel)]="tempFirstName">
+        </div>
+        <button (click)="editFirstName()">Save</button>
+        <div *ngIf="isShowNameConf">
+          <h3>OK!</h3>
+        </div>
+        <div *ngIf="isShowNameError">
+          <h3>Something went wrong. Check the correctness of the entered data</h3>
+        </div>
+    </div>
+
+      <br><br>
+
+      <div>
+        <div>
+          <label>Secound Name</label>
+          <input [(ngModel)]="tempSecondName">
+        </div>
+        <button (click)="editSecondName()">Save</button>
+        <div *ngIf="isShowName2Conf">
+          <h3>OK!</h3>
+        </div>
+        <div *ngIf="isShowName2Error">
+          <h3>Something went wrong. Check the correctness of the entered data</h3>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div>
+        <div>
+          <label>Lastname</label>
+          <input [(ngModel)]="tempLastName">
+        </div>
+        <button (click)="editLastName()">Save</button>
+        <div *ngIf="isShowLastNameConf">
+          <h3>OK!</h3>
+        </div>
+        <div *ngIf="isShowLastNameError">
+          <h3>Something went wrong. Check the correctness of the entered data</h3>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div>
+        <div>
+          <label>Phone number (Enter the number together with the prefix)</label>
+          <input [(ngModel)]="tempPhoneNumber">
+        </div>
+        <button (click)="editPhoneNumber()">Save</button>
+        <div *ngIf="isShowphoneNumberConf">
+          <h3>OK!</h3>
+        </div>
+        <div *ngIf="isShowphoneNumberError">
+          <h3>Something went wrong. Check the correctness of the entered data</h3>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <button [routerLink]="['/user-data']">User Data</button>
+  <button [routerLink]="['/home']">Main Menu</button>
+</div>

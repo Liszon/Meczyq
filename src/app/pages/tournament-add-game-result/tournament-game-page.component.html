@@ -24,12 +24,12 @@
   <div *ngIf="isShowTeamList">
     <div>
       <label>Home team</label>
-      <select [(ngModel)]="team1ID">
+      <select [(ngModel)]="newMatch.teamTournament1">
         <option *ngFor="let list of tournamentDetails.team_tournaments; let i = index" [value]="tournamentDetails.team_tournaments[i].id | json">{{teamsList[i].name}}</option>
       </select>
       <br>
       <label>Away team</label>
-      <select [(ngModel)]="team2ID">
+      <select [(ngModel)]="newMatch.teamTournament2">
         <option *ngFor="let list of tournamentDetails.team_tournaments; let i = index" [value]="tournamentDetails.team_tournaments[i].id | json">{{teamsList[i].name}}</option>
       </select>
       <br>
@@ -49,6 +49,8 @@
     <div *ngIf="isShowConfirmation">
       <h2>The match result has been added</h2>
     </div>
+    {{team1ID}}
+    {{team2ID}}
   </div>
   <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>
   <button [routerLink]="['/home']">Main Menu</button>
