@@ -6,7 +6,7 @@
     <div>
       <div>
         <div>
-          <label>First Name</label>
+          <label>First Name: </label>
           <input [(ngModel)]="tempFirstName">
         </div>
         <button (click)="editFirstName()">Save</button>
@@ -22,7 +22,7 @@
 
       <div>
         <div>
-          <label>Secound Name</label>
+          <label>Second Name:</label>
           <input [(ngModel)]="tempSecondName">
         </div>
         <button (click)="editSecondName()">Save</button>
@@ -38,7 +38,7 @@
 
       <div>
         <div>
-          <label>Lastname</label>
+          <label>Lastname: </label>
           <input [(ngModel)]="tempLastName">
         </div>
         <button (click)="editLastName()">Save</button>
@@ -53,18 +53,18 @@
       <br><br>
 
       <div>
-        <div>
-          <label>Phone number (Enter the number together with the prefix)</label>
-          <input [(ngModel)]="tempPhoneNumber">
-        </div>
-        <button (click)="editPhoneNumber()">Save</button>
-        <div *ngIf="isShowphoneNumberConf">
-          <h3>OK!</h3>
-        </div>
-        <div *ngIf="isShowphoneNumberError">
-          <h3>Something went wrong. Check the correctness of the entered data</h3>
-        </div>
-      </div>
+<!--        <div>-->
+<!--          <label>Phone number: </label>-->
+<!--          <input [(ngModel)]="tempPhoneNumber">-->
+<!--        </div>-->
+<!--        <button (click)="editPhoneNumber()">Save</button>-->
+<!--        <div *ngIf="isShowphoneNumberConf">-->
+<!--          <h3>OK!</h3>-->
+<!--        </div>-->
+<!--        <div *ngIf="isShowphoneNumberError">-->
+<!--          <h3>Something went wrong. Check the correctness of the entered data</h3>-->
+<!--        </div>-->
+<!--      </div>-->
 
     </div>
 
