@@ -8,8 +8,9 @@
   <div *ngIf="isShowContent">
 
     <div>
+
       <h2>Username: </h2>
-      <h3>{{userPermisionUser.username}}</h3>
+      <h3>{{userMe.username}}</h3>
       <br>
       <h2>Name: </h2>
       <h3>{{mUser.firstName}}  {{mUser.secondName}}</h3>
@@ -18,7 +19,7 @@
       <h3>{{mUser.lastName}}</h3>
       <br>
       <h2>Email: </h2>
-        <h3>{{userPermisionUser.email}}</h3>
+        <h3>{{userMe.email}}</h3>
       <br>
       <h2>My teams: </h2>
       <div *ngFor="let list of mUser.teams; let i = index">

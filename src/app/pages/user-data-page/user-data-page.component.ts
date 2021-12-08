@@ -14,9 +14,9 @@ import {MUserService} from "../../core/services/m-user.service";
 export class UserDataPageComponent implements OnInit {
 
   response: string = '';
-  userID = '';
+
   mUser: any;
-  userPermisionUser: any;
+
   isShowContent = false;
   isShowNoContent = true;
   userMe: any;
@@ -27,27 +27,25 @@ export class UserDataPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => this.userMe = res as UsersPermissionUser);
+     this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => {this.userMe = res as UsersPermissionUser;
+       this. showContent();});
     this.userPermUserService.getUserMeSub().subscribe({
       error: error => {
         this.response = error.message;
       }
     });
+
   }
 
   showContent(){
 
-    if(this.response == 'Http failure response for http://localhost:1337/users/me: 400 Bad Request')
-    {
-      this.router.navigate(['/login'])
-    } else
-    {
-      this.userID = this.userMe.id;
-      this.userPermUserService.getUsersIdEventUserPermissionsUser(this.userID).then(res => this.userPermisionUser = res as UsersPermissionUser);
-      this.mUserService.getIdEventMUsery(this.userID).then(res => this.mUser = res as MUser);
+
+
+      //this.userPermUserService.getUsersIdEventUserPermissionsUser(this.userMe.id).then(res => this.userPermisionUser = res as UsersPermissionUser);
+      this.mUserService.getIdEventMUsery(this.userMe.id).then(res => this.mUser = res as MUser);
       this.isShowContent = true;
       this.isShowNoContent = false;
-    }
+
 
   }
 
