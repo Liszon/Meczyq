@@ -54,9 +54,12 @@
           </select>
         </div>
         <br>
-        <button (click)="deleteTeam(idRemove)">Remove Team</button>
+        <button (click)="deleteTeam()">Remove Team</button>
         <div *ngIf="isShowRemoveConfirmation">
           <h3>The team has been removed from the tournament</h3>
+        </div>
+        <div *ngIf="isShowRemoveFail">
+          <h3>An error occured</h3>
         </div>
       </div>
     </div>

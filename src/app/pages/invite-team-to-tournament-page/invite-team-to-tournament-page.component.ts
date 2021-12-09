@@ -7,6 +7,7 @@ import {UsersPermissionUser} from "../../core/models/users-permission-user";
 import {UserPermissionsUserService} from "../../core/services/user-permissions-user.service";
 import {TeamTournamentsService} from "../../core/services/team-tournaments.service";
 import {NewTeamTournament} from "../../core/models/new-team-tournament";
+import {TeamTournament} from "../../core/models/team-tournament";
 
 @Component({
   selector: 'app-invite-team-to-tournament-page',
@@ -25,6 +26,7 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
   tournamentsList: Tournament[] = [];
   tournamentsList2: Tournament[] = [];
   teamslist: Team[] = [];
+  teamTournamentList: TeamTournament[] = [];
   isShowAddConfirmation = false;
   isShowRemoveConfirmation = false;
   isShowNoContent = false;
@@ -32,6 +34,7 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
   isShowInitial = true;
   isShowADD = false;
   isShowRemove = false;
+  isShowRemoveFail = false;
   isShowFail = false;
   userMe: any;
 
@@ -78,6 +81,7 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
     {
       this.isShowInitial = false;
     }
+    this.teamTournamentService.getEventTournament().then(res => this.teamTournamentList = res as TeamTournament[]);
   }
 
   showContent(){
@@ -103,12 +107,11 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
     }
   }
 
-  showConfirmationRemove(){
-    this.isShowRemoveConfirmation = true;
-  }
-
   addTeam()
   {
+    this.isShowFail = false;
+    this.isShowAddConfirmation = true;
+
     //this.addNewTeam.tournament.id = this.idTournament;
     this.addNewTeam.invite_date = (Date.now()).toString();
     this.addNewTeam.participates = true;
@@ -119,20 +122,31 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
           this.response = '200'
           this.isShowFail = false;
           this.isShowAddConfirmation = true;
+          //tymczasowe rozwiązanie problemu
+          if(this.addNewTeam.tournament.id == '' || this.addNewTeam.team.id == '')
+          {
+            this.isShowFail = true;
+            this.isShowAddConfirmation = false;
+          }
         }
       },
       error => {
         this.response = error.status;
 
         if (this.response != '') {
-          this.isShowFail = false;
+          this.isShowFail = true;
+          this.isShowAddConfirmation = false;
+        } else
+        {
+          this.isShowFail = true;
           this.isShowAddConfirmation = false;
         }
       });
   }
 
 
-  deleteTeam(id: string){
+  deleteTeam(){
+    /*
     var x;
     var y;
     var temp = '{ "team_tournaments": [';
@@ -150,16 +164,83 @@ export class InviteTeamToTournamentPageComponent implements OnInit {
             temp = temp + ',';
           }
           if(y==this.tournamentsList[x].team_tournaments.length-1){
-            temp = temp + ']}'
+            temp = temp + ']}';
           }
         }
         break;
       }
     }
-    this.tournamentService.putEditTeamTournamentsEventTournament(id, temp).subscribe(data => {
-      console.log(data)
-    });
-    this.showConfirmationRemove();
+    this.tournamentService.putEditTeamTournamentsEventTournament(id, temp).subscribe(
+      data => {console.log(data);
+        if(this.response == '')
+        {
+          this.response = '200'
+          this.isShowRemoveFail = false;
+          this.isShowRemoveConfirmation = true;
+          //tymczasowe rozwiązanie problemu
+          if(this.idTeamRemove == '' || this.idRemove == '')
+          {
+            this.isShowRemoveFail = true;
+            this.isShowRemoveConfirmation = false;
+          }
+        }
+      },
+      error => {
+        this.response = error.status;
+
+        if (this.response != '') {
+          this.isShowRemoveFail = true;
+          this.isShowRemoveConfirmation = false;
+        } else
+        {
+          this.isShowRemoveFail = true;
+          this.isShowRemoveConfirmation = false;
+        }
+      });
+
+     */
+    let x;
+    this.isShowRemoveFail = true;
+    for(x=0; x<this.teamTournamentList.length; x++)
+    {
+      if(this.teamTournamentList[x].tournament.id == this.idRemove)
+      {
+        if(this.teamTournamentList[x].team.id == this.idTeamRemove)
+        {
+          this.isShowRemoveFail = false;
+          this.isShowRemoveConfirmation = true;
+          this.teamTournamentService.deleteEvent(this.teamTournamentList[x].id).subscribe(
+            data => {console.log(data);
+              if(this.response == '')
+              {
+                this.response = '200'
+                this.isShowRemoveFail = false;
+                this.isShowRemoveConfirmation = true;
+                //tymczasowe rozwiązanie problemu
+                if(this.idTeamRemove == '' || this.idRemove == '')
+                {
+                  this.isShowRemoveFail = true;
+                  this.isShowRemoveConfirmation = false;
+                }
+              }
+            },
+            error => {
+              this.response = error.status;
+
+              if (this.response != '') {
+                this.isShowRemoveFail = true;
+                this.isShowRemoveConfirmation = false;
+              } else
+              {
+                this.isShowRemoveFail = true;
+                this.isShowRemoveConfirmation = false;
+              }
+            });
+        }
+      }
+    }
+
+
   }
 
 }

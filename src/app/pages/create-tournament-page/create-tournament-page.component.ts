@@ -41,16 +41,16 @@ export class CreateTournamentPageComponent implements OnInit {
 
 
   createTournament(){
+    //this.isShowSucces = true;
+    //this.isShowFailName = false;
+    //this.isShowFail = false;
     this.tournament.owner = this.userMe.id;
     this.tournamentService.postEventTournament(this.tournament).subscribe(
       data => {console.log(data);
-        if(this.response == '')
-        {
           this.response = '200'
           this.isShowFailName = false;
           this.isShowFail = false;
           this.isShowSucces = true;
-        }
       },
       error => {this.response = error.status;
 
@@ -71,6 +71,13 @@ export class CreateTournamentPageComponent implements OnInit {
           this.isShowFailName = false;
           this.isShowFail = true;
           this.isShowSucces = false;
+        } else
+        if(this.response == '200')
+        {
+          this.response = '200'
+          this.isShowFailName = false;
+          this.isShowFail = false;
+          this.isShowSucces = true;
         } else
         {
           this.isShowFailName = false;

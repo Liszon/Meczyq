@@ -18,39 +18,61 @@
       </select>
     </div>
     <br>
-    <button (click)="showTeams(tournamentID)">Confirm your selection</button>
+    <button (click)="showMatches(tournamentID)">Confirm your selection</button>
   </div>
 
-  <div *ngIf="isShowTeamList">
+  <div *ngIf="isShow2matchList">
+    <button (click)="showMatches2(tournamentID)">Start editing</button>
+  </div>
+
+  <div *ngIf="isShowMatchesList">
+
     <div>
-      <label>Home team</label>
-      <select [(ngModel)]="newMatch.teamTournament1">
-        <option *ngFor="let list of tournamentDetails.team_tournaments; let i = index" [value]="tournamentDetails.team_tournaments[i].id | json">{{teamsList[i].name}}</option>
-      </select>
-      <br>
-      <label>Away team</label>
-      <select [(ngModel)]="newMatch.teamTournament2">
-        <option *ngFor="let list of tournamentDetails.team_tournaments; let i = index" [value]="tournamentDetails.team_tournaments[i].id | json">{{teamsList[i].name}}</option>
-      </select>
-      <br>
-      <label>Date</label>
-      <input [(ngModel)]="newMatch.date" type="datetime-local">
-      <br>
-      <label>Result</label>
-      <select [(ngModel)]="newMatch.matchResult">
-        <option *ngFor="let list of matchResultList; let i = index" [value]="matchResultList[i].id | json">{{matchResultList[i].result}}</option>
-      </select>
+      <h3>Set a new match date</h3>
+      <div>
+        <label>Match date</label>
+        <select [(ngModel)]="idMatchEditDate">
+          <option *ngFor="let list of matches2; let i = index" [value]="matches2[i].id | json">{{matches2[i].date.substr(0,10)}}   {{matches2[i].date.substr(11,5)}}</option>
+        </select>
+        <br>
+        <label>New date</label>
+        <input type="datetime-local" [(ngModel)]="editDateValue.date">
+      </div>
+      <button (click)="editDate(idMatchEditDate)">Confirm</button>
+      <div *ngIf="isShowConfDate">
+        <h3>A new match date has been set</h3>
+      </div>
+      <div *ngIf="isShowErrorDate">
+        <h3>An error occured</h3>
+      </div>
     </div>
-    <button (click)="addResult()">Add result</button>
-    <br>
-    <div *ngIf="isShowError">
-      <h2>An error has occurred, check the correctness of the entered data</h2>
+
+    <br><br>
+
+    <div>
+      <h3>Set the match result</h3>
+      <div>
+        <label>Match date</label>
+        <select [(ngModel)]="idmatchEditResult">
+          <option *ngFor="let list of matches2; let i = index" [value]="matches2[i].id | json">{{matches2[i].date.substr(0,10)}} {{matches2[i].date.substr(11,5)}}</option>
+        </select>
+        <br>
+        <label>Match result</label>
+        <select [(ngModel)]="editResultValue.matchResult">
+          <option *ngFor="let list of matchResultList; let i = index" [value]="matchResultList[i].id | json">{{matchResultList[i].result}}</option>
+        </select>
+      </div>
+      <button (click)="editResult(idmatchEditResult)">Confirm</button>
+      <div *ngIf="isShowConfResult">
+        <h3>The match result has been set</h3>
+      </div>
+      <div *ngIf="isShowErrorResult">
+        <h3>An error occured</h3>
+      </div>
     </div>
-    <div *ngIf="isShowConfirmation">
-      <h2>The match result has been added</h2>
-    </div>
-    {{team1ID}}
-    {{team2ID}}
+
+    <br><br>
+
   </div>
   <button [routerLink]="['/main-tournaments']">Back to Tournaments</button>
   <button [routerLink]="['/home']">Main Menu</button>

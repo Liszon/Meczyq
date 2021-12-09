@@ -21,4 +21,9 @@ export class TeamTournamentsService {
     const body=JSON.stringify(teamTournament);
     return this.http.post(environment.apiUrl+this.eventsPath, body,{'headers': headers})
   }
+
+  deleteEvent(id: string)
+  {
+    return this.http.delete(environment.apiUrl+this.eventsPath + '/' + id)
+  }
 }

@@ -3,6 +3,15 @@ export class NewMatchPost {
   matchResult: string | undefined;
   teamTournament1: string | undefined;
   teamTournament2: string | undefined;
+  tournament: string | undefined;
+}
+
+export class EditDatePut {
+  date: string = '';
+}
+
+export class EditResultPut {
+  matchResult: string = '';
 }
 
 export interface NewMatch {

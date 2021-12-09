@@ -42,7 +42,7 @@ export class TournamentDataPageComponent implements OnInit {
   }
 
   tournamentInfo(id: string){
-    this.tournamentService.getIdEventTournament(id).then(data => {this.tournamentId = data as Tournament[];});
+    this.tournamentService.getIdEventTournament(id).then(data => this.tournamentId = data as Tournament);
     this.mUserService.getIdEventMUsery(this.tournamentId.owner.usersPermissionsUser).then(res => this.mUserList = res as MuserFull);
     this.showConfirmation();
     this.showMatches();
@@ -51,14 +51,21 @@ export class TournamentDataPageComponent implements OnInit {
   showMatches()
   {
     this.matches2 = [];
+
     let x;
-    for(x=0; x<this.matches.length; x++)
+    let y;
+
+    for(x=0; x<this.tournamentId.matches.length; x++)
     {
-      if(this.id == this.matches[x].teamTournament1.tournament)
+      for(y=0; y<this.matches.length;y++)
       {
-        this.matches2.push(this.matches[x])
+        if(this.tournamentId.matches[x].id == this.matches[y].id)
+        {
+          this.matches2.push(this.matches[y])
+        }
       }
     }
+
   }
 
   teamsName(teamId: string)

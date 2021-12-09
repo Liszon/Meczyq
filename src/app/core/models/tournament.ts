@@ -42,6 +42,17 @@ export interface Tournament {
     created_at: string;
     updated_at: string;
   }];
+  matches: [{
+    id: string;
+    date: string;
+    matchResult: string;
+    teamTournament1: string;
+    teamTournament2: string;
+    tournament: string;
+    published_at: string;
+    created_at: string;
+    updated_at: string;
+  }];
   published_at: string;
   created_at: string;
   updated_at: string;

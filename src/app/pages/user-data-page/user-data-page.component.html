@@ -23,8 +23,9 @@
       <br>
       <h2>My teams: </h2>
       <div *ngFor="let list of mUser.teams; let i = index">
-        <h3>{{mUser.teams[i].name}}</h3>
+        <h3>{{mUser.teams[i].name}}<br></h3>
       </div>
+      <br>
       <h2>Date of account creation: </h2>
           <h3>{{(mUser.created_at).substr(0,10)}}</h3>
 

@@ -6,11 +6,12 @@ import {MatchResult} from "../../core/models/match-result";
 import {Tournament} from "../../core/models/tournament";
 import {UserPermissionsUserService} from "../../core/services/user-permissions-user.service";
 import {UsersPermissionUser} from "../../core/models/users-permission-user";
-import {NewMatchPost} from "../../core/models/new-match";
+import {EditDatePut, EditResultPut, NewMatchPost} from "../../core/models/new-match";
 import {Team} from "../../core/models/team";
 import {TeamService} from "../../core/services/team.service";
 import {TeamTournamentsService} from "../../core/services/team-tournaments.service";
 import {TeamTournament} from "../../core/models/team-tournament";
+import {Match} from "../../core/models/match";
 
 @Component({
   selector: 'app-tournament-game-page',
@@ -32,10 +33,22 @@ export class TournamentGamePageComponent implements OnInit {
   userMe: any;
   isShowInitial = true;
   isShowTournamentList = false;
-  isShowTeamList = false;
-  isShowConfirmation = false;
-  isShowError = false;
   isShowNoContent = false;
+
+
+  matches: Match[] = [];
+  matches2: Match[] = [];
+  response: string;
+  idMatchEditDate: string;
+  idmatchEditResult: string;
+  editDateValue = new EditDatePut();
+  editResultValue = new EditResultPut();
+  isShowMatchesList = false;
+  isShowConfDate = false;
+  isShowConfResult = false;
+  isShowErrorDate = false;
+  isShowErrorResult = false;
+  isShow2matchList = false;
 
 
   constructor(private matchResultService: MatchResultService, private matchService: MatchService,
@@ -44,23 +57,28 @@ export class TournamentGamePageComponent implements OnInit {
     this.tournamentID = '';
     this.team1ID = '';
     this.team2ID = '';
+    this.response = '';
+    this.idMatchEditDate = '';
+    this.idmatchEditResult = '';
   }
 
   ngOnInit(): void {
     this.matchResultService.getEventMatchResult().then(res => this.matchResultList = res as MatchResult[]);
     this.tournamentService.getEventTournament().then(res => this.tournamentsList = res as Tournament[]);
-    this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => this.userMe = res as UsersPermissionUser);
+    this.matchService.getEventMatch().then(res => this.matches = res as Match[]);
     this.teamService.getEventTeam().then(res => this.teamsList = res as Team[]);
+
+    this.userPermUserService.getUsersMeEventUserPermissionsUser().then(res => this.userMe = res as UsersPermissionUser);
     this.teamTournamentsService.getEventTournament().then(res => this.teamTournamentsList = res as TeamTournament[]);
   }
 
   initialfunc(){
-    this.findUserGames();
+    this.findUserTournaments();
     this.showContent();
     this.isShowInitial = false;
   }
 
-  findUserGames(){
+  findUserTournaments(){
     let x;
 
     for(x=0; x<this.tournamentsList.length; x++)
@@ -83,14 +101,40 @@ export class TournamentGamePageComponent implements OnInit {
     }
   }
 
-  showTeams(id: string){
+  showMatches(id: string){
     this.isShowTournamentList = false;
     this.tournamentService.getIdEventTournament(id).then(res => this.tournamentDetails = res as Tournament);
-    this.isShowTeamList = true;
+    this.isShow2matchList = true;
   }
 
-  addResult(){
+  showMatches2(id: string){
+    this.isShow2matchList = false;
+    this.tournamentService.getIdEventTournament(id).then(res => this.tournamentDetails = res as Tournament);
+    this.assignMatches();
+    this.isShowMatchesList = true;
+  }
+
+  assignMatches() {
+
+    this.matches2 = [];
+
     let x;
+    let y;
+
+    for (x = 0; x < this.tournamentDetails.matches.length; x++) {
+      for (y = 0; y < this.matches.length; y++) {
+        if (this.tournamentDetails.matches[x].id == this.matches[y].id) {
+          this.matches2.push(this.matches[y])
+        }
+      }
+    }
+
+
+  }
+
+/*
+  addResult(){
+    this.newMatch.tournament = this.tournamentID;
 
     if(this.newMatch.teamTournament1 == this.newMatch.teamTournament2)
     {
@@ -99,25 +143,66 @@ export class TournamentGamePageComponent implements OnInit {
     } else
     {
       this.isShowError = false;
-      /*
-      for (x=0; x<this.teamTournamentsList.length; x++)
-      {
-        if( (this.team1ID == this.teamTournamentsList[x].team.id))
-        {
-          this.newMatch.teamTournament1 = this.teamTournamentsList[x].id;
-        }
-        if( (this.team2ID == this.teamTournamentsList[x].team.id))
-        {
-          this.newMatch.teamTournament2 = this.teamTournamentsList[x].id;
-        }
-      }
-
-       */
 
       this.matchService.postEventMatch(this.newMatch).subscribe(data => {
         console.log(data)
       });
       this.isShowConfirmation = true;
+    }
+  }
+
+ */
+
+  editDate(id: string){
+
+    if(this.editDateValue.date == '')
+    {
+      this.isShowConfDate = false;
+      this.isShowErrorDate = true;
+    } else
+    {
+      this.matchService.putEditDateEventMatch(id, this.editDateValue).subscribe(
+        data => {console.log(data);
+          this.response = '200'
+          this.isShowConfDate = true;
+          this.isShowErrorDate = false;
+        },
+        error => {this.response = error.status;
+
+          if(this.response != '')
+          {
+            this.isShowConfDate = false;
+            this.isShowErrorDate = true;
+          }
+        },
+      );
+    }
+
+  }
+
+  editResult(id: string){
+
+    if(this.editResultValue.matchResult == '')
+    {
+      this.isShowConfResult = false;
+      this.isShowErrorResult = true;
+    } else
+    {
+      this.matchService.putEditResultEventMatch(id, this.editResultValue).subscribe(
+        data => {console.log(data);
+          this.response = '200'
+          this.isShowConfResult = true;
+          this.isShowErrorResult = false;
+        },
+        error => {this.response = error.status;
+
+          if(this.response != '')
+          {
+            this.isShowConfResult = false;
+            this.isShowErrorResult = true;
+          }
+        },
+      );
     }
   }
 

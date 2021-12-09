@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {NewMatch, NewMatchPost} from "../models/new-match";
+import {EditDatePut, EditResultPut, NewMatch, NewMatchPost} from "../models/new-match";
 
 
 @Injectable({
@@ -40,4 +40,17 @@ export class MatchService {
     const body=JSON.stringify(match);
     return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
   }
+
+  putEditDateEventMatch(id: string, date: EditDatePut){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(date);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
+  }
+
+  putEditResultEventMatch(id: string, result: EditResultPut){
+    const headers = { 'content-type': 'application/json'};
+    const body=JSON.stringify(result);
+    return this.http.put(environment.apiUrl+this.eventsPath+'/'+id, body,{'headers': headers});
+  }
+
 }
