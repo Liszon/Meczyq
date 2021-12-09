@@ -184,7 +184,20 @@ export class TournamentGamePageComponent implements OnInit {
         },
       );
     }
+  }
 
+  teamName(teamId: string){
+    let teamName = '';
+    let x;
+    for(x=0; x<this.teamsList.length; x++)
+    {
+      if(teamId == this.teamsList[x].id)
+      {
+        teamName = this.teamsList[x].name;
+        break;
+      }
+    }
+    return teamName
   }
 
   editResult(id: string){

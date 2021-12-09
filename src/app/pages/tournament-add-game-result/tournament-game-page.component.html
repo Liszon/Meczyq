@@ -32,7 +32,7 @@
       <div>
         <label>Match date</label>
         <select [(ngModel)]="idMatchEditDate">
-          <option *ngFor="let list of matches2; let i = index" [value]="matches2[i].id | json">{{matches2[i].date.substr(0,10)}}   {{matches2[i].date.substr(11,5)}}</option>
+          <option *ngFor="let list of matches2; let i = index" [value]="matches2[i].id | json">{{teamName(matches2[i].teamTournament1.team)}} vs {{teamName(matches2[i].teamTournament2.team)}} -- {{matches2[i].date.substr(0,10)}}   {{matches2[i].date.substr(11,5)}}</option>
         </select>
         <br>
         <label>New date</label>
@@ -54,7 +54,7 @@
       <div>
         <label>Match date</label>
         <select [(ngModel)]="idmatchEditResult">
-          <option *ngFor="let list of matches2; let i = index" [value]="matches2[i].id | json">{{matches2[i].date.substr(0,10)}} {{matches2[i].date.substr(11,5)}}</option>
+          <option *ngFor="let list of matches2; let i = index" [value]="matches2[i].id | json">{{teamName(matches2[i].teamTournament1.team)}} vs {{teamName(matches2[i].teamTournament2.team)}} -- {{matches2[i].date.substr(0,10)}} {{matches2[i].date.substr(11,5)}}</option>
         </select>
         <br>
         <label>Match result</label>
