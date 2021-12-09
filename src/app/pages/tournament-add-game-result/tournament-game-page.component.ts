@@ -103,16 +103,23 @@ export class TournamentGamePageComponent implements OnInit {
 
   showMatches(id: string){
     this.isShowTournamentList = false;
-    this.tournamentService.getIdEventTournament(id).then(res => this.tournamentDetails = res as Tournament);
-    this.isShow2matchList = true;
+    this.tournamentService.getIdEventTournament(id).then(res => {this.tournamentDetails = res as Tournament;
+      this.tournamentService.getIdEventTournament(id).then(res => {this.tournamentDetails = res as Tournament;
+        this.assignMatches();
+        this.isShowMatchesList = true;
+      });
+    });
+   // this.isShow2matchList = true;
   }
-
+/*
   showMatches2(id: string){
     this.isShow2matchList = false;
     this.tournamentService.getIdEventTournament(id).then(res => this.tournamentDetails = res as Tournament);
     this.assignMatches();
     this.isShowMatchesList = true;
   }
+
+ */
 
   assignMatches() {
 
