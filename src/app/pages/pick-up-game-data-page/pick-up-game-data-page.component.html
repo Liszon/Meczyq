@@ -28,6 +28,15 @@
         </tbody>
       </table>
     </div>
+
+    <br>
+    <div>
+      <h2>Members list</h2>
+      <div *ngFor="let list of usernameList; let i = index">
+        {{usernameList[i]}}
+      </div>
+    </div>
+    <br>
   </div>
   <button [routerLink]="['/main-pick-up-game']">Back to Pick-up Games</button>
   <button [routerLink]="['/home']">Main Menu</button>
