@@ -58,8 +58,8 @@ export class RegisterpageComponent implements OnInit {
     )
     if (status == 200) {
 
-      window.location.reload();
-
+      //window.location.reload();
+      this.router.navigate(['/home'])
 
     } else {
       this.error = 'data error'
