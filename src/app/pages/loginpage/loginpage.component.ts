@@ -57,8 +57,8 @@ error:string;
     )
     if (status==200) {
 
-      window.location.reload();
-
+      //window.location.reload();
+      this.router.navigate(['/home'])
 
     }
     else {

@@ -26,6 +26,14 @@
       </tbody>
     </table>
   </div>
+<br>
+  <div>
+    <h2>Members list</h2>
+    <div *ngFor="let list of usernameList; let i = index">
+      {{usernameList[i]}}
+    </div>
+  </div>
+  <br>
   <button [routerLink]="['/main-teams']">Back to Teams</button>
   <button [routerLink]="['/home']">Main Menu</button>
 </div>
