@@ -50,7 +50,7 @@
           <td>{{matches2[i].date.substr(0,10)}}<br>{{matches2[i].date.substr(11,5)}}</td>
           <td>{{teamsName(matches2[i].teamTournament1.team)}}</td>
           <td>{{teamsName(matches2[i].teamTournament2.team)}}</td>
-          <td>{{matches2[i].matchResult.result}}</td>
+          <td>{{matches2[i]?.matchResult?.result}}</td>
         </tr>
         </tbody>
       </table>
