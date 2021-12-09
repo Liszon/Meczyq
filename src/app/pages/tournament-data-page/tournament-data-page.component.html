@@ -18,6 +18,7 @@
           <td>Sport Type</td>
           <td>Start Date</td>
           <td>End Date</td>
+          <td>Teams</td>
         </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@
           <td>{{tournamentId.sport_type.name}}</td>
           <td>{{tournamentId.start_date.substr(0,10)}}</td>
           <td>{{tournamentId.end_date.substr(0,10)}}</td>
+          <td *ngFor="let list of tournamentId.team_tournaments; let i = index">{{teamsName((tournamentId.team_tournaments[i].team))}}</td>
         </tr>
         </tbody>
       </table>
